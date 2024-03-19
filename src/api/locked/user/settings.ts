@@ -9,6 +9,7 @@ import {
     PasswordChangeForm
 } from "../../../interfaces/dto/forms/account";
 import {getHeaders, keysCheck, loadCSRFToken} from "../../APIUtils";
+import {UserDataDTO} from "../../../interfaces/dto/user.ts";
 
 const userDataQuery = (key: string[]) => ({
     queryKey: key,
@@ -19,7 +20,7 @@ const userDataQuery = (key: string[]) => ({
         if (!response.ok) {
             throw await response.json();
         } else {
-            return await response.json();
+            return await response.json() as UserDataDTO;
         }
     },
 });
@@ -56,7 +57,7 @@ export const updateName = async (data: { userId: string, form: NameChangeForm })
 
     await keysCheck();
     await loadCSRFToken();
-    return await updateNameFn(data);
+    return updateNameFn(data);
 };
 
 export const updateEmail = async (data: { userId: string, form: EmailChangeForm }) => {
@@ -94,7 +95,7 @@ export const updatePassword = async (data: { userId: string, form: PasswordChang
 
     await keysCheck();
     await loadCSRFToken();
-    return await updatePasswordFn(data);
+    return updatePasswordFn(data);
 };
 
 export const updateContactNumber = async (data: { userId: string, form: ContactNumberChangeForm }) => {
@@ -113,7 +114,7 @@ export const updateContactNumber = async (data: { userId: string, form: ContactN
 
     await keysCheck();
     await loadCSRFToken();
-    return await updateContactNumberFn(data);
+    return updateContactNumberFn(data);
 };
 
 export const deleteAccount = async (data: { userId: string, form: AccountDeleteForm }) => {
@@ -132,5 +133,5 @@ export const deleteAccount = async (data: { userId: string, form: AccountDeleteF
 
     await keysCheck();
     await loadCSRFToken();
-    return await deleteAccountFn(data);
+    return deleteAccountFn(data);
 };

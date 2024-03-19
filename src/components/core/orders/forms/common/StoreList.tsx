@@ -14,9 +14,10 @@ interface Props {
 const StoreList = (props: Props) => {
     const storePickUpSelectRef = useRef<HTMLSelectElement>(null);
 
-    const {data: storeList} = useQuery({
+    const {data: storeList} = useQuery<StoreDTO[]>({
         queryKey: ["resource", "store"],
         queryFn: queryResource,
+
     });
 
     useEffect(() => {

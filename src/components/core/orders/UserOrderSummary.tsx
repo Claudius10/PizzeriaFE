@@ -68,6 +68,8 @@ const UserOrderSummary = () => {
                 dispatch(orderState.setCartQuantity(order.data.cart.totalQuantity));
                 dispatch(orderState.setRefetchPending(false));
             }
+        }).catch((error: ApiErrorDTO) => {
+            throw new Error(error.errorMsg);
         });
     }
 

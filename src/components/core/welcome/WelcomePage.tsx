@@ -2,9 +2,10 @@ import styles from "./css/WelcomePage.module.css";
 import {queryResource} from "../../../api/open/resource";
 import {useQuery} from "@tanstack/react-query";
 import OffersList from "../../core/offers/OffersList";
+import {OfferDTO} from "../../../interfaces/dto/resources.ts";
 
 const WelcomePage = () => {
-    const {data: offers, isSuccess, isLoading, isError} = useQuery({
+    const {data: offers, isSuccess, isLoading, isError} = useQuery<OfferDTO[]>({
         queryKey: ["resource", "offer"],
         queryFn: queryResource
     });

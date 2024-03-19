@@ -1,4 +1,4 @@
-import {FieldErrors, get} from "react-hook-form";
+import {FieldError, FieldErrors, get} from "react-hook-form";
 import {OrderItemForm} from "../interfaces/dto/forms/order";
 
 export const getDeliveryHours = () => {
@@ -26,31 +26,32 @@ export const getDeliveryHours = () => {
 
 export const getAnonCustomerErrors = (errors: FieldErrors) => {
     return {
-        anonCustomerNameError: get(errors, "anonCustomerName") as string,
-        anonCustomerEmailError: get(errors, "anonCustomerEmail") as string,
-        anonCustomerContactNumberError: get(errors, "anonCustomerContactNumber") as string
+        anonCustomerNameError: get(errors, "anonCustomerName") as FieldError,
+        anonCustomerEmailError: get(errors, "anonCustomerEmail") as FieldError,
+        anonCustomerContactNumberError: get(errors, "anonCustomerContactNumber") as FieldError
     };
 };
 
 export const getAddressFormErrors = (errors: FieldErrors) => {
+
     return {
-        street: get(errors, "address.street") as string,
-        streetNr: get(errors, "address.streetNr") as string,
-        gate: get(errors, "address.gate") as string,
-        staircase: get(errors, "address.staircase") as string,
-        floor: get(errors, "address.floor") as string,
-        door: get(errors, "address.door") as string,
-        address: get(errors, "address") as string
+        street: get(errors, "address.street") as FieldError,
+        streetNr: get(errors, "address.streetNr") as FieldError,
+        gate: get(errors, "address.gate") as FieldError,
+        staircase: get(errors, "address.staircase") as FieldError,
+        floor: get(errors, "address.floor") as FieldError,
+        door: get(errors, "address.door") as FieldError,
+        address: get(errors, "address") as FieldError
     };
 };
 
 export const getOrderDetailsFormErrors = (errors: FieldErrors) => {
     return {
-        deliverNow: get(errors, "orderDetails.deliverNow") as string,
-        deliveryHour: get(errors, "orderDetails.deliveryHour") as string,
-        paymentType: get(errors, "orderDetails.paymentType") as string,
-        changeRequested: get(errors, "orderDetails.changeRequested") as string,
-        deliveryComment: get(errors, "orderDetails.deliveryComment") as string,
+        deliverNow: get(errors, "orderDetails.deliverNow") as FieldError,
+        deliveryHour: get(errors, "orderDetails.deliveryHour") as FieldError,
+        paymentType: get(errors, "orderDetails.paymentType") as FieldError,
+        changeRequested: get(errors, "orderDetails.changeRequested") as FieldError,
+        deliveryComment: get(errors, "orderDetails.deliveryComment") as FieldError,
     };
 };
 

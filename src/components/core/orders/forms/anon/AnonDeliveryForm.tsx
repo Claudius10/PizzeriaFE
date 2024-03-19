@@ -12,6 +12,7 @@ import {
     sessionStorageFormExists,
     setAddressToSessionStorage,
 } from "../FormSessionStorageUtils";
+import {AddressForm} from "../../../../../interfaces/dto/forms/order.ts";
 
 const AnonDeliveryForm = () => {
     const [state, dispatch] = useReducer(AnonFormReducer, formState);
@@ -32,7 +33,7 @@ const AnonDeliveryForm = () => {
         }
 
         return () => {
-            setAddressToSessionStorage(form.getValues("address"));
+            setAddressToSessionStorage(form.getValues("address") as AddressForm);
         };
     }, []);
 
@@ -50,7 +51,8 @@ const AnonDeliveryForm = () => {
 
     const setStoreId = (storeId: number) => {
         form.setValue("address.id", storeId);
-        form.trigger("address");
+        void form.trigger("address.street");
+        void form.trigger("address.streetNr");
     };
 
     const addressForm = <>
@@ -69,7 +71,8 @@ const AnonDeliveryForm = () => {
             className={errors.street ? "invalid" : ""}
             {...form.register("address.street", {
                 validate: (value, formValues) => {
-                    if (formValues.address.id) {
+                    const address = formValues.address as AddressForm;
+                    if (address.id) {
                         return true;
                     }
 
@@ -108,7 +111,8 @@ const AnonDeliveryForm = () => {
             className={errors.streetNr ? "invalid" : ""}
             {...form.register("address.streetNr", {
                 validate: (value, formValues) => {
-                    if (formValues.address.id) {
+                    const address = formValues.address as AddressForm;
+                    if (address.id) {
                         return true;
                     }
 
@@ -251,7 +255,7 @@ const AnonDeliveryForm = () => {
             <option value={"StorePickUp"}>Recoger</option>
         </Select>
 
-        {state.pickUp ? <StoreList isAddressFormInvalid={errors.address} onSetStoreId={setStoreId}/> : addressForm}
+        {state.pickUp ? <StoreList isAddressFormInvalid={!!errors.address} onSetStoreId={setStoreId}/> : addressForm}
     </div>;
 };
 

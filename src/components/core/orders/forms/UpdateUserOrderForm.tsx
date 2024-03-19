@@ -85,7 +85,7 @@ const UpdateUserOrderForm = () => {
 
     const updateOrder = useMutation({
         mutationFn: updateUserOrder,
-        onSuccess: async (orderId) => {
+        onSuccess: async (orderId: number) => {
             form.reset(defaultUserOrderUpdateFormValues);
             clearSessionStorageForm();
             dispatch(orderState.setRefetchPending(true));

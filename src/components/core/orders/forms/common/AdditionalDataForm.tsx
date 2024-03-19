@@ -14,6 +14,7 @@ import {
     sessionStorageFormExists,
     setOrderDetailsToSessionStorage
 } from "../FormSessionStorageUtils";
+import {OrderDetailsForm} from "../../../../../interfaces/dto/forms/order.ts";
 
 const AdditionalDataForm = () => {
     const {openModal, closeModal, modalContent, isModalOpen} = useModal();
@@ -47,7 +48,7 @@ const AdditionalDataForm = () => {
         }
 
         return () => {
-            setOrderDetailsToSessionStorage(form.getValues("orderDetails"));
+            setOrderDetailsToSessionStorage(form.getValues("orderDetails") as OrderDetailsForm);
         };
     }, []);
 
@@ -61,7 +62,7 @@ const AdditionalDataForm = () => {
             dispatch(formActions.setDeliverNow(false));
         }
 
-        form.trigger("orderDetails.deliverNow"); // trigger manual field validation
+        void form.trigger("orderDetails.deliverNow"); // trigger manual field validation
     };
 
     const selectPaymentType = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -76,7 +77,7 @@ const AdditionalDataForm = () => {
             form.setValue("orderDetails.changeRequested", null);
         }
 
-        form.trigger("orderDetails.paymentType");
+        void form.trigger("orderDetails.paymentType");
     };
 
     const selectChangeRequest = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -158,7 +159,7 @@ const AdditionalDataForm = () => {
                                 message: "La hora programada no puede faltar"
                             },
                             onChange: () => {
-                                form.trigger("orderDetails.deliveryHour");
+                                void form.trigger("orderDetails.deliveryHour");
                             }
                         })}>
                         {deliveryHours}

@@ -56,7 +56,7 @@ const NewUserOrderForm = () => {
 
     const newOrder = useMutation({
         mutationFn: createUserOrder,
-        onSuccess: async (orderId) => {
+        onSuccess: async (orderId: number) => {
             await queryClient.invalidateQueries({queryKey: ["user", "orders"]});
             form.reset(defaultUserFormValues);
             clearSessionStorageForm();

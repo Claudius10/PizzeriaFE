@@ -2,7 +2,7 @@ import styles from "./css/DeliveryForm.module.css";
 import gearIcon from "../../../../../resources/icons/gear.png";
 import AnonFormReducer, {formActions, formState} from "../common/FormReducer";
 import {ChangeEvent, useEffect, useReducer, useRef} from "react";
-import {get, useFormContext} from "react-hook-form";
+import {FieldError, get, useFormContext} from "react-hook-form";
 import {useQuery} from "@tanstack/react-query";
 import {CircleIcon} from "../../../../layout/buttons/InteractiveIcons";
 import {useNavigate} from "react-router-dom";
@@ -22,10 +22,10 @@ const DeliveryForm = () => {
     const deliverySelectRef = useRef<HTMLSelectElement>(null);
     const navigate = useNavigate();
     const form = useFormContext();
-    const addressError = get(form.formState.errors, "addressId");
+    const addressError = get(form.formState.errors, "addressId") as FieldError;
 
     const revalidate = () => {
-        form.trigger("addressId"); // trigger manual field validation
+        void form.trigger("addressId"); // trigger manual field validation
     };
 
     const {data: addressList} = useQuery({
@@ -59,7 +59,7 @@ const DeliveryForm = () => {
 
         return () => {
             setDeliveryTypeToSessionStorage(selectRef);
-            setAddressIdToSessionStorage(form.getValues("addressId"));
+            setAddressIdToSessionStorage(form.getValues("addressId") as number);
         };
     }, [deliverySelectRef.current?.value]);
 
@@ -77,7 +77,7 @@ const DeliveryForm = () => {
 
     const setStoreId = (storeId: number) => {
         form.setValue("addressId", storeId);
-        form.trigger("addressId");
+        void form.trigger("addressId");
     };
 
     const navToProfile = () => {
@@ -107,7 +107,7 @@ const DeliveryForm = () => {
             {addressList?.map((item) =>
                 <option
                     key={item.id}
-                    value={item.id!}>
+                    value={item.id}>
                     Calle: {item.street}
                     {" "}
                     |
@@ -157,7 +157,7 @@ const DeliveryForm = () => {
             <option value={"StorePickUp"}>Recoger</option>
         </Select>
 
-        {state.pickUp ? <StoreList isAddressFormInvalid={addressError} onSetStoreId={setStoreId}/> : userAddressList}
+        {state.pickUp ? <StoreList isAddressFormInvalid={!!addressError} onSetStoreId={setStoreId}/> : userAddressList}
     </div>;
 };
 

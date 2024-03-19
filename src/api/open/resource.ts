@@ -1,11 +1,12 @@
 import {QueryClient} from "@tanstack/react-query";
 import {QueryOptions} from "@tanstack/react-query";
+import {ProductDTO} from "../../interfaces/dto/resources.ts";
 
 export const queryResource = async (options: QueryOptions) => {
-    let resource;
+    let resource = "";
 
     if (options.queryKey !== undefined) {
-        resource = options.queryKey[1];
+        resource = options.queryKey[1] as string;
     }
 
     const response = await fetch(`${import.meta.env.VITE_APP_RESOURCES_API}/${resource}`);
@@ -21,11 +22,11 @@ export const queryResource = async (options: QueryOptions) => {
 const productQuery = (key: string[]) => ({
     queryKey: key,
     queryFn: async () => {
-        const response = await fetch(`${import.meta.env.VITE_APP_RESOURCES_API}/product?type=${key}`);
+        const response = await fetch(`${import.meta.env.VITE_APP_RESOURCES_API}/product?type=${key[0]}`);
         if (!response.ok) {
             throw await response.json();
         } else {
-            return await response.json();
+            return await response.json() as ProductDTO[];
         }
     },
 });

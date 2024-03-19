@@ -10,6 +10,7 @@ const ErrorPage = () => {
                 <h1>Oops!</h1>
                 <h2>{error.status}</h2>
                 <p>{error.statusText}</p>
+                {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
                 {error.data?.message && <p>{error.data.message}</p>}
             </div>
         );

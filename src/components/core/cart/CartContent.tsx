@@ -7,7 +7,6 @@ import {
     getTotalCostWithOffers,
     isSecondAtHalfPriceApplied
 } from "./CartLocalStorageFunctions";
-import React from "react";
 import styles from "./css/Cart.module.css";
 
 const CartContent = () => {

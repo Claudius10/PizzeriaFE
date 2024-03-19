@@ -21,9 +21,9 @@ const AnonClientForm = () => {
 
         return () => {
             setAnonCustomerToSessionStorage(
-                form.getValues("anonCustomerName"),
-                form.getValues("anonCustomerEmail"),
-                form.getValues("anonCustomerContactNumber")
+                form.getValues("anonCustomerName") as string,
+                form.getValues("anonCustomerEmail") as string,
+                form.getValues("anonCustomerContactNumber") as number,
             );
         };
     }, []);

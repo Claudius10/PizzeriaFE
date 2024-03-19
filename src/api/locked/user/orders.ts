@@ -15,13 +15,14 @@ export const createUserOrder = async (order: UserOrderForm) => {
         if (!response.ok) {
             throw await response.json();
         } else {
-            return response.json();
+            // returns order id
+            return await response.json() as number;
         }
     };
 
     await keysCheck();
     await loadCSRFToken();
-    return await createUserOrderFn(order);
+    return createUserOrderFn(order);
 };
 
 export const findUserOrder = async (options: QueryOptions) => {
@@ -83,13 +84,14 @@ export const updateUserOrder = async (order: UpdatingUserOrderForm) => {
         if (!response.ok) {
             throw await response.json();
         } else {
-            return response.json();
+            // returns order id
+            return await response.json() as number;
         }
     };
 
     await keysCheck();
     await loadCSRFToken();
-    return await updateUserOrderFn(order);
+    return updateUserOrderFn(order);
 };
 
 export const deleteOrderById = async (orderId: string) => {
@@ -103,11 +105,12 @@ export const deleteOrderById = async (orderId: string) => {
         if (!response.ok) {
             throw await response.json();
         } else {
-            return response.json();
+            // returns order id
+            return await response.json() as number;
         }
     };
 
     await keysCheck();
     await loadCSRFToken();
-    return await deleteOrderByIdFn(orderId);
+    return deleteOrderByIdFn(orderId);
 };

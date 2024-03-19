@@ -33,7 +33,7 @@ const Pagination = (props: Props) => {
 
     let pageArray: number[] = [];
     if (props.totalPages) {
-        pageArray = Array.from(Array(props.totalPages), (e, i) => i + 1);
+        pageArray = Array.from(Array(props.totalPages), (_e, i) => i + 1);
     }
 
     return <div className={styles.container}>
