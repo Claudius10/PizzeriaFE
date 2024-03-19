@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Personal project of author"/>
+    <meta name="author" content="Claudiu Catalin Blasiu"/>
+    <title>Pizzería Fabulosa</title>
+
+    <meta http-equiv="Content-Security-Policy"
+          content="
+          default-src 'self';
+          frame-src 'self';
+          connect-src 'self' http://192.168.1.128:3000 http://localhost:3000/ http://192.168.1.128:8080 https://pizzeriaprojectbe-production.up.railway.app https://pizzeriaproject-production.up.railway.app;
+          child-src 'self';
+          object-src 'none';
+          form-action 'none';
+          img-src data: https: 'self';
+          script-src 'self';
+          style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+          font-src 'self' https://fonts.gstatic.com;
+    "
+    />
+  </head>
+  <body>
+    <div id="modal"></div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

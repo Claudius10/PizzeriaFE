@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
+    background-color: #292929;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.list {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.text {
+    color: #e4e6ed;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.value {
+    color: #e4e6ed;
+}
+
+/* desktop */
+@media (min-width: 1400px) {
+}
+
+/* not desktop */
+@media (min-width: 1px) and (max-width: 1400px) {
+    .container {
+        min-width: auto;
+    }
+}
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+}
+
+/* portrait tablets */
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
+}
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1368px) {
+}
+
+/* fold portrait  */
+@media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
+}

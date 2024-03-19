@@ -1,0 +1,87 @@
+.offer-container {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+    background-color: #292929;
+    width: 23rem;
+    padding-bottom: 0.5rem;
+}
+
+.img-container {
+    height: 13rem;
+}
+
+.offer-container img {
+    border-radius: 5px 5px 0 0;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.offer-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: #a9004f;
+    font-weight: 800;
+}
+
+.offer-title {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.desc {
+    color: #e4e6ed;
+}
+
+/* desktop */
+@media (min-width: 1200px) {
+    .offer-container {
+        height: fit-content;
+    }
+}
+
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+    /* Styles */
+    .offer-container {
+        width: 20rem;
+    }
+
+    .offer-title {
+        font-size: 1.5rem;
+    }
+
+    .desc {
+        color: #e4e6ed;
+        text-align: center;
+    }
+
+    .offer-info {
+        text-align: center;
+    }
+}
+
+/* portrait samsung fold */
+@media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
+    /* Styles */
+    .offer-container {
+        width: 15rem;
+    }
+
+    .offer-title {
+        font-size: 1.5rem;
+    }
+
+    .desc {
+        color: #e4e6ed;
+        text-align: center;
+    }
+
+    .offer-info {
+        text-align: center;
+    }
+}

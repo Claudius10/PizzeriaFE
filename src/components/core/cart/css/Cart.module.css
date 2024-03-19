@@ -1,0 +1,115 @@
+.layout {
+    font-weight: 800;
+    border: 1px solid #292929;
+    background-color: #292929;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.header {
+    height: 1.5rem;
+    padding-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    margin-left: 0.2rem;
+    color: #e4e6ed;
+}
+
+.content {
+    overflow: scroll;
+    scrollbar-width: thin; /* for chrome */
+    scrollbar-color: #e4e6ed transparent;
+    height: 27rem;
+}
+
+.content li {
+    list-style-type: none;
+}
+
+.empty {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 13.75rem;
+    margin-bottom: 13.7rem;
+    color: #e4e6ed;
+}
+
+.total {
+    color: #e4e6ed;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.offerTotal {
+    color: #e4e6ed;
+    background-color: #a9004f;
+    border: 1px solid #a9004f;
+    margin-left: 0.5rem;
+}
+
+.offers {
+    color: #e4e6ed;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.highlight {
+    color: #a9004f;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.6rem;
+}
+
+.buttons {
+    width: 95%;
+}
+
+@media (min-width: 1200px) {
+
+}
+
+@media (max-width: 1200px) {
+    .header {
+        border-top: 1px solid black;
+    }
+
+    .cart-empty {
+        margin-top: 1rem;
+    }
+}
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+    .empty {
+        margin-top: 0;
+        margin-bottom: 6.85rem;
+    }
+
+    .content {
+        height: 7rem;
+    }
+}
+
+/* portrait tablets */
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
+}
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
+    .content {
+        height: 21.5rem;
+    }
+}
+
+/* fold portrait  */
+@media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
+}

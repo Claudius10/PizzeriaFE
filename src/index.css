@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Water+Brush&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    scrollbar-width: none;
+}
+
+body {
+    /* prevent navlinks in main nav from moving
+    when navigating between pages that
+    have a scroll bar and viceversa
+    */
+    margin-right: calc(-1 * (100vw - 100%));
+    /* hide the x scroll that appears
+    due to line above
+    */
+    overflow-x: hidden;
+    /* general styling */
+    background-color: #292929;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+input {
+    -moz-appearance: textfield; /* Works for Firefox */
+}
+
+/* Works for Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input:focus {
+    outline: none;
+}
+
+textarea:focus {
+    outline: none;
+}

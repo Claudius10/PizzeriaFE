@@ -1,0 +1,98 @@
+.client-form {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: #292929;
+    color: #cecece;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
+    padding-bottom: 1rem;
+}
+
+.delivery-form {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: #292929;
+    color: #cecece;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
+    padding-bottom: 1rem;
+}
+
+.delivery-form-domicilio {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.extras-form {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    background-color: #292929;
+    color: #cecece;
+    gap: 0.5rem;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
+    padding-bottom: 1rem;
+}
+
+.required-star {
+    color: #f5cc45;
+    margin-right: 1rem;
+    margin-left: 0.1rem;
+}
+
+.invalid {
+    color: rgb(199, 30, 30);
+    font-size: small;
+    margin-left: 2%;
+}
+
+input[id="changeSelectedValue"] {
+    -moz-appearance: textfield;
+    width: 94.7%;
+}
+
+.general-a {
+    margin-left: 2%;
+}
+
+.general-b {
+    margin-left: 2%;
+    border: 1px solid black;
+    background-color: #292929;
+    color: #f5cc45;
+    width: 95%;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-p {
+    color: #f5cc45;
+    -webkit-text-stroke: 0.1px black;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.modal-bttn {
+    height: fit-content;
+    border: 1px solid black;
+    text-transform: uppercase;
+    background-color: #f5cc45;
+    color: inherit;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    font-weight: 800;
+    width: 10rem;
+}

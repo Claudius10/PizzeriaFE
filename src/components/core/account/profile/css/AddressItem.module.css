@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    word-break: break-all;
+    border-bottom: 1px solid #e4e6ed;
+    padding-bottom: 0.5rem;
+}
+
+.text {
+    margin-top: 0.4rem;
+    color: #a9004f;
+    font-weight: 800;
+}
+
+.value {
+    margin-left: 0.3rem;
+    color: #e4e6ed;
+}
+
+.address-bttn {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: fit-content;
+}

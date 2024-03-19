@@ -1,0 +1,5 @@
+.mainWrapper {
+    /* so the absolute position footer works as intended */
+    position: relative;
+    min-height: 100vh;
+}

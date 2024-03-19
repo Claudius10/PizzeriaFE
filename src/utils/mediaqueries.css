@@ -1,0 +1,32 @@
+/* desktop */
+@media (min-width: 1200px) {
+}
+
+/* not desktop */
+@media (min-width: 1px) and (max-width: 1200px) {
+}
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+
+}
+
+/* portrait tablets */
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
+
+}
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
+
+}
+
+/* fold portrait  */
+@media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
+
+}

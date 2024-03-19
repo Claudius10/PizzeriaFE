@@ -1,0 +1,251 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.orderId {
+    color: #a9004f;
+    text-align: center;
+    font-weight: bold;
+    font-style: oblique;
+    font-size: 2.5rem;
+}
+
+.dates {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.date {
+    color: #e4e6ed;
+    font-weight: 800;
+}
+
+.date span {
+    color: #a9004f;
+    font-weight: 800;
+}
+
+.orderView {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.orderActions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pageActions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.apiLoading {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: #cecece;
+    font-weight: 800;
+}
+
+.reload-cart-desktop {
+    height: fit-content;
+    width: 100%;
+    text-transform: uppercase;
+    background-color: #a9004f;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
+    border: 1px solid #292929;
+    color: #e4e6ed;
+    padding: 0.2rem 0.3rem;
+    cursor: pointer;
+    outline: inherit;
+    font-weight: 800;
+}
+
+/* desktop */
+@media (min-width: 1200px) {
+    .reload-cart-mobile {
+        display: none;
+    }
+
+    .orderId {
+        margin-top: 1.5rem;
+    }
+
+    .dates {
+        margin-top: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .cart {
+        width: 16vw;
+    }
+
+    .orderActions {
+        width: 30vw;
+    }
+
+    .pageActions {
+        width: 20vw;
+    }
+}
+
+/* not desktop */
+@media (min-width: 1px) and (max-width: 1200px) {
+    .reload-cart-mobile {
+        display: none;
+    }
+
+    .orderId {
+        margin-top: 1.5rem;
+    }
+
+    .dates {
+        margin-top: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .order-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .orderActions {
+        width: 40vw;
+    }
+
+    .pageActions {
+        flex-direction: column;
+        width: 40vw;
+    }
+
+    .cart {
+        width: 20vw;
+        min-width: 10rem;
+    }
+}
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+    .cart {
+        display: none;
+    }
+
+    .orderId {
+        margin-top: 1.5rem;
+    }
+
+    .dates {
+        margin-top: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .orderActions {
+        width: 90vw;
+        flex-direction: column;
+    }
+
+    .pageActions {
+        flex-direction: column;
+        width: 90vw;
+    }
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+    .reload-cart-mobile {
+        display: none;
+    }
+
+    .orderId {
+        margin-top: 1.5rem;
+    }
+
+    .dates {
+        margin-top: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .cart {
+        width: 40vw;
+    }
+
+    .orderActions {
+        flex-direction: column;
+    }
+
+    .pageActions {
+        flex-direction: column;
+        width: 50vw;
+    }
+}
+
+/* portrait tablets */
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
+    .cart {
+        width: 35vw;
+    }
+
+    .orderActions {
+        flex-direction: column;
+    }
+
+    .pageActions {
+        flex-direction: column;
+        width: 40vw;
+    }
+
+}
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1368px) {
+    .reload-cart-mobile {
+        display: none;
+    }
+
+    .orderId {
+        margin-top: 1.5rem;
+    }
+
+    .dates {
+        margin-top: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .cart {
+        width: 28vw;
+    }
+
+    .orderActions {
+        flex-direction: column;
+    }
+
+    .pageActions {
+        flex-direction: column;
+        width: 30vw;
+    }
+}
+
+/* fold portrait  */
+@media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
+    .pageActions {
+        flex-direction: column;
+    }
+}

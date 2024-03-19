@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #e4e6ed;
+}
+
+.button {
+    border: none;
+    background: none;
+    color: #e4e6ed;
+    font-weight: 800;
+    font-size: 1rem;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.extra {
+    margin-bottom: 0.3rem;
+    text-align: center;
+}
+
+.text {
+    text-align: center;
+}

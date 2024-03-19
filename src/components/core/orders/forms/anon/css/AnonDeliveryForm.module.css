@@ -1,0 +1,66 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: #292929;
+    color: #cecece;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.label {
+    color: #cecece;
+    font-weight: 800;
+}
+
+/* desktop */
+@media (min-width: 1200px) {
+    .container {
+        width: 22vw;
+    }
+}
+
+/* not desktop */
+@media (max-width: 1200px) {
+    .container {
+        width: 38vw;
+        min-width: auto;
+    }
+}
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+    .container {
+        width: 90vw;
+    }
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+    .container {
+        width: 43vw;
+    }
+}
+
+/* portrait tablets */
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
+    .container {
+        width: 40vw;
+    }
+}
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
+    .container {
+        width: 33vw;
+    }
+}
+
+/* fold portrait  */
+@media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
+}

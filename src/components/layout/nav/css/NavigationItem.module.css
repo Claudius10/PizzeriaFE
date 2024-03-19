@@ -1,0 +1,51 @@
+{
+/*
+169, 0, 49
+*/
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.iconActive {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5.5rem;
+    width: 6rem;
+    border-radius: 25px;
+    border: 2px solid #a9004f;
+    box-shadow: rgba(169, 0, 49, 0.48) 6px 2px 16px 0, rgba(169, 0, 49, 0.8) -6px -2px 16px 0;
+}
+
+.iconPending {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5.5rem;
+    width: 6rem;
+    border-radius: 25px;
+    border: 2px solid #a9004f;
+}
+
+.active {
+    text-decoration: none;
+    color: #a9004f;
+    border-bottom: 2px solid #a9004f;
+    cursor: pointer;
+    font-size: 1.7rem;
+    font-family: "Pacifico", cursive;
+}
+
+.pending {
+    text-decoration: none;
+    color: #a9004f;
+    cursor: pointer;
+    font-size: 1.7rem;
+    font-family: "Pacifico", cursive;
+}

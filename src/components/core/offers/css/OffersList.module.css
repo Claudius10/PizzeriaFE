@@ -1,0 +1,8 @@
+.offers-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    column-gap: 2rem;
+    row-gap: 2rem;
+}

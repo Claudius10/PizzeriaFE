@@ -1,0 +1,9 @@
+.error {
+    height: 37.5rem;
+    color: #e4e6ed;
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

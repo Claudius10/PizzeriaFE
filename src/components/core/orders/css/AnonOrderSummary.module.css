@@ -1,0 +1,167 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.content {
+    display: flex;
+    gap: 1rem;
+}
+
+.category {
+    background-color: #292929;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
+    padding-bottom: 1rem;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    margin-left: 1rem;
+    margin-bottom: 0.3rem;
+    color: #a9004f;
+    font-family: "Pacifico", cursive;
+    font-size: 2rem;
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    word-break: break-all;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-weight: 800;
+    color: #e4e6ed;
+}
+
+.data span {
+    color: #a9004f;
+}
+
+.accent {
+    border-bottom: 1px solid #a9004f;
+}
+
+.register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register a {
+    color: #a9004f;
+}
+
+/* desktop */
+@media only screen and (min-device-width: 1200px) {
+    .container {
+        margin-top: 1rem;
+    }
+
+    .category {
+        width: 17vw;
+    }
+
+    .cart {
+        width: 15vw;
+    }
+
+    .register {
+        width: 30vw;
+    }
+}
+
+/* not desktop */
+@media (min-width: 1px) and (max-width: 1200px) {
+    .category {
+        width: 25vw;
+        min-width: 10rem;
+    }
+
+    .cart {
+        width: 25vw;
+    }
+
+}
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+    .header {
+        font-size: 2rem;
+    }
+
+    .cart {
+        display: none;
+    }
+
+    .category {
+        width: 90vw;
+    }
+
+    .register {
+        width: 95vw;
+    }
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+    .category {
+        width: 40vw;
+    }
+
+    .cart {
+        width: 35vw;
+    }
+
+    .register {
+        width: 75vw;
+    }
+}
+
+/* portrait tablets */
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
+    .container {
+        margin-top: 3rem;
+    }
+
+    .category {
+        width: 40vw;
+    }
+}
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1368px) {
+    .container {
+        margin-top: 1rem;
+    }
+
+    .category {
+        width: 30vw;
+    }
+
+    .cart {
+        width: 28vw;
+    }
+
+    .register {
+        width: 55vw;
+    }
+}
+
+/* portrait samsung fold */
+@media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
+    /* Styles */
+    .header {
+        font-size: 2rem;
+    }
+}
+

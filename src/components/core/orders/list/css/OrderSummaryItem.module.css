@@ -1,0 +1,142 @@
+.layout-one {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+    background-color: #292929;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.layout-two {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+    background-color: #292929;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.header {
+    color: #a9004f;
+    font-family: "Pacifico", cursive;
+    font-size: 1.5rem;
+}
+
+.info-one {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #e4e6ed;
+    font-weight: 800;
+}
+
+.info-two {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #e4e6ed;
+    font-weight: 800;
+}
+
+.dates-one {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dates-two {
+    margin-top: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.extra-info {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    color: #e4e6ed;
+}
+
+.offer-total {
+    color: #e4e6ed;
+    background-color: #a9004f;
+    border: 1px solid black;
+    font-weight: 800;
+}
+
+.highlight {
+    color: #a9004f;
+    font-weight: 00;
+}
+
+/* desktop */
+@media (min-width: 1400px) {
+    .layout-one {
+        width: 40vw;
+    }
+
+    .layout-two {
+        width: 40vw;
+    }
+}
+
+/* not desktop */
+@media (min-width: 1px) and (max-width: 1400px) {
+    .layout-one {
+        width: 70vw;
+    }
+
+    .layout-two {
+        width: 70vw;
+    }
+}
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+    .layout-one {
+        width: 90vw;
+    }
+
+    .layout-two {
+        width: 90vw;
+    }
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+    .layout-one {
+        width: 70vw;
+    }
+
+    .layout-two {
+        width: 70vw;
+    }
+}
+
+/* portrait tablets */
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
+
+}
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1368px) {
+    .layout-one {
+        width: 50vw;
+    }
+
+    .layout-two {
+        width: 50vw;
+    }
+}
+
+/* fold portrait  */
+@media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
+
+}

@@ -1,0 +1,11 @@
+.form {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    color: #e4e6ed;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}

@@ -1,0 +1,50 @@
+.layout {
+    /*
+    the list of items
+    */
+    /*border: 1px solid black;*/
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+@media (min-width: 1200px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+    .layout {
+        flex-direction: row;
+        width: 67vw;
+    }
+}
+
+/* portrait tablets */
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
+    .layout {
+        flex-direction: row;
+        margin-left: 0.5rem;
+        width: 67vw;
+    }
+}
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
+    .layout {
+        flex-direction: row;
+        margin-left: 0.5rem;
+        width: 70vw;
+    }
+}

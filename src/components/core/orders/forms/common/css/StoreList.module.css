@@ -1,0 +1,52 @@
+.label {
+    color: #cecece;
+    font-weight: 800;
+}
+
+/* desktop */
+@media (min-width: 1200px) {
+    .inputWidth {
+        width: 97%;
+    }
+}
+
+/* not desktop */
+@media (max-width: 1200px) {
+    .inputWidth {
+        width: 97%;
+    }
+
+}
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+    .inputWidth {
+        width: 95%;
+    }
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+    .inputWidth {
+        width: 97%;
+    }
+}
+
+/* portrait tablets */
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
+    .inputWidth {
+        width: 97%;
+    }
+}
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
+    .inputWidth {
+        width: 97%;
+    }
+}
+
+/* fold portrait  */
+@media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
+
+}

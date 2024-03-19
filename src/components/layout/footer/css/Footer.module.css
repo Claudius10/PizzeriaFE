@@ -1,0 +1,113 @@
+.container {
+    background-color: #1c1c1c;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    height: 100%;
+    padding: 0.2rem 0 0.2rem 0;
+    color: #a9004f;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.content a {
+    color: #a9004f
+}
+
+.icons {
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+}
+
+.git,
+.git:hover,
+.git:visited,
+.git:focus,
+.git:active {
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+    cursor: pointer;
+}
+
+/* desktop */
+@media (min-width: 1200px) {
+    .layout {
+        height: 4rem;
+    }
+}
+
+/* not desktop */
+@media (min-width: 1px) and (max-width: 1200px) {
+
+}
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+    /* Styles */
+    .layout {
+        height: 5rem;
+    }
+
+    .container {
+        height: fit-content;
+    }
+
+    .content {
+        height: fit-content;
+    }
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+    /* Styles */
+    .layout {
+        height: 5rem;
+    }
+
+    .container {
+        height: fit-content;
+    }
+
+    .content {
+        height: fit-content;
+    }
+}
+
+/* portrait tablets */
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
+    /* Styles */
+    .layout {
+        height: 5rem;
+    }
+
+    .container {
+        height: fit-content;
+    }
+
+    .content {
+        height: fit-content;
+    }
+}
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
+    .layout {
+        height: 5rem;
+    }
+}
+
+/* fold portrait dev text slight adjustment */
+@media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
+}

@@ -1,0 +1,245 @@
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    gap: 3rem;
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    color: #a9004f;
+    font-weight: 800;
+}
+
+.nav-container {
+    position: sticky;
+    top: 0;
+    height: 4.5rem;
+    background-color: #e4e6ed;
+    z-index: 1;
+    border-bottom: 5px solid #a9004f;
+}
+
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: inherit;
+}
+
+.home-icon {
+    display: flex;
+    margin-left: 1.5rem;
+    width: 34rem;
+    z-index: 10;
+}
+
+.home-text {
+    text-decoration: none;
+    color: #a9004f;
+    cursor: pointer;
+    font-size: 2.1rem;
+    font-weight: 500;
+    font-family: "Pacifico", cursive;
+    margin-left: 0.5rem;
+    margin-top: 0.2rem;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    gap: 1.5rem;
+}
+
+.active {
+    text-decoration: none;
+    color: #a9004f;
+    border-bottom: 2px solid #a9004f;
+    cursor: pointer;
+    font-size: 1.7rem;
+    font-family: "Pacifico", cursive;
+}
+
+.pending {
+    text-decoration: none;
+    color: #a9004f;
+    cursor: pointer;
+    font-size: 1.7rem;
+    font-family: "Pacifico", cursive;
+}
+
+.acc-icon {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1.5rem;
+    width: 34rem;
+    z-index: 10;
+}
+
+.acc-align {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.acc-align a {
+    margin-top: 0.5rem
+}
+
+.acc-text {
+    text-decoration: none;
+    color: #a9004f;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-family: "Pacifico", cursive;
+}
+
+
+.mobile-nav-buttons {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.mobile-nav-button-left {
+    display: flex;
+    width: 100%;
+    margin-left: 0.3rem;
+}
+
+.mobile-nav-button-mid {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.mobile-nav-button-right {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-right: 0.3rem;
+}
+
+.cartBackButton {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* desktop */
+@media (min-width: 1400px) {
+    .mobile-nav-buttons {
+        display: none;
+    }
+}
+
+/* not desktop */
+@media (min-width: 1px) and (max-width: 1400px) {
+    .nav-container {
+        display: flex;
+        height: 3.5rem;
+    }
+
+    .home-text {
+        display: none;
+    }
+
+    .acc-text {
+        display: none;
+    }
+}
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+    .desktop-nav {
+        display: none;
+    }
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+    .mobile-nav-buttons {
+        display: none;
+    }
+
+    .home-text {
+        display: none;
+    }
+
+    .acc-text {
+        display: none;
+    }
+
+    .acc-icon {
+        width: 27rem;
+    }
+
+    .nav-links a {
+        font-size: 1.3rem;
+    }
+
+    .mobile-nav-button-mid {
+        justify-content: end;
+        margin-right: 0.3rem;
+    }
+
+    .mobile-nav-button-right {
+        display: none;
+    }
+}
+
+/* portrait tablets */
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
+    .mobile-nav-buttons {
+        display: none;
+    }
+
+    .home-text {
+        display: none;
+    }
+
+    .nav-links a {
+        font-size: 1.3rem;
+    }
+
+    .mobile-nav-button-mid {
+        justify-content: end;
+        margin-right: 0.3rem;
+    }
+
+    .mobile-nav-button-right {
+        display: none;
+    }
+}
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1368px) {
+    .mobile-nav-buttons {
+        display: none;
+    }
+
+    .home-text {
+        display: none;
+    }
+
+    .nav-links a {
+        font-size: 1.3rem;
+    }
+
+    .mobile-nav-button-mid {
+        justify-content: end;
+        margin-right: 0.3rem;
+    }
+
+    .mobile-nav-button-right {
+        display: none;
+    }
+}
+
+/* fold portrait  */
+@media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
+
+}

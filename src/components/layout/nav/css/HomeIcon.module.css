@@ -1,0 +1,63 @@
+.container {
+    display: flex;
+    z-index: 10;
+    height: fit-content;
+    width: 23rem;
+}
+
+.text {
+    text-decoration: none;
+    color: #a9004f;
+    cursor: pointer;
+    font-size: 2.1rem;
+    font-weight: 500;
+    font-family: "Pacifico", cursive;
+    margin-left: 0.5rem;
+    margin-top: 0.2rem;
+}
+
+/* desktop */
+@media (min-width: 1200px) {
+    .container {
+        width: 23rem;
+    }
+}
+
+/* not desktop */
+@media (min-width: 1px) and (max-width: 1200px) {
+}
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+    .text {
+        display: none;
+    }
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+
+}
+
+/* portrait tablets */
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
+    .text {
+        display: none;
+    }
+}
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
+    .container {
+        width: 30rem;
+
+    }
+
+    .text {
+        font-size: 1.5rem;
+    }
+}
+
+/* fold portrait  */
+@media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
+}

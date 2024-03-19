@@ -1,0 +1,114 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+@media (min-width: 1200px) {
+    .cart {
+        position: fixed;
+        left: 62%;
+        width: 17vw;
+    }
+
+    .buttons {
+        margin-top: 0.5rem;
+    }
+
+    .form {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        gap: 0;
+    }
+}
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+    .buttons {
+        margin: 0.5rem 0 0.5rem 0;
+    }
+
+    .form {
+        display: flex;
+        justify-content: center;
+    }
+
+    .cart {
+        display: none;
+    }
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+    .buttons {
+        margin: 0.5rem 0 0.5rem 0;
+    }
+
+    .form {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .cart {
+        width: 40vw;
+    }
+}
+
+/* portrait tablets */
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
+    .cart {
+        position: fixed;
+        left: 72%;
+        width: 27vw;
+    }
+
+    .form {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+}
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
+    .cart {
+        position: fixed;
+        left: 68%;
+        width: 28vw;
+    }
+
+    .form {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+}
+
+/* fold portrait  */
+@media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}

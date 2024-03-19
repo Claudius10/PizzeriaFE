@@ -1,0 +1,9 @@
+.button {
+    display: flex;
+    justify-content: space-around;
+    border: none;
+    background-color: #00000000;
+    cursor: pointer;
+    font: inherit;
+    font-weight: bold;
+}

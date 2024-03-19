@@ -1,0 +1,99 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+@media only screen and (min-width: 1200px) {
+    .cart {
+        width: 17vw;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+}
+
+/* not desktop */
+@media only screen and (max-width: 1200px) {
+    .cart {
+        width: 15rem;
+        min-width: auto;
+    }
+
+    .container {
+        gap: 1rem;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+}
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+    .cart {
+        display: none;
+    }
+
+    .buttons {
+        margin-bottom: 1rem;
+    }
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+    .cart {
+        width: 15rem;
+    }
+
+    .buttons {
+        margin-bottom: 1rem;
+    }
+
+    .form {
+        display: flex;
+        gap: 1rem;
+    }
+}
+
+/* portrait tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
+    .cart {
+        width: 16rem;
+    }
+}
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1025px) and (max-device-width: 1368px) {
+    .cart {
+        width: 16rem;
+    }
+}
+
+/* fold portrait  */
+@media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}
