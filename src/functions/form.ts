@@ -1,6 +1,5 @@
-import {get} from "react-hook-form";
+import {FieldErrors, get} from "react-hook-form";
 import {OrderItemForm} from "../interfaces/dto/forms/order";
-import {FieldErrors} from "react-hook-form/dist/types/errors";
 
 export const getDeliveryHours = () => {
     const interval = 5;
@@ -27,38 +26,38 @@ export const getDeliveryHours = () => {
 
 export const getAnonCustomerErrors = (errors: FieldErrors) => {
     return {
-        anonCustomerNameError: get(errors, "anonCustomerName"),
-        anonCustomerEmailError: get(errors, "anonCustomerEmail"),
-        anonCustomerContactNumberError: get(errors, "anonCustomerContactNumber")
+        anonCustomerNameError: get(errors, "anonCustomerName") as string,
+        anonCustomerEmailError: get(errors, "anonCustomerEmail") as string,
+        anonCustomerContactNumberError: get(errors, "anonCustomerContactNumber") as string
     };
 };
 
 export const getAddressFormErrors = (errors: FieldErrors) => {
     return {
-        street: get(errors, "address.street"),
-        streetNr: get(errors, "address.streetNr"),
-        gate: get(errors, "address.gate"),
-        staircase: get(errors, "address.staircase"),
-        floor: get(errors, "address.floor"),
-        door: get(errors, "address.door"),
-        address: get(errors, "address")
+        street: get(errors, "address.street") as string,
+        streetNr: get(errors, "address.streetNr") as string,
+        gate: get(errors, "address.gate") as string,
+        staircase: get(errors, "address.staircase") as string,
+        floor: get(errors, "address.floor") as string,
+        door: get(errors, "address.door") as string,
+        address: get(errors, "address") as string
     };
 };
 
 export const getOrderDetailsFormErrors = (errors: FieldErrors) => {
     return {
-        deliverNow: get(errors, "orderDetails.deliverNow"),
-        deliveryHour: get(errors, "orderDetails.deliveryHour"),
-        paymentType: get(errors, "orderDetails.paymentType"),
-        changeRequested: get(errors, "orderDetails.changeRequested"),
-        deliveryComment: get(errors, "orderDetails.deliveryComment"),
+        deliverNow: get(errors, "orderDetails.deliverNow") as string,
+        deliveryHour: get(errors, "orderDetails.deliveryHour") as string,
+        paymentType: get(errors, "orderDetails.paymentType") as string,
+        changeRequested: get(errors, "orderDetails.changeRequested") as string,
+        deliveryComment: get(errors, "orderDetails.deliveryComment") as string,
     };
 };
 
-export const removeItemIds = (items: OrderItemForm[]): OrderItemForm[] => {
-    const itemsWithNoIds = JSON.parse(JSON.stringify(items));
-    itemsWithNoIds.forEach((item: OrderItemForm) => item.id = null);
-    return itemsWithNoIds;
+export const removeItemIds = (items: OrderItemForm[]) => {
+    const copy = [...items];
+    copy.forEach((item: OrderItemForm) => item.id = null);
+    return copy;
 };
 
 export const isOrderUpdateValid = (orderCreatedOn: string, timeLimit: number) => {
