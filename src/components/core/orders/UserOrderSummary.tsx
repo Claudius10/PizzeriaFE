@@ -76,7 +76,6 @@ const UserOrderSummary = () => {
     const deleteOrder = useMutation({
         mutationFn: deleteOrderById,
         onSuccess: async (id: number) => {
-            queryClient.removeQueries({queryKey: ["user", "order", orderId]});
             await queryClient.invalidateQueries({queryKey: ["user", "orders"]});
             dispatch(orderState.clear());
             clearCart();

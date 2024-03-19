@@ -1,6 +1,6 @@
-import {AddressForm, AnonOrderForm, OrderDetailsForm} from "../../../../interfaces/dto/forms/order";
+import {AnonOrderForm, UserOrderForm} from "../../../../interfaces/dto/forms/order";
 
-export const AnonOrderFormDefaultValues: AnonOrderForm = {
+export const defaultAnonOrderFormValues: AnonOrderForm = {
     anonCustomerName: null,
     anonCustomerContactNumber: null,
     anonCustomerEmail: null,
@@ -31,71 +31,41 @@ export const AnonOrderFormDefaultValues: AnonOrderForm = {
     },
 };
 
-export const sessionStorageFormExists = () => {
-    return sessionStorage.getItem("form") !== null;
+export const defaultUserFormValues: UserOrderForm = {
+    userId: null,
+    addressId: null,
+    orderDetails: {
+        id: null,
+        deliveryHour: null,
+        changeRequested: null,
+        deliverNow: null,
+        deliveryComment: null,
+        paymentChange: null,
+        paymentType: null
+    },
+    cart: {
+        id: null,
+        orderItems: null,
+        totalCost: null,
+        totalCostOffers: null,
+        totalQuantity: null,
+    },
 };
 
-export const getSessionStorageForm = () => {
-    if (sessionStorageFormExists()) {
+export const getSessionStorageAnonForm = () => {
+    if (sessionStorage.getItem("form") !== null) {
         return JSON.parse(sessionStorage.getItem("form")!) as AnonOrderForm;
     }
-    return AnonOrderFormDefaultValues;
+    return defaultAnonOrderFormValues;
 };
 
-export const setAnonCustomerToSessionStorage = (name: string, email: string, number: number) => {
-    const form = getSessionStorageForm();
-    sessionStorage.setItem("form", JSON.stringify(
-        {
-            ...form,
-            anonCustomerName: name,
-            anonCustomerEmail: email,
-            anonCustomerContactNumber: number
-        }
-    ));
-};
-
-export const setAddressToSessionStorage = (address: AddressForm) => {
-    const form = getSessionStorageForm();
-    sessionStorage.setItem("form", JSON.stringify(
-        {
-            ...form,
-            address: address
-        }
-    ));
-};
-
-export const setOrderDetailsToSessionStorage = (orderDetails: OrderDetailsForm) => {
-    const form = getSessionStorageForm();
-    sessionStorage.setItem("form", JSON.stringify(
-        {
-            ...form,
-            orderDetails: orderDetails
-        }
-    ));
-};
-
-export const setAddressIdToSessionStorage = (addressId: number) => {
-    const form = getSessionStorageForm();
-    sessionStorage.setItem("form", JSON.stringify(({
-        ...form,
-        address: {
-            id: addressId
-        }
-    })));
-};
-
-export const setDeliveryTypeToSessionStorage = (type: string) => {
-    sessionStorage.setItem("delivery", type);
-};
-
-export const getDeliveryTypeToSessionStorage = () => {
-    if (sessionStorage.getItem("delivery") !== null) {
-        return sessionStorage.getItem("delivery")!;
+export const getSessionStorageUserForm = () => {
+    if (sessionStorage.getItem("form") !== null) {
+        return JSON.parse(sessionStorage.getItem("form")!) as UserOrderForm;
     }
-    return "HomeDelivery";
+    return defaultUserFormValues;
 };
 
 export const clearSessionStorageForm = () => {
     sessionStorage.removeItem("form");
-    sessionStorage.removeItem("delivery");
 };

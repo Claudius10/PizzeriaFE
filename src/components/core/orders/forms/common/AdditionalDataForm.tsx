@@ -8,13 +8,7 @@ import {DeliveryHoursRefreshModal} from "../../../../layout/modal/GeneralModals"
 import Modal from "../../../../../hooks/Modal";
 import {FormError, Input, InputLabel, Required, Select} from "../../../../layout/styled/elements";
 import {esCharsAndNumbersAndBasicSymbolsRgx} from "../../../../../utils/regex";
-import {
-    AnonOrderFormDefaultValues,
-    getSessionStorageForm,
-    sessionStorageFormExists,
-    setOrderDetailsToSessionStorage
-} from "../FormSessionStorageUtils";
-import {OrderDetailsForm} from "../../../../../interfaces/dto/forms/order.ts";
+import {defaultAnonOrderFormValues, getSessionStorageAnonForm} from "../FormSessionStorageUtils.ts";
 
 const AdditionalDataForm = () => {
     const {openModal, closeModal, modalContent, isModalOpen} = useModal();
@@ -30,26 +24,20 @@ const AdditionalDataForm = () => {
     };
 
     useEffect(() => {
-        if (sessionStorageFormExists()) {
-            const sessionStorageForm = getSessionStorageForm();
+        const sessionStorageForm = getSessionStorageAnonForm();
 
-            if (sessionStorageForm.orderDetails.deliverNow === "TBD") {
-                dispatch(formActions.setDeliverNow(false));
-            }
-
-            if (sessionStorageForm.orderDetails.paymentType === "Cash") {
-                dispatch(formActions.setChangeAllowed(true));
-
-                if (sessionStorageForm.orderDetails.changeRequested !== null) {
-                    dispatch(formActions.setChangeSelected(true));
-                    setChangeRequestedOption(true);
-                }
-            }
+        if (sessionStorageForm.orderDetails.deliverNow === "TBD") {
+            dispatch(formActions.setDeliverNow(false));
         }
 
-        return () => {
-            setOrderDetailsToSessionStorage(form.getValues("orderDetails") as OrderDetailsForm);
-        };
+        if (sessionStorageForm.orderDetails.paymentType === "Cash") {
+            dispatch(formActions.setChangeAllowed(true));
+
+            if (sessionStorageForm.orderDetails.changeRequested !== null) {
+                dispatch(formActions.setChangeSelected(true));
+                setChangeRequestedOption(true);
+            }
+        }
     }, []);
 
     const selectDeliveryTime = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -82,7 +70,7 @@ const AdditionalDataForm = () => {
 
     const selectChangeRequest = (event: ChangeEvent<HTMLSelectElement>) => {
         form.resetField("orderDetails.changeRequested",
-            {defaultValue: AnonOrderFormDefaultValues.orderDetails.changeRequested});
+            {defaultValue: defaultAnonOrderFormValues.orderDetails.changeRequested});
 
         if (event.target.value === "cashChangeRequested") {
             dispatch(formActions.setChangeSelected(true));

@@ -10,12 +10,6 @@ import StoreList from "../common/StoreList";
 import {findUserAddressListById} from "../../../../../api/locked/user/data";
 import {getCookie} from "../../../../../functions/web";
 import {FormError, Required, Select} from "../../../../layout/styled/elements";
-import {
-    getDeliveryTypeToSessionStorage,
-    getSessionStorageForm,
-    sessionStorageFormExists,
-    setAddressIdToSessionStorage, setDeliveryTypeToSessionStorage,
-} from "../FormSessionStorageUtils";
 
 const DeliveryForm = () => {
     const [state, dispatch] = useReducer(AnonFormReducer, formState);
@@ -34,33 +28,15 @@ const DeliveryForm = () => {
     });
 
     useEffect(() => {
-        if (sessionStorageFormExists()) {
-            const {orderDetails, address, cart} = getSessionStorageForm();
-            form.reset({
-                userId: null,
-                addressId: address.id,
-                orderDetails: orderDetails,
-                cart: cart
-            });
+        const addressId = form.getValues("addressId") as number;
 
-            const deliveryType = getDeliveryTypeToSessionStorage();
-            if (deliverySelectRef.current !== null) {
-                if (deliveryType === "StorePickUp" && form.getValues("addressId") !== null) {
-                    dispatch(formActions.setPickUp(true));
-                    deliverySelectRef.current.value = deliveryType;
-                }
-            }
+        // NOTE - addressId === 1 or 2 means it's a store not a random address
+        // TODO - create a boolean flag indicating whatever an address is a store
+        if (addressId !== null && (addressId === 1 || addressId === 2) && deliverySelectRef.current !== null) {
+            dispatch(formActions.setPickUp(true));
+            deliverySelectRef.current.value = "StorePickUp";
         }
 
-        let selectRef = "HomeDelivery";
-        if (deliverySelectRef.current !== null) {
-            selectRef = deliverySelectRef.current.value;
-        }
-
-        return () => {
-            setDeliveryTypeToSessionStorage(selectRef);
-            setAddressIdToSessionStorage(form.getValues("addressId") as number);
-        };
     }, [deliverySelectRef.current?.value]);
 
     const selectAddressOrStore = (event: ChangeEvent<HTMLSelectElement>) => {

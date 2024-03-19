@@ -21,20 +21,37 @@ import AdditionalDataForm from "./common/AdditionalDataForm";
 import {Button, Placeholder, Prompt, RedirectWrapper} from "../../../layout/styled/elements";
 import Modal from "../../../../hooks/Modal";
 import {AnonOrderForm} from "../../../../interfaces/dto/forms/order";
-import {AnonOrderFormDefaultValues, clearSessionStorageForm} from "./FormSessionStorageUtils";
+import {defaultAnonOrderFormValues, clearSessionStorageForm} from "./FormSessionStorageUtils";
 import Cart from "../../cart/Cart";
 import {CreatedAnonOrderDTO} from "../../../../interfaces/dto/order";
+import {useSessionStorage} from "../../../../hooks/usehooks-ts/usehooks-ts.ts";
+import {useEffect} from "react";
 
 const NewAnonOrderForm = () => {
     const {isModalOpen, modalContent, openModal, closeModal} = useModal();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const [formValues, setFormValues] = useSessionStorage('form', defaultAnonOrderFormValues);
+
+    const form = useForm<AnonOrderForm>({
+        mode: "onBlur", // Validation strategy before submitting behaviour.
+        reValidateMode: "onBlur",  // Validation strategy after submitting behaviour.
+        defaultValues: defaultAnonOrderFormValues
+    });
+
+    useEffect(() => {
+        form.reset(formValues);
+
+        return () => {
+            setFormValues(form.getValues());
+        };
+    }, []);
 
     const createOrder = useMutation({
         mutationFn: createAnonOrder,
         onSuccess: (order: CreatedAnonOrderDTO) => {
             dispatch(orderState.setOrderSummary(order));
-            form.reset(AnonOrderFormDefaultValues);
+            form.reset(defaultAnonOrderFormValues);
             clearSessionStorageForm();
             navigate("resumen");
         },
@@ -43,14 +60,8 @@ const NewAnonOrderForm = () => {
         },
     });
 
-    const form = useForm<AnonOrderForm>({
-        mode: "onBlur", // Validation strategy before submitting behaviour.
-        reValidateMode: "onBlur",  // Validation strategy after submitting behaviour.
-        defaultValues: AnonOrderFormDefaultValues
-    });
-
-    const toggleCancelOrderModal = () => {
-        form.reset(AnonOrderFormDefaultValues);
+    const onCancelOrder = () => {
+        form.reset(defaultAnonOrderFormValues);
         openModal(<OnCancelOrder redirectTo={"/menu/pizzas"} closeModal={closeModal}/>);
     };
 
@@ -91,7 +102,7 @@ const NewAnonOrderForm = () => {
                 <div className={styles.buttons}>
                     <Button
                         type="button"
-                        onClick={toggleCancelOrderModal}>
+                        onClick={onCancelOrder}>
                         Cancelar
                     </Button>
 

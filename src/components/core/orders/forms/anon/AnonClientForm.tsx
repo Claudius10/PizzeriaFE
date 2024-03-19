@@ -3,30 +3,10 @@ import {useFormContext} from "react-hook-form";
 import {FormError, Input, Required} from "../../../../layout/styled/elements";
 import {emailRgx, esCharsRegex, numbersRegex} from "../../../../../utils/regex";
 import {getAnonCustomerErrors} from "../../../../../functions/form";
-import {useEffect} from "react";
-import {
-    getSessionStorageForm,
-    sessionStorageFormExists,
-    setAnonCustomerToSessionStorage
-} from "../FormSessionStorageUtils";
 
 const AnonClientForm = () => {
     const form = useFormContext();
     const errors = getAnonCustomerErrors(form.formState.errors);
-
-    useEffect(() => {
-        if (sessionStorageFormExists()) {
-            form.reset(getSessionStorageForm());
-        }
-
-        return () => {
-            setAnonCustomerToSessionStorage(
-                form.getValues("anonCustomerName") as string,
-                form.getValues("anonCustomerEmail") as string,
-                form.getValues("anonCustomerContactNumber") as number,
-            );
-        };
-    }, []);
 
     return <div className={styles.container}>
         <div className={styles.header}>

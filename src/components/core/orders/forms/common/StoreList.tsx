@@ -4,7 +4,7 @@ import {ChangeEvent, useEffect, useRef} from "react";
 import {queryResource} from "../../../../../api/open/resource";
 import {StoreDTO} from "../../../../../interfaces/dto/resources";
 import {Required, Select} from "../../../../layout/styled/elements";
-import {getSessionStorageForm, sessionStorageFormExists} from "../FormSessionStorageUtils";
+import {getSessionStorageAnonForm, getSessionStorageUserForm} from "../FormSessionStorageUtils";
 
 interface Props {
     onSetStoreId: (id: number) => void;
@@ -21,13 +21,18 @@ const StoreList = (props: Props) => {
     });
 
     useEffect(() => {
-        if (sessionStorageFormExists()) {
-            const sessionStorageForm = getSessionStorageForm();
+        const sessionStorageForm = getSessionStorageUserForm();
+        const anonSessionStorageForm = getSessionStorageAnonForm();
 
-            if (sessionStorageForm.address.id) {
-                if (storePickUpSelectRef.current !== null) {
-                    storePickUpSelectRef.current.value = `${sessionStorageForm.address.id}`;
-                }
+        if (sessionStorageForm.addressId) {
+            if (storePickUpSelectRef.current !== null) {
+                storePickUpSelectRef.current.value = `${sessionStorageForm.addressId}`;
+            }
+        }
+
+        if (anonSessionStorageForm.address && anonSessionStorageForm.address.id) {
+            if (storePickUpSelectRef.current !== null) {
+                storePickUpSelectRef.current.value = `${anonSessionStorageForm.address.id}`;
             }
         }
     }, []);

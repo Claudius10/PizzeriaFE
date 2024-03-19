@@ -24,35 +24,36 @@ import {removeItemIds} from "../../../../functions/form";
 import {Button, Placeholder, Prompt, RedirectWrapper} from "../../../layout/styled/elements";
 import Modal from "../../../../hooks/Modal";
 import {UserOrderForm} from "../../../../interfaces/dto/forms/order";
-import {clearSessionStorageForm} from "./FormSessionStorageUtils";
+import {clearSessionStorageForm, defaultUserFormValues} from "./FormSessionStorageUtils";
 import Cart from "../../cart/Cart";
-
-const defaultUserFormValues: UserOrderForm = {
-    userId: null,
-    addressId: null,
-    orderDetails: {
-        id: null,
-        deliveryHour: null,
-        changeRequested: null,
-        deliverNow: null,
-        deliveryComment: null,
-        paymentChange: null,
-        paymentType: null
-    },
-    cart: {
-        id: null,
-        orderItems: null,
-        totalCost: null,
-        totalCostOffers: null,
-        totalQuantity: null,
-    },
-};
+import {useSessionStorage} from "../../../../hooks/usehooks-ts/usehooks-ts.ts";
+import {useEffect} from "react";
 
 const NewUserOrderForm = () => {
     const {isModalOpen, modalContent, openModal, closeModal} = useModal();
     const queryClient = useQueryClient();
     const dispatch = useAppDispatch();
     const user = useLoaderData() as UserDataDTO;
+    const [formValues, setFormValues] = useSessionStorage('form', defaultUserFormValues);
+
+    const form = useForm<UserOrderForm>({
+        mode: "onBlur", // Validation strategy before submitting behaviour.
+        reValidateMode: "onBlur", // Validation strategy after submitting behaviour.
+        defaultValues: defaultUserFormValues
+    });
+
+    useEffect(() => {
+        form.reset({
+            userId: null,
+            addressId: formValues.addressId,
+            orderDetails: formValues.orderDetails,
+            cart: formValues.cart
+        });
+
+        return () => {
+            setFormValues(form.getValues());
+        };
+    }, []);
 
     const newOrder = useMutation({
         mutationFn: createUserOrder,
@@ -75,12 +76,6 @@ const NewUserOrderForm = () => {
         form.reset(defaultUserFormValues);
         openModal(<OnCancelOrder redirectTo={"/menu/pizzas"} closeModal={closeModal}/>);
     };
-
-    const form = useForm<UserOrderForm>({
-        mode: "onBlur", // Validation strategy before submitting behaviour.
-        reValidateMode: "onBlur", // Validation strategy after submitting behaviour.
-        defaultValues: defaultUserFormValues
-    });
 
     const onSubmitHandler = (form: UserOrderForm) => {
         // deliveryHour prop is delivery_hour column in DB

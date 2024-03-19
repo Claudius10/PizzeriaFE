@@ -6,13 +6,8 @@ import StoreList from "../common/StoreList";
 import {getAddressFormErrors} from "../../../../../functions/form";
 import {FormError, Input, Required, Select} from "../../../../layout/styled/elements";
 import {charsAndNumbersRegex, esCharsRegex, numbersRegex} from "../../../../../utils/regex";
-import {
-    AnonOrderFormDefaultValues,
-    getSessionStorageForm,
-    sessionStorageFormExists,
-    setAddressToSessionStorage,
-} from "../FormSessionStorageUtils";
 import {AddressForm} from "../../../../../interfaces/dto/forms/order.ts";
+import {defaultAnonOrderFormValues, getSessionStorageAnonForm} from "../FormSessionStorageUtils.ts";
 
 const AnonDeliveryForm = () => {
     const [state, dispatch] = useReducer(AnonFormReducer, formState);
@@ -21,24 +16,17 @@ const AnonDeliveryForm = () => {
     const deliverySelectRef = useRef<HTMLSelectElement>(null);
 
     useEffect(() => {
-        if (sessionStorageFormExists()) {
-            const sessionStorageForm = getSessionStorageForm();
-
-            if (sessionStorageForm.address.id !== null) {
-                dispatch(formActions.setPickUp(true));
-                if (deliverySelectRef.current !== null) {
-                    deliverySelectRef.current.value = "StorePickUp";
-                }
+        const sessionStorageForm = getSessionStorageAnonForm();
+        if (sessionStorageForm.address.id !== null) {
+            dispatch(formActions.setPickUp(true));
+            if (deliverySelectRef.current !== null) {
+                deliverySelectRef.current.value = "StorePickUp";
             }
         }
-
-        return () => {
-            setAddressToSessionStorage(form.getValues("address") as AddressForm);
-        };
     }, []);
 
     const selectAddressOrStore = (event: ChangeEvent<HTMLSelectElement>) => {
-        form.resetField("address", {defaultValue: AnonOrderFormDefaultValues.address});
+        form.resetField("address", {defaultValue: defaultAnonOrderFormValues.address});
 
         if (event.target.value === "StorePickUp") {
             dispatch(formActions.setPickUp(true));

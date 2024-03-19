@@ -27,6 +27,7 @@ import Cart from "../../cart/Cart";
 import {UpdatingUserOrderForm} from "../../../../interfaces/dto/forms/order";
 import {clearSessionStorageForm} from "./FormSessionStorageUtils";
 import {useEffect} from "react";
+import {useSessionStorage} from "../../../../hooks/usehooks-ts/usehooks-ts.ts";
 
 const defaultUserOrderUpdateFormValues: UpdatingUserOrderForm = {
     orderId: null,
@@ -62,12 +63,20 @@ const UpdateUserOrderForm = () => {
     const cartQuantity = useAppSelector(state => state.order.cartQuantity);
     const isUpdatePending = useAppSelector(state => state.order.updatePending);
     const isUpdateUserOrderPage = location.pathname === `/perfil/pedido/historial/${orderId}/actualizacion`;
+    const [formValues, setFormValues] = useSessionStorage('form', defaultUserOrderUpdateFormValues);
+
     const {
         data: userOrder,
         isSuccess,
     } = useQuery({
         queryKey: ["user", "order", orderId],
         queryFn: findUserOrder,
+    });
+
+    const form = useForm<UpdatingUserOrderForm>({
+        mode: "onBlur",
+        reValidateMode: "onBlur",
+        defaultValues: defaultUserOrderUpdateFormValues,
     });
 
     useEffect(() => {
@@ -81,6 +90,19 @@ const UpdateUserOrderForm = () => {
         if (isUpdateUserOrderPage && !isUpdatePending) {
             dispatch(orderState.setUpdatePending(true));
         }
+
+        form.reset({
+            orderId: null,
+            createdOn: null,
+            userId: null,
+            addressId: formValues.addressId,
+            orderDetails: formValues.orderDetails,
+            cart: formValues.cart
+        });
+
+        return () => {
+            setFormValues(form.getValues());
+        };
     }, [cartId]);
 
     const updateOrder = useMutation({
@@ -97,12 +119,6 @@ const UpdateUserOrderForm = () => {
         onError: (response: ApiErrorDTO) => {
             openModal(<OnError errorMsg={response.errorMsg} closeModal={closeModal}/>);
         },
-    });
-
-    const form = useForm<UpdatingUserOrderForm>({
-        mode: "onBlur",
-        reValidateMode: "onBlur",
-        defaultValues: defaultUserOrderUpdateFormValues,
     });
 
     const navToPizzas = () => {
