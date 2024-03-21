@@ -39,7 +39,7 @@ const BeverageProducts = () => {
             />
         </div>
 
-        <div className={styles.products}>
+        <div className={styles.productListWithFormat}>
             <ProductList items={beverages}/>
         </div>
     </div>;

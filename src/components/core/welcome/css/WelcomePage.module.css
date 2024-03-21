@@ -1,11 +1,9 @@
 .layout {
-    /*border: solid 1px rgb(0, 89, 255);*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    padding-top: 2rem;
     height: fit-content;
 }
 
@@ -14,7 +12,6 @@
     font-size: 1rem;
     font-family: "Pacifico", cursive;
 }
-
 
 .welcome-text {
     display: flex;
@@ -30,6 +27,15 @@
     font-size: 5rem;
     transform: rotate(-10deg);
     width: fit-content;
+    text-shadow: 0 1px 2px #a9004f,
+    1px 3px 1px #a9004f,
+    2px 5px 1px #a9004f,
+    4px 7px 1px #a9004f,
+    6px 9px 1px #a9004f,
+    8px 11px 1px #a9004f,
+    10px 13px 1px #a9004f,
+    12px 15px 1px #a9004f,
+    14px 17px 1px #a9004f;
 }
 
 .title-mid {
@@ -39,25 +45,137 @@
     font-size: 5rem;
     transform: rotate(-10deg);
     width: fit-content;
+    text-shadow: 0 1px 2px #a9004f,
+    1px 3px 1px #a9004f,
+    2px 5px 1px #a9004f,
+    4px 7px 1px #a9004f,
+    6px 9px 1px #a9004f,
+    8px 11px 1px #a9004f,
+    10px 13px 1px #a9004f,
+    12px 15px 1px #a9004f,
+    14px 17px 1px #a9004f;
 }
 
-.offers {
+.offersStatic {
     color: #e4e6ed;
     text-align: center;
     font-family: "Pacifico", cursive;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
-@media (max-width: 1400px) {
+.offersBouncy {
+    color: #e4e6ed;
+    text-align: center;
+    font-family: "Pacifico", cursive;
+    font-size: 2.5rem;
+    animation: text-shadow 1.5s ease-in-out infinite;
+}
+
+@keyframes text-shadow {
+    0% {
+        transform: translateY(0);
+        text-shadow: 0 0 0 #0c2ffb,
+        0 0 0 #2cfcfd,
+        0 0 0 #fb203b,
+        0 0 0 #fefc4b;
+    }
+
+    20% {
+        transform: translateY(-1em);
+        text-shadow: 0 0.125em 0 #0c2ffb,
+        0 0.25em 0 #2cfcfd,
+        0 -0.125em 0 #fb203b,
+        0 -0.25em 0 #fefc4b;
+    }
+
+    40% {
+        transform: translateY(0.5em);
+        text-shadow: 0 -0.0625em 0 #0c2ffb,
+        0 -0.125em 0 #2cfcfd,
+        0 0.0625em 0 #fb203b,
+        0 0.125em 0 #fefc4b;
+    }
+
+    60% {
+        transform: translateY(-0.25em);
+        text-shadow: 0 0.03125em 0 #0c2ffb,
+        0 0.0625em 0 #2cfcfd,
+        0 -0.03125em 0 #fb203b,
+        0 -0.0625em 0 #fefc4b;
+    }
+
+    80% {
+        transform: translateY(0);
+        text-shadow: 0 0 0 #0c2ffb,
+        0 0 0 #2cfcfd,
+        0 0 0 #fb203b,
+        0 0 0 #fefc4b;
+    }
+}
+
+/* desktop */
+@media (min-width: 1200px) {
+    .layout {
+        margin-top: 2rem;
+    }
+
     .title {
-        font-size: 8vw;
+        font-size: 6rem;
     }
 
     .title-mid {
-        font-size: 8vw;
+        font-size: 6rem;
     }
 
     .offers {
-        font-size: 3vw;
+        font-size: 3rem;
+    }
+}
+
+/* not desktop */
+@media (min-width: 1px) and (max-width: 1200px) {
+    .title {
+        font-size: 6rem;
+    }
+
+    .title-mid {
+        font-size: 6rem;
+    }
+
+    .offers {
+        font-size: 3rem;
+    }
+}
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+    .title {
+        font-size: 4rem;
+    }
+
+    .title-mid {
+        font-size: 4rem;
+    }
+
+    .offers {
+        font-size: 2rem;
+    }
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+}
+
+/* portrait tablets */
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
+    .layout {
+        margin-top: 2rem;
+    }
+}
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
+    .layout {
+        margin-top: 2rem;
     }
 }

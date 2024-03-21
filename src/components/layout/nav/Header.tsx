@@ -71,7 +71,6 @@ const Header = () => {
                 </div>
             </Affix>}
         </Transition>}
-
     </div>;
 };
 

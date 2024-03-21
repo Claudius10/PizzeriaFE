@@ -32,12 +32,11 @@ const CartItem = (props: Props) => {
         }
     };
 
-    const dot = '\u{003E}';
-
+    const symbol = '\u{003E}';
     return <div className={styles.layout}>
         <div className={styles.productContainer}>
             <div className={styles.info}>
-                <p className={styles.header}><span className={styles.indicator}>{dot}</span>{props.item.name}
+                <p className={styles.header}><span className={styles.indicator}>{symbol}</span>{props.item.name}
                 </p>
                 <Badge variant="transparent" color="#a9004f" size={"lg"}>{props.item.format}</Badge>
                 <p>Precio: {totalPrice}€</p>

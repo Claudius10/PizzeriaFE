@@ -59,12 +59,11 @@ const MobileNavigation = () => {
     }, [embla]);
 
     return <div className={styles.container}>
-        <Carousel classNames={{control: styles.control}}
-                  height={"fit-content"}
+        <Carousel height={"fit-content"}
                   slideGap="xs"
-                  controlsOffset="xs" controlSize={10}
                   loop
-                  getEmblaApi={setEmbla}>
+                  getEmblaApi={setEmbla}
+                  classNames={{control: styles.control}}>
             <Carousel.Slide>
                 <NavigationItem
                     title={"Pizzas"}

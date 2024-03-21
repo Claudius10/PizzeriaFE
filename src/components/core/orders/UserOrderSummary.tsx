@@ -14,6 +14,7 @@ import Cart from "../cart/Cart";
 import ExtraInfo from "../../layout/ExtraInfo/ExtraInfo";
 import {UpdateInfoContent, UpdateTerms} from "../../layout/ExtraInfo/ExtraInfoContents";
 import {modals} from "@mantine/modals";
+import {Loader} from "@mantine/core";
 
 const UserOrderSummary = () => {
     const [orderDeletePending, setOrderDeletePending] = useState(false);
@@ -187,7 +188,7 @@ const UserOrderSummary = () => {
     </div>;
 
     return <>
-        {isLoading && <Placeholder>Cargando...</Placeholder>}
+        {isLoading && <Loader color="#a9004f" size="xl" type="dots"/>}
         {isError && <Placeholder>Se ha producido un error</Placeholder>}
         {isSuccess &&
             <div className={styles.layout}>

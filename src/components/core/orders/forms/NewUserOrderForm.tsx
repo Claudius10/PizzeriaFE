@@ -19,13 +19,14 @@ import {
 } from "../../cart/CartLocalStorageFunctions";
 import {ApiErrorDTO} from "../../../../interfaces/dto/api-error";
 import {removeItemIds} from "../../../../functions/form";
-import {Button, Placeholder, Prompt, RedirectWrapper} from "../../../layout/styled/elements";
+import {Button, Prompt, RedirectWrapper} from "../../../layout/styled/elements";
 import {UserOrderForm} from "../../../../interfaces/dto/forms/order";
 import {clearSessionStorageForm, defaultUserFormValues} from "./FormSessionStorageUtils";
 import Cart from "../../cart/Cart";
 import {useSessionStorage} from "../../../../hooks/usehooks-ts/usehooks-ts.ts";
 import {useEffect} from "react";
 import {modals} from "@mantine/modals";
+import {Loader} from "@mantine/core";
 
 const NewUserOrderForm = () => {
     const queryClient = useQueryClient();
@@ -65,7 +66,7 @@ const NewUserOrderForm = () => {
                 modal: "agree",
                 title: "Pedido nuevo",
                 innerProps: {
-                    modalBody: `Pedido ${orderId} confirmado`,
+                    modalBody: `Pedido ${orderId} confirmado.`,
                     onConfirm: () => {
                         navigate("/menu/pizzas");
                     }
@@ -156,7 +157,7 @@ const NewUserOrderForm = () => {
         </FormProvider>;
 
     return <>
-        {newOrder.isPending && <Placeholder>Cargando...</Placeholder>}
+        {newOrder.isPending && <Loader color="#a9004f" size="xl" type="dots"/>}
         {!newOrder.isPending &&
             <div>
                 <Prompt

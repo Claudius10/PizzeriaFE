@@ -10,21 +10,14 @@ type Props = {
 }
 
 const OfferItem = ({offer}: Props) => {
-    // eslint-disable-next-line react/react-in-jsx-scope
     return <div className={styles["offer-container"]}>
-        {/* Image */}
         <div className={styles["img-container"]}>
             <ProgressiveImage src={offerPicture} width={"100%"} height={"100%"}/>
         </div>
 
         <div className={styles["offer-info"]}>
-            {/* Title */}
             <div className={styles["offer-title"]}>{offer.name}</div>
-
-            {/* Description */}
             <div className={styles.desc}>{offer.description}</div>
-
-            {/* the catch */}
             <ExtraInfo title={OfferItemTitle} info={offer.caveat} open={false}/>
         </div>
     </div>;

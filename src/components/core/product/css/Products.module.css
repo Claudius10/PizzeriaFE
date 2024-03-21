@@ -20,8 +20,14 @@
     gap: 1rem;
 }
 
-.products {
+.productListWithFormat {
     margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.products {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,6 +41,10 @@
 @media (min-width: 1200px) {
     .format {
         margin: 1rem 0 0.5rem 0;
+    }
+
+    .products {
+        margin-top: 2rem;
     }
 }
 
@@ -53,6 +63,10 @@
         margin-top: 0;
         margin-bottom: 1rem;
     }
+
+    .productListWithFormat {
+        margin-top: 1rem;
+    }
 }
 
 /* landscape phones */
@@ -66,6 +80,10 @@
         justify-content: flex-start;
         gap: 1rem;
     }
+
+    .products {
+        margin-top: 2rem;
+    }
 }
 
 /* landscape tablets */
@@ -73,6 +91,10 @@
     .format {
         flex-direction: row;
         gap: 1rem;
+    }
+
+    .products {
+        margin-top: 2rem;
     }
 }
 

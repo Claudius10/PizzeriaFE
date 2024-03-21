@@ -30,7 +30,8 @@ const Cart = (props: Props) => {
     const isUserOrderFormPage = location.pathname === "/pedido-nuevo/usuario";
     const isOrderSummaryPage = location.pathname === `/perfil/pedido/historial/${orderId}`;
     const isUpdateUserOrderPage = location.pathname === `/perfil/pedido/historial/${orderId}/actualizacion`;
-    const userOrder = queryClient.getQueryData(["user", "order", orderId]) as OrderDTO;
+    const id = orderId ? orderId : String(cartId);
+    const userOrder = queryClient.getQueryData(["user", "order", id]) as OrderDTO;
 
     let layoutStyle, emptyStyle;
     if (props.inDrawer) {
@@ -86,6 +87,10 @@ const Cart = (props: Props) => {
             dispatch(orderState.clear());
         } else {
             navigate(`/perfil/pedido/historial/${cartId}/actualizacion`);
+        }
+
+        if (props.closeDrawer) {
+            props.closeDrawer();
         }
     };
 

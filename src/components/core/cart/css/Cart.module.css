@@ -82,6 +82,7 @@
     .layout {
         padding: 0.5rem;
         background-color: #292929;
+        box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
     }
 
     .content {
@@ -93,15 +94,15 @@
     }
 
     .layoutDrawer {
-        height: 92vh;
+        height: 91vh;
     }
 
     .contentDrawer {
-        height: 73%;
+        height: 72%;
     }
 
     .emptyDrawer {
-        height: 81vh;
+        height: 79.5vh;
     }
 
     .info {
@@ -119,7 +120,7 @@
     }
 
     .contentDrawer {
-        height: 76%;
+        height: 74%;
     }
 
     .emptyDrawer {
@@ -136,6 +137,7 @@
     .layout {
         padding: 0.5rem;
         background-color: #292929;
+        box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
     }
 
     .content {
@@ -143,11 +145,11 @@
     }
 
     .layoutDrawer {
-        height: 83vh;
+        height: 81vh;
     }
 
     .contentDrawer {
-        height: 30%;
+        height: 27%;
     }
 
     .emptyDrawer {
@@ -164,6 +166,7 @@
     .layout {
         padding: 0.5rem;
         background-color: #292929;
+        box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
     }
 
     .content {
@@ -171,15 +174,15 @@
     }
 
     .layoutDrawer {
-        height: 93vh;
+        height: 92vh;
     }
 
     .contentDrawer {
-        height: 72%;
+        height: 71%;
     }
 
     .emptyDrawer {
-        height: 82.5vh;
+        height: 81vh;
     }
 
     .info {
@@ -192,6 +195,7 @@
     .layout {
         padding: 0.5rem;
         background-color: #292929;
+        box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
     }
 
     .content {
@@ -207,7 +211,7 @@
     }
 
     .emptyDrawer {
-        height: 72vh;
+        height: 68.5vh;
     }
 
     .info {

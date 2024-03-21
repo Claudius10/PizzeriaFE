@@ -18,7 +18,6 @@ export const queryResource = async (options: QueryOptions) => {
     }
 };
 
-// used only in loader for fetching products
 const productQuery = (key: string[]) => ({
     queryKey: key,
     queryFn: async () => {
@@ -31,7 +30,6 @@ const productQuery = (key: string[]) => ({
     },
 });
 
-// react router loader used in Routes in App.tsx
 export const productLoader = (queryClient: QueryClient, key: string[]) => async () => {
     const query = productQuery(key);
     return (

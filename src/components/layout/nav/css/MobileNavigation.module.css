@@ -12,11 +12,12 @@
     }
 }
 
+
 /* portrait phones */
 @media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
     .container {
         display: block;
-        width: 11em;
+        width: 13em;
         margin-bottom: 1.5rem;
     }
 

@@ -16,13 +16,14 @@ import {removeItemIds} from "../../../../functions/form";
 import AnonClientForm from "./anon/AnonClientForm";
 import AnonDeliveryForm from "./anon/AnonDeliveryForm";
 import AdditionalDataForm from "./common/AdditionalDataForm";
-import {Button, Placeholder, Prompt, RedirectWrapper} from "../../../layout/styled/elements";
+import {Button, Prompt, RedirectWrapper} from "../../../layout/styled/elements";
 import {AnonOrderForm} from "../../../../interfaces/dto/forms/order";
 import {defaultAnonOrderFormValues, clearSessionStorageForm} from "./FormSessionStorageUtils";
 import {CreatedAnonOrderDTO} from "../../../../interfaces/dto/order";
 import {useSessionStorage} from "../../../../hooks/usehooks-ts/usehooks-ts.ts";
 import {useEffect} from "react";
 import {modals} from "@mantine/modals";
+import {Loader} from "@mantine/core";
 
 const NewAnonOrderForm = () => {
     const dispatch = useAppDispatch();
@@ -132,7 +133,7 @@ const NewAnonOrderForm = () => {
         </FormProvider>;
 
     return <>
-        {createOrder.isPending && <Placeholder>Cargando...</Placeholder>}
+        {createOrder.isPending && <Loader color="#a9004f" size="xl" type="dots"/>}
         {!createOrder.isPending &&
             <div>
                 <Prompt

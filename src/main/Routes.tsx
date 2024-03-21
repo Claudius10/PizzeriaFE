@@ -21,7 +21,6 @@ import {userLoader} from "../api/locked/user/settings";
 import Orders from "../components/core/orders/list/Orders";
 import UserOrderSummary from "../components/core/orders/UserOrderSummary";
 import UpdateUserOrderForm from "../components/core/orders/forms/UpdateUserOrderForm";
-import NewOrderPage from "../components/core/orders/forms/NewOrderPage";
 import NewAnonOrderForm from "../components/core/orders/forms/NewAnonOrderForm";
 import NewUserOrderForm from "../components/core/orders/forms/NewUserOrderForm";
 import {isUserLoggedIn} from "../functions/web";
@@ -148,27 +147,24 @@ const Routes = (queryClient: QueryClient) => {
                     />
                 </Route>
 
-                <Route path={"/pedido-nuevo"} element={<NewOrderPage/>} errorElement={<ErrorPage/>}>
+                <Route
+                    path={"/pedido-nuevo"}
+                    index element={<NewAnonOrderForm/>}
+                    errorElement={<ErrorPage/>}
+                />
 
-                    <Route
-                        path={"/pedido-nuevo"}
-                        index element={<NewAnonOrderForm/>}
-                        errorElement={<ErrorPage/>}
-                    />
+                <Route
+                    path={"/pedido-nuevo/resumen"}
+                    element={<AnonOrderSummary/>}
+                    errorElement={<ErrorPage/>}
+                />
 
-                    <Route
-                        path="resumen"
-                        element={<AnonOrderSummary/>}
-                        errorElement={<ErrorPage/>}
-                    />
-
-                    <Route
-                        path="usuario"
-                        element={<NewUserOrderForm/>}
-                        errorElement={<ErrorPage/>}
-                        loader={userLoader(queryClient, ["user", "data"])}
-                    />
-                </Route>
+                <Route
+                    path={"/pedido-nuevo/usuario"}
+                    element={<NewUserOrderForm/>}
+                    errorElement={<ErrorPage/>}
+                    loader={userLoader(queryClient, ["user", "data"])}
+                />
 
                 <Route
                     path="*"

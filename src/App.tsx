@@ -6,7 +6,7 @@ import {MantineProvider} from "@mantine/core";
 import {ModalsProvider} from '@mantine/modals';
 import '@mantine/core/styles/global.css';
 import '@mantine/core/styles.css';
-import '@mantine/carousel/styles.layer.css';
+import '@mantine/carousel/styles.css';
 import {AgreementModal, ConfirmModal} from "./AppModals.tsx";
 
 const queryClient = new QueryClient({

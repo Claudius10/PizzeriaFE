@@ -1,6 +1,6 @@
 import styles from "./css/AnonDeliveryForm.module.css";
 import AnonFormReducer, {formActions, formState} from "../common/FormReducer";
-import {ChangeEvent, useEffect, useReducer, useRef} from "react";
+import {ChangeEvent, useCallback, useEffect, useReducer, useRef} from "react";
 import {useFormContext} from "react-hook-form";
 import StoreList from "../common/StoreList";
 import {getAddressFormErrors} from "../../../../../functions/form";
@@ -37,11 +37,11 @@ const AnonDeliveryForm = () => {
         }
     };
 
-    const setStoreId = (storeId: number) => {
+    const setStoreId = useCallback((storeId: number) => {
         form.setValue("address.id", storeId);
         void form.trigger("address.street");
         void form.trigger("address.streetNr");
-    };
+    }, []);
 
     const addressForm = <>
         <label className={styles.label} htmlFor="street">
