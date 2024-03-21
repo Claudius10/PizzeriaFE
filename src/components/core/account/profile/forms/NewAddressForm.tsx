@@ -69,7 +69,7 @@ const NewAddressForm = (props: Props) => {
                 autoComplete={"new-password"}
                 $height={"2rem"}
                 $padding={"0 0 0 0.5rem"}
-                $margin={errors.street ? "" : "0 0 1rem 0"}
+                $margin={errors.street ? "" : "0 0 0.5rem 0"}
                 className={errors.street ? "invalid" : ""}
                 {...register("street", {
                     required: {
@@ -91,6 +91,9 @@ const NewAddressForm = (props: Props) => {
                 })}
             />
             {errors.street && <FormError $margin={"0.5rem 0 0.5rem 0"}>{errors.street.message}</FormError>}
+            <FormError $color={"#a9004f"} $margin={"0 0 0.5rem 0"}>Recomendación: introducir dirección ficticia.
+                Ejemplo:
+                Calle Fabulosa</FormError>
 
             <label className={styles.label} htmlFor="streetNr">
                 Número<Required>*</Required>

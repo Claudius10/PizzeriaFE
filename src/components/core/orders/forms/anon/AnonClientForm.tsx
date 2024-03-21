@@ -8,6 +8,11 @@ const AnonClientForm = () => {
     const form = useFormContext();
     const errors = getAnonCustomerErrors(form.formState.errors);
 
+    let width = "28rem";
+    if (window.screen.width < 550) {
+        width = "16rem";
+    }
+
     return <div className={styles.container}>
         <div className={styles.header}>
             <h1>Datos del cliente</h1>
@@ -24,7 +29,6 @@ const AnonClientForm = () => {
             $height={"2rem"}
             $width={"100%"}
             $padding={"0 0 0 0.5rem"}
-            $margin={errors.anonCustomerNameError ? "" : "0 0 0.5rem 0"}
             className={errors.anonCustomerNameError ? "invalid" : ""}
             {...form.register("anonCustomerName", {
                 required: {
@@ -47,7 +51,9 @@ const AnonClientForm = () => {
             })}
         />
         {errors.anonCustomerNameError &&
-            <FormError $margin={"0 0 0.5rem 0"}>{errors.anonCustomerNameError.message}</FormError>}
+            <FormError>{errors.anonCustomerNameError.message}</FormError>}
+        <FormError $color={"#a9004f"} $width={width}>Recomendación: introducir nombre ficticio. Ejemplo:
+            Don Quijote</FormError>
 
         <label className={styles.label} htmlFor={"contactTel"}>
             Teléfono de contacto<Required>*</Required>
@@ -60,7 +66,6 @@ const AnonClientForm = () => {
             $height={"2rem"}
             $width={"100%"}
             $padding={"0 0 0 0.5rem"}
-            $margin={errors.anonCustomerContactNumberError ? "" : "0 0 0.5rem 0"}
             className={errors.anonCustomerContactNumberError ? "invalid" : ""}
             {...form.register("anonCustomerContactNumber", {
                 required: {
@@ -82,7 +87,9 @@ const AnonClientForm = () => {
             })}
         />
         {errors.anonCustomerContactNumberError &&
-            <FormError $margin={"0 0 0.5rem 0"}>{errors.anonCustomerContactNumberError.message}</FormError>}
+            <FormError>{errors.anonCustomerContactNumberError.message}</FormError>}
+        <FormError $color={"#a9004f"} $width={width}>Recomendación: introducir número ficticio. Ejemplo:
+            123456789</FormError>
 
         <label className={styles.label} htmlFor={"email"}>
             Correo electrónico<Required>*</Required>
@@ -95,7 +102,6 @@ const AnonClientForm = () => {
             $height={"2rem"}
             $width={"100%"}
             $padding={"0 0 0 0.5rem"}
-            $margin={errors.anonCustomerEmailError ? "" : "0 0 0.5rem 0"}
             className={errors.anonCustomerEmailError ? "invalid" : ""}
             {...form.register("anonCustomerEmail", {
                 required: {
@@ -109,7 +115,10 @@ const AnonClientForm = () => {
             })}
         />
         {errors.anonCustomerEmailError &&
-            <FormError $margin={"0 0 0.5rem 0"}>{errors.anonCustomerEmailError.message}</FormError>}
+            <FormError>{errors.anonCustomerEmailError.message}</FormError>}
+        <FormError $color={"#a9004f"} $margin={"0 0 0.5rem 0"} $width={width}>Recomendación: introducir email
+            ficticio. Ejemplo:
+            marco.polo@yahoo.es</FormError>
     </div>;
 };
 

@@ -45,11 +45,11 @@ export const RoundButton = styled.button<{ $width?: string, $height?: string }>`
         background-color: #e4e6ed;
 `;
 
-export const FormError = styled.p<{ $margin?: string }>`
-    color: rgb(199, 30, 30);
+export const FormError = styled.p<{ $margin?: string, $color?: string, $width?: string }>`
+    color: ${props => props.$color || "rgb(199, 30, 30)"};;
     font-size: small;
     font-style: italic;
-    width: 15rem;
+    width: ${props => props.$width || "15rem"};
     min-width: 14rem;
     word-break: break-word;
     margin: ${props => props.$margin || ""};

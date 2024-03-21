@@ -15,6 +15,11 @@ const AnonDeliveryForm = () => {
     const errors = getAddressFormErrors(form.formState.errors);
     const deliverySelectRef = useRef<HTMLSelectElement>(null);
 
+    let width = "28rem";
+    if (window.screen.width < 550) {
+        width = "16rem";
+    }
+
     useEffect(() => {
         const sessionStorageForm = getSessionStorageAnonForm();
         if (sessionStorageForm.address.id !== null) {
@@ -55,7 +60,6 @@ const AnonDeliveryForm = () => {
             $height={"2rem"}
             $width={"100%"}
             $padding={"0 0 0 0.5rem"}
-            $margin={errors.street ? "" : "0 0 0.5rem 0"}
             className={errors.street ? "invalid" : ""}
             {...form.register("address.street", {
                 validate: (value, formValues) => {
@@ -82,7 +86,9 @@ const AnonDeliveryForm = () => {
                 },
             })}
         />
-        {errors.street && <FormError $margin={"0 0 0.5rem 0"}>{errors.street.message}</FormError>}
+        {errors.street && <FormError>{errors.street.message}</FormError>}
+        <FormError $color={"#a9004f"} $width={width}>Recomendación: introducir dirección ficticia. Ejemplo:
+            Calle Fabulosa</FormError>
 
         <label className={styles.label} htmlFor="streetNr">
             Número<Required>*</Required>

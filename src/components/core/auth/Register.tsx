@@ -77,7 +77,7 @@ const Register = () => {
                     $textAlign={"center"}
                     $height={"2rem"}
                     $width={"15rem"}
-                    $margin={errors.name ? "0 0.5rem 0 1.5rem" : "0 0.5rem 1rem 1.5rem"}
+                    $margin={errors.name ? "0 0.5rem 0 1.5rem" : "0 0.5rem 0 1.5rem"}
                     className={errors.name ? "invalid" : ""}
                     {...register("name", {
                         required: {value: true, message: "El nombre y apellido(s) no puede faltar"},
@@ -95,7 +95,10 @@ const Register = () => {
                         }
                     })}
                 />
-                {errors.name && <FormError $margin={"0 0.5rem 0.5rem 1.5rem"}>{errors.name.message}</FormError>}
+                {errors.name && <FormError $margin={"0 0.5rem 0 1.5rem"}>{errors.name.message}</FormError>}
+                <FormError $margin={"0.5rem 0.5rem 0.5rem 1.5rem"} $color={"#a9004f"}>Recomendación: introducir nombre
+                    ficticio. Ejemplo:
+                    Don Quijote</FormError>
 
                 <Input
                     id={"email"}
@@ -105,7 +108,7 @@ const Register = () => {
                     $textAlign={"center"}
                     $height={"2rem"}
                     $width={"15rem"}
-                    $margin={errors.email ? "0 0.5rem 0 1.5rem" : "0 0.5rem 1rem 1.5rem"}
+                    $margin={errors.email ? "0 0.5rem 0 1.5rem" : "0 0.5rem 0rem 1.5rem"}
                     className={errors.email ? "invalid" : ""}
                     {...register("email", {
                         required: {
@@ -126,8 +129,11 @@ const Register = () => {
                         },
                     })}
                 />
-                {errors.email && <FormError $margin={"0 0.5rem 0.5rem 1.5rem"}>{errors.email.message}</FormError>}
-
+                {errors.email && <FormError $margin={"0 0.5rem 0rem 1.5rem"}>{errors.email.message}</FormError>}
+                <FormError $margin={"0.5rem 0.5rem 0.5rem 1.5rem"} $color={"#a9004f"}>Recomendación: usar email
+                    ficticio.
+                    Ejemplo:
+                    invitado15@gmail.com</FormError>
                 <Input
                     id={"matchingEmail"}
                     type={"email"}
@@ -136,7 +142,7 @@ const Register = () => {
                     $textAlign={"center"}
                     $height={"2rem"}
                     $width={"15rem"}
-                    $margin={errors.matchingEmail ? "0 0.5rem 0 1.5rem" : "0 0.5rem 1rem 1.5rem"}
+                    $margin={errors.matchingEmail ? "0 0.5rem 0 1.5rem" : "0 0.5rem 0 1.5rem"}
                     className={errors.matchingEmail ? "invalid" : ""}
                     {...register("matchingEmail", {
                         required: {
@@ -158,7 +164,11 @@ const Register = () => {
                     })}
                 />
                 {errors.matchingEmail &&
-                    <FormError $margin={"0 0.5rem 0.5rem 1.5rem"}>{errors.matchingEmail.message}</FormError>}
+                    <FormError $margin={"0 0.5rem 0 1.5rem"}>{errors.matchingEmail.message}</FormError>}
+                <FormError $margin={"0.5rem 0.5rem 0.5rem 1.5rem"} $color={"#a9004f"}>Recomendación: usar email
+                    ficticio.
+                    Ejemplo:
+                    marco.polo@yahoo.es</FormError>
 
                 <div className={styles.inputGroup}>
                     <Input
