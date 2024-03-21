@@ -208,7 +208,7 @@ const AdditionalDataForm = () => {
                     placeholder={"Valores aceptados: 10 / 20.5 / 50.55"}
                     step={".01"}
                     $height={"2rem"}
-                    $width={"97.5%"}
+                    $width={"100%"}
                     $padding={"0 0 0 0.5rem"}
                     $margin={errors.changeRequested ? "" : "0 0 0.5rem 0"}
                     className={errors.changeRequested ? "invalid" : ""}

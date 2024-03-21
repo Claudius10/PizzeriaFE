@@ -26,7 +26,7 @@ import Cart from "../../cart/Cart";
 import {useSessionStorage} from "../../../../hooks/usehooks-ts/usehooks-ts.ts";
 import {useEffect} from "react";
 import {modals} from "@mantine/modals";
-import {Loader} from "@mantine/core";
+import {Center, Loader} from "@mantine/core";
 
 const NewUserOrderForm = () => {
     const queryClient = useQueryClient();
@@ -157,7 +157,7 @@ const NewUserOrderForm = () => {
         </FormProvider>;
 
     return <>
-        {newOrder.isPending && <Loader color="#a9004f" size="xl" type="dots"/>}
+        {newOrder.isPending && <Center h={500}><Loader color="#a9004f" size="xl" type="dots"/></Center>}
         {!newOrder.isPending &&
             <div>
                 <Prompt
