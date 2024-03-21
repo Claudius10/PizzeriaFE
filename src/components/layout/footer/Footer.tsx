@@ -12,24 +12,26 @@ import eslintIcon from "../../../resources/icons/tech/eslint.png";
 import styledCompIcons from "../../../resources/icons/tech/styled-components.png";
 import {RectangleIcon} from "../buttons/InteractiveIcons";
 import {NavLink} from "react-router-dom";
+import {Group} from "@mantine/core";
 
 const Footer = () => {
-
-
     return <footer className={styles.footer}>
         <div className={styles.inner}>
             <div className={styles.icons}>
                 <p>Powered by</p>
-                <RectangleIcon icon={tsIcon} linkTo={"https://www.typescriptlang.org/"} height={"1.3rem"}/>
-                <RectangleIcon icon={reactIcon} linkTo={"https://react.dev/"} height={"1.3rem"}/>
-                <RectangleIcon icon={routerIcon} linkTo={"https://reactrouter.com/en/main"} height={"1.3rem"}/>
-                <RectangleIcon icon={hookFormIcon} linkTo={"https://www.react-hook-form.com/"} height={"1.3rem"}/>
-                <RectangleIcon icon={queryIcon} linkTo={"https://tanstack.com/query/latest"} height={"1.3rem"}/>
-                <RectangleIcon icon={reduxIcon} linkTo={"https://react-redux.js.org/"} height={"1.3rem"}/>
-                <RectangleIcon icon={styledCompIcons} linkTo={"https://styled-components.com/"} height={"1.3rem"}/>
-                <RectangleIcon icon={railwayIcon} linkTo={"https://railway.app/"} height={"1.3rem"}/>
-                <RectangleIcon icon={eslintIcon} linkTo={"https://eslint.org/"} height={"1.3rem"}/>
-                <p className={styles.iconProvider}>Icons by <NavLink to={"https://icons8.com/"}>Icons8</NavLink></p>
+                <RectangleIcon icon={tsIcon} linkTo={"https://www.typescriptlang.org/"} height={"1.2rem"}/>
+                <RectangleIcon icon={reactIcon} linkTo={"https://react.dev/"} height={"1.2rem"}/>
+                <RectangleIcon icon={routerIcon} linkTo={"https://reactrouter.com/en/main"} height={"1.2rem"}/>
+                <RectangleIcon icon={hookFormIcon} linkTo={"https://www.react-hook-form.com/"} height={"1.2rem"}/>
+                <RectangleIcon icon={queryIcon} linkTo={"https://tanstack.com/query/latest"} height={"1.2rem"}/>
+                <RectangleIcon icon={reduxIcon} linkTo={"https://react-redux.js.org/"} height={"1.2rem"}/>
+                <RectangleIcon icon={styledCompIcons} linkTo={"https://styled-components.com/"} height={"1.2rem"}/>
+                <RectangleIcon icon={eslintIcon} linkTo={"https://eslint.org/"} height={"1.2rem"}/>
+                <RectangleIcon icon={railwayIcon} linkTo={"https://railway.app?referralCode=MZ_nxf/"} height={"1.2rem"}/>
+                <Group>
+                    <p className={styles.iconProvider}>Icons by <NavLink to={"https://icons8.com/"}>Icons8</NavLink></p>
+                    <p className={styles.iconProvider}>Hosted on <NavLink to={"https://railway.app?referralCode=MZ_nxf"}>Railway</NavLink></p>
+                </Group>
             </div>
             <div className={styles.details}>
                 <p className={styles.iconProviderMobile}>Icons by <NavLink to={"https://icons8.com/"}>Icons8</NavLink>
