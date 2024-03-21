@@ -23,7 +23,7 @@ import {CreatedAnonOrderDTO} from "../../../../interfaces/dto/order";
 import {useSessionStorage} from "../../../../hooks/usehooks-ts/usehooks-ts.ts";
 import {useEffect} from "react";
 import {modals} from "@mantine/modals";
-import {Loader} from "@mantine/core";
+import {Center, Loader} from "@mantine/core";
 
 const NewAnonOrderForm = () => {
     const dispatch = useAppDispatch();
@@ -133,7 +133,7 @@ const NewAnonOrderForm = () => {
         </FormProvider>;
 
     return <>
-        {createOrder.isPending && <Loader color="#a9004f" size="xl" type="dots"/>}
+        {createOrder.isPending && <Center><Loader color="#a9004f" size="xl" type="dots"/></Center>}
         {!createOrder.isPending &&
             <div>
                 <Prompt
