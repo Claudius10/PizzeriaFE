@@ -62,7 +62,7 @@
 /* landscape phones */
 @media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
     .cart {
-        width: 15rem;
+        width: 20rem;
     }
 
     .buttons {
@@ -78,14 +78,14 @@
 /* portrait tablets */
 @media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
     .cart {
-        width: 16rem;
+        width: 30vw;
     }
 }
 
 /* landscape tablets */
-@media only screen and (min-device-width: 1025px) and (max-device-width: 1368px) {
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1368px) {
     .cart {
-        width: 16rem;
+        width: 30vw;
     }
 }
 

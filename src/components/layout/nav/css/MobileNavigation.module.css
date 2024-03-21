@@ -15,23 +15,45 @@
 /* portrait phones */
 @media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
     .container {
-        display: flex;
+        display: block;
+        width: 11em;
+        margin-bottom: 1.5rem;
+    }
+
+    .control {
+        background-color: #a9004f;
+        border: 1px solid #a9004f;
+        color: #e4e6ed;
     }
 }
 
 /* landscape phones */
 @media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+    .container {
+        display: block;
+        width: 15em;
+        margin-bottom: 1.5rem;
+    }
 
+    .buttons {
+        background-color: #a9004f;
+        border: 1px solid #a9004f;
+        color: #e4e6ed;
+    }
 }
 
 /* portrait tablets */
 @media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
-
+    .container {
+        display: none;
+    }
 }
 
 /* landscape tablets */
 @media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
-
+    .container {
+        display: none;
+    }
 }
 
 /* fold portrait  */

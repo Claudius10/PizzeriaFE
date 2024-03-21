@@ -182,7 +182,7 @@ const UserOrderSummary = () => {
                     </div>
 
                     <div className={styles.cart}>
-                        <Cart/>
+                        <Cart inDrawer={false}/>
                     </div>
                 </div>
 

@@ -49,3 +49,17 @@
     font-size: 1.7rem;
     font-family: "Pacifico", cursive;
 }
+
+/* portrait phones */
+@media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+    .container {
+        padding-top: 1rem;
+    }
+}
+
+/* landscape phones */
+@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
+    .container {
+        padding-top: 1rem;
+    }
+}

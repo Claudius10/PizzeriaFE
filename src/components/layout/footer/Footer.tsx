@@ -14,27 +14,30 @@ import {RectangleIcon} from "../buttons/InteractiveIcons";
 import {NavLink} from "react-router-dom";
 
 const Footer = () => {
-    return <div className={styles.layout}>
-        <div className={styles.container}>
-            <div className={styles.content}>
-                <RectangleIcon icon={githubIcon} linkTo={"https://github.com/Claudius10"} height={"1.2rem"}/>
-                <p>Icons by <NavLink to={"https://icons8.com/"}>Icons8</NavLink></p>
-                <div className={styles.icons}>
-                    Powered by
-                    <RectangleIcon icon={tsIcon} linkTo={"https://www.typescriptlang.org/"} height={"1.3rem"}/>
-                    <RectangleIcon icon={reactIcon} linkTo={"https://react.dev/"} height={"1.3rem"}/>
-                    <RectangleIcon icon={routerIcon} linkTo={"https://reactrouter.com/en/main"} height={"1.3rem"}/>
-                    <RectangleIcon icon={hookFormIcon} linkTo={"https://www.react-hook-form.com/"} height={"1.3rem"}/>
-                    <RectangleIcon icon={queryIcon} linkTo={"https://tanstack.com/query/latest"} height={"1.3rem"}/>
-                    <RectangleIcon icon={reduxIcon} linkTo={"https://react-redux.js.org/"} height={"1.3rem"}/>
-                    <RectangleIcon icon={styledCompIcons} linkTo={"https://styled-components.com/"} height={"1.3rem"}/>
-                    <RectangleIcon icon={railwayIcon} linkTo={"https://railway.app/"} height={"1.3rem"}/>
-                    <RectangleIcon icon={eslintIcon} linkTo={"https://eslint.org/"} height={"1.3rem"}/>
-                </div>
-            </div>
 
+
+    return <footer className={styles.footer}>
+        <div className={styles.inner}>
+            <div className={styles.icons}>
+                <p>Powered by</p>
+                <RectangleIcon icon={tsIcon} linkTo={"https://www.typescriptlang.org/"} height={"1.3rem"}/>
+                <RectangleIcon icon={reactIcon} linkTo={"https://react.dev/"} height={"1.3rem"}/>
+                <RectangleIcon icon={routerIcon} linkTo={"https://reactrouter.com/en/main"} height={"1.3rem"}/>
+                <RectangleIcon icon={hookFormIcon} linkTo={"https://www.react-hook-form.com/"} height={"1.3rem"}/>
+                <RectangleIcon icon={queryIcon} linkTo={"https://tanstack.com/query/latest"} height={"1.3rem"}/>
+                <RectangleIcon icon={reduxIcon} linkTo={"https://react-redux.js.org/"} height={"1.3rem"}/>
+                <RectangleIcon icon={styledCompIcons} linkTo={"https://styled-components.com/"} height={"1.3rem"}/>
+                <RectangleIcon icon={railwayIcon} linkTo={"https://railway.app/"} height={"1.3rem"}/>
+                <RectangleIcon icon={eslintIcon} linkTo={"https://eslint.org/"} height={"1.3rem"}/>
+                <p className={styles.iconProvider}>Icons by <NavLink to={"https://icons8.com/"}>Icons8</NavLink></p>
+            </div>
+            <div className={styles.details}>
+                <p className={styles.iconProviderMobile}>Icons by <NavLink to={"https://icons8.com/"}>Icons8</NavLink>
+                </p>
+                <RectangleIcon icon={githubIcon} linkTo={"https://github.com/Claudius10"} height={"1.2rem"}/>
+            </div>
         </div>
-    </div>;
+    </footer>;
 };
 
 export default React.memo(Footer);

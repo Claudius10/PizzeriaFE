@@ -1,9 +1,23 @@
-.layout {
-    /* layout css for correct footer functionality */
-    /* border: 2px solid green; */
-    background-color: #1c1c1c;
-    /* so the footer doesn't cover content */
-    /* min height of a page if content itself doesn't
-    push footer down due to lack of enough content */
-    min-height: 100vh;
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
+
+.modalButton {
+    display: flex;
+    justify-content: flex-end;
+    border: 1px solid red;
+}
+
+.container {
+    height: 100%;
+    border: 1px solid #1c1c1c;
+}
+
+.main {
+    z-index: 100;
+    margin-bottom: 5rem;
+}
+

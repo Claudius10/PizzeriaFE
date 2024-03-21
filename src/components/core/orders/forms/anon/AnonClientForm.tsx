@@ -22,7 +22,7 @@ const AnonClientForm = () => {
             placeholder={"Miguel de Cervantes"}
             autoComplete={"new-password"}
             $height={"2rem"}
-            $width={"97.5%"}
+            $width={"100%"}
             $padding={"0 0 0 0.5rem"}
             $margin={errors.anonCustomerNameError ? "" : "0 0 0.5rem 0"}
             className={errors.anonCustomerNameError ? "invalid" : ""}
@@ -58,7 +58,7 @@ const AnonClientForm = () => {
             placeholder={"123456789"}
             autoComplete={"new-password"}
             $height={"2rem"}
-            $width={"97.5%"}
+            $width={"100%"}
             $padding={"0 0 0 0.5rem"}
             $margin={errors.anonCustomerContactNumberError ? "" : "0 0 0.5rem 0"}
             className={errors.anonCustomerContactNumberError ? "invalid" : ""}
@@ -93,7 +93,7 @@ const AnonClientForm = () => {
             placeholder={"correoelectronico@gmail.es"}
             autoComplete={"new-password"}
             $height={"2rem"}
-            $width={"97.5%"}
+            $width={"100%"}
             $padding={"0 0 0 0.5rem"}
             $margin={errors.anonCustomerEmailError ? "" : "0 0 0.5rem 0"}
             className={errors.anonCustomerEmailError ? "invalid" : ""}

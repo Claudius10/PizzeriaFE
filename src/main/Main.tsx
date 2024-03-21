@@ -2,22 +2,38 @@ import {useAppDispatch} from "../store/hooks";
 import {Outlet, ScrollRestoration, useNavigate} from "react-router-dom";
 import {removeCookies} from "../functions/web";
 import {useQueryClient} from "@tanstack/react-query";
-import useModal from "../hooks/useModal";
-import {SessionExpiredModal} from "../components/layout/modal/GeneralModals";
-import Modal from "../hooks/Modal";
 import styles from "./main.module.css";
-import Navigation from "../components/layout/nav/Navigation";
 import Footer from "../components/layout/footer/Footer";
 import {clearCart} from "../components/core/cart/CartLocalStorageFunctions";
 import {orderState} from "../store/order-slice";
-import {OnUserEmailUpdate, OnUserPasswordUpdate} from "../components/layout/modal/UserUpdateModals";
 import {clearSessionStorageForm} from "../components/core/orders/forms/FormSessionStorageUtils";
+import {Text, Button} from '@mantine/core';
+import Header from "../components/layout/nav/Header.tsx";
+import {modals} from '@mantine/modals';
 
 const Main = () => {
-    const {isModalOpen, openModal, modalContent, closeModal} = useModal();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
+
+    const openOnUserEmailUpdateModal = () => modals.open({
+        title: "Actualización completa",
+        children: (
+            <div className={styles.modal}>
+                <Text size="sm">
+                    Email actualizado con éxito. La sesión ha de ser reiniciada.
+                </Text>
+                <div className={styles.modalButton}>
+                    <Button variant="outline" color="orange" radius="xs" onClick={() => {
+                        navigate("/");
+                        modals.closeAll();
+                    }}>
+                        Continuar
+                    </Button>
+                </div>
+            </div>
+        ),
+    });
 
     const cleanUp = () => {
         clearSessionStorageForm();
@@ -32,17 +48,17 @@ const Main = () => {
         switch (message.data) {
             case "session-expired":
                 cleanUp();
-                openModal(<SessionExpiredModal closeModal={closeModal} redirectTo={"/iniciar-sesion"}/>);
+
                 break;
 
             case "email-update":
                 cleanUp();
-                openModal(<OnUserEmailUpdate closeModal={closeModal} redirectTo={"/iniciar-sesion"}/>);
+                openOnUserEmailUpdateModal();
                 break;
 
             case "password-update":
                 cleanUp();
-                openModal(<OnUserPasswordUpdate closeModal={closeModal} redirectTo={"/iniciar-sesion"}/>);
+
                 break;
 
             case "logout":
@@ -52,15 +68,14 @@ const Main = () => {
         }
     };
 
-    return <>
-        <Modal content={modalContent} show={isModalOpen} hide={closeModal}/>
-        <div className={styles.layout}>
-            <Navigation/>
+    return <div className={styles.container}>
+        <Header/>
+        <div className={styles.main}>
             <Outlet/>
-            <Footer/>
-            <ScrollRestoration/>
         </div>
-    </>;
+        <Footer/>
+        <ScrollRestoration/>
+    </div>;
 };
 
 export default Main;

@@ -1,26 +1,23 @@
-.container {
+.footer {
     background-color: #1c1c1c;
     position: absolute;
+    width: 100%;
     left: 0;
     right: 0;
     bottom: 0;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
 }
 
-.content {
+.inner {
     display: flex;
-    flex-direction: column;
-    align-items: end;
-    height: 100%;
-    padding: 0.2rem 0 0.2rem 0;
+    align-items: center;
+    justify-content: space-between;
     color: #a9004f;
     font-size: 1rem;
     font-weight: 800;
+    width: 100%
 }
 
-.content a {
+.inner a {
     color: #a9004f
 }
 
@@ -28,6 +25,13 @@
     display: flex;
     gap: 0.3rem;
     align-items: center;
+}
+
+.details {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 3rem;
 }
 
 .git,
@@ -41,73 +45,36 @@
     cursor: pointer;
 }
 
-/* desktop */
 @media (min-width: 1200px) {
-    .layout {
-        height: 4rem;
+    .iconProviderMobile {
+        display: none;
     }
 }
 
 /* not desktop */
 @media (min-width: 1px) and (max-width: 1200px) {
-
+    .iconProviderMobile {
+        display: none;
+    }
 }
 
 /* portrait phones */
 @media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
-    /* Styles */
-    .layout {
-        height: 5rem;
+    .inner {
+        flex-direction: column-reverse;
+        align-items: flex-start;
     }
 
-    .container {
-        height: fit-content;
+    .details {
+        justify-content: space-between;
+        width: 100%;
     }
 
-    .content {
-        height: fit-content;
-    }
-}
-
-/* landscape phones */
-@media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
-    /* Styles */
-    .layout {
-        height: 5rem;
+    .iconProviderMobile {
+        display: block;
     }
 
-    .container {
-        height: fit-content;
+    .iconProvider {
+        display: none;
     }
-
-    .content {
-        height: fit-content;
-    }
-}
-
-/* portrait tablets */
-@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
-    /* Styles */
-    .layout {
-        height: 5rem;
-    }
-
-    .container {
-        height: fit-content;
-    }
-
-    .content {
-        height: fit-content;
-    }
-}
-
-/* landscape tablets */
-@media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
-    .layout {
-        height: 5rem;
-    }
-}
-
-/* fold portrait dev text slight adjustment */
-@media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
 }

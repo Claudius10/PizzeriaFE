@@ -2,14 +2,11 @@ import styles from "./css/Products.module.css";
 import {useState} from "react";
 import {useLoaderData} from "react-router-dom";
 import {ProductDTO} from "../../../interfaces/dto/resources";
-import ProductFormatMenu from "./ProductFormatMenu";
 import ProductList from "./ProductList";
-import {Prompt, RoundButton} from "../../layout/styled/elements";
+import {SegmentedControl} from "@mantine/core";
 
 const PizzaProducts = () => {
     const pizzasList = useLoaderData() as ProductDTO[];
-    const pizzaFormats = pizzasList.map((pizza) => pizza.format);
-    const uniqueFormats = pizzaFormats.filter((value, index, array) => array.indexOf(value) === index);
     const mediumClassicPizzas = pizzasList.filter((pizza: ProductDTO) => pizza.price === 13.30);
     const mediumGourmetPizzas = pizzasList.filter((pizza: ProductDTO) => pizza.price === 14.75);
     const familiarClassicPizzas = pizzasList.filter((pizza: ProductDTO) => pizza.price === 18.30);
@@ -57,19 +54,38 @@ const PizzaProducts = () => {
     };
 
     return <div className={styles.layout}>
-        <Prompt $fontSize={"3rem"}
-                $margin={"0 0 0.5rem 0"}
-                className={styles.mobilePrompt}>
-            Pizzas
-        </Prompt>
-
         <div className={styles.format}>
-            <div className={styles.type}>
-                <RoundButton $width={"7rem"} $height={"2rem"} onClick={setClassics}>Clásicas</RoundButton>
-                <RoundButton $width={"7rem"} $height={"2rem"} onClick={setGourmet}>Gourmet</RoundButton>
-            </div>
+            <SegmentedControl
+                radius="xl"
+                color={"#a9004f"}
+                onChange={(value) => {
+                    if (value === "C") {
+                        setClassics();
+                    } else {
+                        setGourmet();
+                    }
+                }}
+                data={[
+                    {label: 'Clásica', value: 'C'},
+                    {label: 'Gourmet', value: 'G'},
+                ]}
+            />
 
-            <ProductFormatMenu formats={uniqueFormats} formatHandlers={[setMediumSize, setFamiliarSize]}/>
+            <SegmentedControl
+                radius="xl"
+                color={"#a9004f"}
+                onChange={(value) => {
+                    if (value === "M") {
+                        setMediumSize();
+                    } else {
+                        setFamiliarSize();
+                    }
+                }}
+                data={[
+                    {label: 'Mediana', value: 'M'},
+                    {label: 'Familiar', value: 'F'},
+                ]}
+            />
         </div>
 
         <div className={styles.products}>

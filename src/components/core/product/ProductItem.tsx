@@ -63,9 +63,9 @@ const ProductItem = (props: Props) => {
                 max="10"
                 ref={itemQuantityRef}
                 $height={"1rem"}
-                $width={"1rem"}
+                $width={"1.5rem"}
                 $margin={"0 0 0 0.5rem"}
-                $padding={"0 0 0 0.5rem"}
+                $padding={"0 0 0 0.35rem"}
             />
             <button onClick={add} className={styles.button}>
                 AÑADIR

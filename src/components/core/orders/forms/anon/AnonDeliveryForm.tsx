@@ -53,7 +53,7 @@ const AnonDeliveryForm = () => {
             placeholder={"Calle/Avenida/Paseo ..."}
             autoComplete={"new-password"}
             $height={"2rem"}
-            $width={"97.5%"}
+            $width={"100%"}
             $padding={"0 0 0 0.5rem"}
             $margin={errors.street ? "" : "0 0 0.5rem 0"}
             className={errors.street ? "invalid" : ""}
@@ -93,7 +93,7 @@ const AnonDeliveryForm = () => {
             placeholder={"1/15/135/1553 ..."}
             autoComplete={"new-password"}
             $height={"2rem"}
-            $width={"97.5%"}
+            $width={"100%"}
             $padding={"0 0 0 0.5rem"}
             $margin={errors.streetNr ? "" : "0 0 0.5rem 0"}
             className={errors.streetNr ? "invalid" : ""}
@@ -131,7 +131,7 @@ const AnonDeliveryForm = () => {
             placeholder="Portal"
             autoComplete={"new-password"}
             $height={"2rem"}
-            $width={"97.5%"}
+            $width={"100%"}
             $padding={"0 0 0 0.5rem"}
             $margin={errors.gate ? "" : "0 0 1rem 0"}
             className={errors.gate ? "invalid" : ""}
@@ -155,7 +155,7 @@ const AnonDeliveryForm = () => {
             placeholder="Escalera"
             autoComplete={"new-password"}
             $height={"2rem"}
-            $width={"97.5%"}
+            $width={"100%"}
             $padding={"0 0 0 0.5rem"}
             $margin={errors.staircase ? "" : "0 0 1rem 0"}
             className={errors.staircase ? "invalid" : ""}
@@ -179,7 +179,7 @@ const AnonDeliveryForm = () => {
             placeholder="Piso"
             autoComplete={"new-password"}
             $height={"2rem"}
-            $width={"97.5%"}
+            $width={"100%"}
             $padding={"0 0 0 0.5rem"}
             $margin={errors.floor ? "" : "0 0 1rem 0"}
             className={errors.floor ? "invalid" : ""}
@@ -203,7 +203,7 @@ const AnonDeliveryForm = () => {
             placeholder="Puerta"
             autoComplete={"new-password"}
             $height={"2rem"}
-            $width={"97.5%"}
+            $width={"100%"}
             $padding={"0 0 0 0.5rem"}
             $margin={errors.door ? "" : "0 0 0.5rem 0"}
             className={errors.door ? "invalid" : ""}

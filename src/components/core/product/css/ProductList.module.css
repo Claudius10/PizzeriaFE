@@ -7,44 +7,41 @@
     justify-content: center;
     gap: 2rem;
     flex-wrap: wrap;
-    width: 100%;
 }
 
 @media (min-width: 1200px) {
-
+    .layout {
+        width: 45vw;
+    }
 }
 
 @media (max-width: 1200px) {
-
 }
 
 /* portrait phones */
 @media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
-
+    .layout {
+        width: 14rem;
+    }
 }
 
 /* landscape phones */
 @media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
     .layout {
-        flex-direction: row;
-        width: 67vw;
+        width: 35rem;
     }
 }
 
 /* portrait tablets */
 @media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
     .layout {
-        flex-direction: row;
-        margin-left: 0.5rem;
-        width: 67vw;
+        width: 90vw;
     }
 }
 
 /* landscape tablets */
 @media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
     .layout {
-        flex-direction: row;
-        margin-left: 0.5rem;
-        width: 70vw;
+        width: 75vw;
     }
 }

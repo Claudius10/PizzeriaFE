@@ -10,7 +10,12 @@ import {getCookie} from "../../../functions/web";
 import {OrderDTO} from "../../../interfaces/dto/order";
 import {useQueryClient} from "@tanstack/react-query";
 
-const Cart = () => {
+type Props = {
+    inDrawer: boolean;
+    closeDrawer?: () => void;
+}
+
+const Cart = (props: Props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useAppDispatch();
@@ -26,6 +31,15 @@ const Cart = () => {
     const isOrderSummaryPage = location.pathname === `/perfil/pedido/historial/${orderId}`;
     const isUpdateUserOrderPage = location.pathname === `/perfil/pedido/historial/${orderId}/actualizacion`;
     const userOrder = queryClient.getQueryData(["user", "order", orderId]) as OrderDTO;
+
+    let layoutStyle, emptyStyle;
+    if (props.inDrawer) {
+        layoutStyle = styles.layoutDrawer;
+        emptyStyle = styles.emptyDrawer;
+    } else {
+        layoutStyle = styles.layout;
+        emptyStyle = styles.empty;
+    }
 
     const reloadCart = () => {
         if (userOrder !== undefined) {
@@ -52,10 +66,16 @@ const Cart = () => {
     }, []);
 
     const toAnonOrderForm = () => {
+        if (props.closeDrawer) {
+            props.closeDrawer();
+        }
         navigate("/pedido-nuevo");
     };
 
     const toUserOrderForm = () => {
+        if (props.closeDrawer) {
+            props.closeDrawer();
+        }
         navigate("/pedido-nuevo/usuario");
     };
 
@@ -69,12 +89,13 @@ const Cart = () => {
         }
     };
 
-    return <div className={styles.layout}>
+    return <div className={layoutStyle}>
         <div className={styles.header}>
             <p>Tu Cesta</p>
         </div>
 
-        {cartQuantity === 0 ? (<p className={styles.empty}>Aquí no hay nada :(</p>) : <CartContent/>}
+        {cartQuantity === 0 ? (<p className={emptyStyle}>Aquí no hay nada :(</p>) :
+            <CartContent cartInDrawer={props.inDrawer}/>}
 
         <div className={styles.buttonsContainer}>
             <div className={styles.buttons}>

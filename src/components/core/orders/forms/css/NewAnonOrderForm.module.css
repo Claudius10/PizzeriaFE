@@ -12,12 +12,6 @@
 }
 
 @media only screen and (min-width: 1200px) {
-    .cart {
-        position: fixed;
-        left: 62%;
-        width: 17vw;
-    }
-
     .buttons {
         margin-top: 0.5rem;
     }
@@ -25,6 +19,7 @@
     .form {
         display: flex;
         justify-content: center;
+        gap: 1rem;
     }
 }
 

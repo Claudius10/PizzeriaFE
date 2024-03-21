@@ -1,23 +1,12 @@
 .button {
     display: flex;
-    justify-content: space-around;
-    border: none;
-    background-color: #00000000;
+    background-color: #242424;
     cursor: pointer;
     font: inherit;
     font-weight: bold;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-}
-
-.badge {
-    background-color: #a9004f;
-    color: #e4e6ed;
-    padding-left: 0.35rem;
-    padding-right: 0.35rem;
-    margin-bottom: 1rem;
-    border-radius: 25px;
-    font-weight: bold;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 2px solid #a9004f;
 }
 
 .bump {

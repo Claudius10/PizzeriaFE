@@ -20,8 +20,6 @@
 
 @media (min-width: 1200px) {
     .cart {
-        position: fixed;
-        left: 62%;
         width: 17vw;
     }
 
@@ -32,6 +30,7 @@
     .form {
         display: flex;
         justify-content: center;
+        gap: 1rem;
     }
 }
 

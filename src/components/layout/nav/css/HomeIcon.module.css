@@ -2,7 +2,6 @@
     display: flex;
     z-index: 10;
     height: fit-content;
-    width: 23rem;
 }
 
 .text {
@@ -36,7 +35,9 @@
 
 /* landscape phones */
 @media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
-
+    .container {
+        width: 15rem;
+    }
 }
 
 /* portrait tablets */
@@ -50,11 +51,10 @@
 @media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
     .container {
         width: 30rem;
-
     }
 
     .text {
-        font-size: 1.5rem;
+        width: 11rem;
     }
 }
 

@@ -203,7 +203,7 @@ const UpdateUserOrderForm = () => {
             <div className={styles.form}>
                 {formJSX}
                 <div className={styles.cart}>
-                    <Cart/>
+                    <Cart inDrawer={false}/>
                 </div>
             </div>
         </div>

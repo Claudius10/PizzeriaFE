@@ -43,13 +43,15 @@ const Settings = () => {
 
         <div className={styles.container}>
             <Prompt>¡Hasta la próxima!</Prompt>
-            <Button $width={"13rem"} $padding={"0.3rem 0.3rem"} onClick={logoutHandler}>Terminar sesión</Button>
+            <Button $width={"13rem"} $margin={"0.5rem 0 0 0"} $padding={"0.3rem 0.3rem"} onClick={logoutHandler}>Terminar
+                sesión</Button>
         </div>
 
         <div className={styles.container}>
             <Prompt>Más vale prevenir que lamentar...</Prompt>
             <div className={styles.section}>
-                <Button $width={"13rem"} $padding={"0.3rem 0.3rem"} onClick={toggleNewPasswordForm}>Cambiar
+                <Button $width={"13rem"} $margin={"0.5rem 0 0 0"} $padding={"0.3rem 0.3rem"}
+                        onClick={toggleNewPasswordForm}>Cambiar
                     contraseña</Button>
                 {formState.showPasswordForm && <NewPasswordForm/>}
             </div>
@@ -58,7 +60,8 @@ const Settings = () => {
         <div className={styles.container}>
             <Prompt>Tu cuenta, tu elección.</Prompt>
             <div className={styles.section}>
-                <Button $width={"13rem"} $padding={"0.3rem 0.3rem"} onClick={toggleDeleteAccountForm}>Borrar
+                <Button $width={"13rem"} $margin={"0.5rem 0 0 0"} $padding={"0.3rem 0.3rem"}
+                        onClick={toggleDeleteAccountForm}>Borrar
                     cuenta</Button>
                 {formState.showAccountDeleteForm && <DeleteAccountForm/>}
             </div>

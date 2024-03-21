@@ -31,11 +31,7 @@
 /* desktop */
 @media (min-width: 1200px) {
     .container {
-        width: 22vw;
-    }
-
-    .comment {
-        width: 97.5%;
+        width: 30vw;
     }
 }
 
@@ -45,10 +41,6 @@
         width: 38vw;
         min-width: 12rem;
     }
-
-    .comment {
-        width: 98%;
-    }
 }
 
 /* portrait phones */
@@ -56,46 +48,29 @@
     .container {
         width: 90vw;
     }
-
-    .comment {
-        width: 97%;
-    }
 }
 
 /* landscape phones */
 @media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
     .container {
-        width: 43vw;
-    }
-
-    .comment {
-        width: 97%;
+        width: 74vw;
     }
 }
 
 /* portrait tablets */
 @media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
     .container {
-        width: 40vw;
-    }
-
-    .comment {
-        width: 97%;
+        width: 75vw;
     }
 }
 
 /* landscape tablets */
 @media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
     .container {
-        width: 33vw;
-    }
-
-    .comment {
-        width: 98%;
+        width: 75vw;
     }
 }
 
 /* fold portrait  */
 @media only screen and (min-device-width: 280px) and (max-device-width: 280px) {
-
 }

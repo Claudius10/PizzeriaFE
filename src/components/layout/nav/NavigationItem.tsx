@@ -1,5 +1,5 @@
 import styles from "./css/NavigationItem.module.css";
-import {NavLink, useLocation, useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import Icon from "../icon/Icon";
 
 type Props = {
@@ -12,15 +12,13 @@ type Props = {
 
 const NavigationItem = (props: Props) => {
     const navigate = useNavigate();
-    const location = useLocation();
-    const isActive = location.pathname === props.linkTo;
 
     const navigateTo = () => {
         navigate(props.linkTo);
     };
 
     return <div className={styles.container} onClick={navigateTo}>
-        <div className={isActive ? styles.iconActive : styles.iconPending}>
+        <div className={styles.iconActive}>
             <Icon src={props.icon} width={props.width} height={props.height}/>
         </div>
         <NavLink to={props.linkTo} className={({isActive, isPending}) =>

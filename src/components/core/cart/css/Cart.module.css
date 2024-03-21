@@ -1,18 +1,19 @@
 .layout {
     font-weight: 800;
-    border: 1px solid #292929;
-    background-color: #292929;
-    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.5);
+    background-color: #242424;
+}
+
+.layoutDrawer {
+    font-weight: 800;
+    background-color: #242424;
 }
 
 .header {
     height: 1.5rem;
-    padding-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
 .header p {
-    margin-left: 0.2rem;
     color: #e4e6ed;
 }
 
@@ -20,25 +21,29 @@
     overflow: scroll;
     scrollbar-width: thin; /* for chrome */
     scrollbar-color: #e4e6ed transparent;
-    height: 27rem;
 }
 
-.content li {
-    list-style-type: none;
+.contentDrawer {
+    overflow: scroll;
+    scrollbar-width: thin; /* for chrome */
+    scrollbar-color: #e4e6ed transparent;
 }
 
 .empty {
     font-size: 1.5rem;
     text-align: center;
-    margin-top: 13.75rem;
-    margin-bottom: 13.7rem;
+    color: #e4e6ed;
+}
+
+.emptyDrawer {
+    font-size: 1.5rem;
+    text-align: center;
     color: #e4e6ed;
 }
 
 .total {
     color: #e4e6ed;
     margin-bottom: 0.5rem;
-    margin-left: 0.5rem;
 }
 
 .offerTotal {
@@ -46,12 +51,12 @@
     background-color: #a9004f;
     border: 1px solid #a9004f;
     margin-left: 0.5rem;
+    padding: 0.2rem;
+    border-radius: 30px;
 }
 
 .offers {
     color: #e4e6ed;
-    margin-bottom: 0.5rem;
-    margin-left: 0.5rem;
 }
 
 .highlight {
@@ -62,51 +67,151 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 0.6rem;
 }
 
 .buttons {
-    width: 95%;
+    width: 100%;
+}
+
+.info {
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 @media (min-width: 1200px) {
+    .layout {
+        padding: 0.5rem;
+        background-color: #292929;
+    }
 
+    .content {
+        height: 45vh;
+    }
+
+    .empty {
+        height: 59vh;
+    }
+
+    .layoutDrawer {
+        height: 71vh;
+    }
+
+    .contentDrawer {
+        height: 100%;
+    }
+
+    .emptyDrawer {
+        height: 85vh;
+    }
+
+    .info {
+        height: 8rem;
+    }
 }
 
 @media (max-width: 1200px) {
-    .header {
-        border-top: 1px solid black;
-    }
-
-    .cart-empty {
-        margin-top: 1rem;
-    }
 }
 
 /* portrait phones */
 @media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
+    .layoutDrawer {
+        height: 80vh;
+    }
+
+    .contentDrawer {
+        height: 76%;
+    }
+
+    .emptyDrawer {
+        height: 80vh;
+    }
+
+    .info {
+        height: 8rem;
+    }
 }
 
 /* landscape phones */
 @media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
-    .empty {
-        margin-top: 0;
-        margin-bottom: 6.85rem;
+    .layout {
+        padding: 0.5rem;
+        background-color: #292929;
     }
 
     .content {
-        height: 7rem;
+        height: 70vh;
+    }
+
+    .layoutDrawer {
+        height: 80vh;
+    }
+
+    .contentDrawer {
+        height: 33%;
+    }
+
+    .emptyDrawer {
+        height: 62vh;
+    }
+
+    .info {
+        height: 8.5rem;
     }
 }
 
 /* portrait tablets */
 @media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
+    .layout {
+        padding: 0.5rem;
+        background-color: #292929;
+    }
+
+    .content {
+        height: 30vh;
+    }
+
+    .layoutDrawer {
+        height: 92vh;
+    }
+
+    .contentDrawer {
+        height: 76%;
+    }
+
+    .emptyDrawer {
+        height: 85.5vh;
+    }
+
+    .info {
+        height: 10rem;
+    }
 }
 
 /* landscape tablets */
 @media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
+    .layout {
+        padding: 0.5rem;
+        background-color: #292929;
+    }
+
     .content {
-        height: 21.5rem;
+        height: 50vh;
+    }
+
+    .layoutDrawer {
+        height: 89vh;
+    }
+
+    .contentDrawer {
+        height: 71%;
+    }
+
+    .emptyDrawer {
+        height: 80vh;
+    }
+
+    .info {
+        height: 8.5rem;
     }
 }
 

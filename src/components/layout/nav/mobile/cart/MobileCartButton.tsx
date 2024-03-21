@@ -3,6 +3,7 @@ import {useAppSelector} from "../../../../../store/hooks";
 import {useEffect, useState} from "react";
 import Icon from "../../../../layout/icon/Icon";
 import cartIcon from "../../../../../resources/icons/icons8-cart-100.png";
+import {Badge} from "@mantine/core";
 
 interface Props {
     action: () => void;
@@ -29,13 +30,10 @@ const MobileCartButton = (props: Props) => {
         };
     }, [cartQuantity]);
 
-    return <button
-        type="button"
-        onClick={props.action}
-        className={`${styles.button} ${cartQChanged ? styles.bump : ""}`}>
-        <Icon src={cartIcon} height="36px" width="auto"/>
-        <span className={styles.badge}>{cartQuantity}</span>
-    </button>;
+    return <div onClick={props.action} className={`${styles.button} ${cartQChanged ? styles.bump : ""}`}>
+        <Icon src={cartIcon} height="30px" width="30px"/>
+        <Badge size="md" color="#a9004f" circle>{cartQuantity}</Badge>
+    </div>;
 };
 
 export default MobileCartButton;

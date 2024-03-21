@@ -1,11 +1,17 @@
 .layout {
     display: flex;
     flex-direction: row;
-    margin-bottom: 0.5rem;
+
+    margin-bottom: 1em;
 }
 
 .layout p {
     font-weight: 800;
+}
+
+.indicator {
+    color: #a9004f;
+    margin-right: 0.2rem;
 }
 
 .productContainer {
@@ -18,7 +24,6 @@
 }
 
 .info {
-    margin-left: 0.2rem;
 }
 
 .header {
@@ -29,7 +34,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 0.1rem;
     height: fit-content;
 }
 

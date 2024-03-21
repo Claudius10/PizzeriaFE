@@ -1,11 +1,9 @@
 import styles from "./css/NewAnonOrderForm.module.css";
 import {NavLink, useNavigate} from "react-router-dom";
 import {FormProvider, useForm} from "react-hook-form";
-import useModal from "../../../../hooks/useModal";
 import {useAppDispatch} from "../../../../store/hooks";
 import {useMutation} from "@tanstack/react-query";
 import {createAnonOrder} from "../../../../api/open/anon";
-import {OnCancelOrder, OnError} from "../../../layout/modal/OrderFormModals";
 import {orderState} from "../../../../store/order-slice";
 import {
     getItems,
@@ -19,16 +17,15 @@ import AnonClientForm from "./anon/AnonClientForm";
 import AnonDeliveryForm from "./anon/AnonDeliveryForm";
 import AdditionalDataForm from "./common/AdditionalDataForm";
 import {Button, Placeholder, Prompt, RedirectWrapper} from "../../../layout/styled/elements";
-import Modal from "../../../../hooks/Modal";
 import {AnonOrderForm} from "../../../../interfaces/dto/forms/order";
 import {defaultAnonOrderFormValues, clearSessionStorageForm} from "./FormSessionStorageUtils";
-import Cart from "../../cart/Cart";
 import {CreatedAnonOrderDTO} from "../../../../interfaces/dto/order";
 import {useSessionStorage} from "../../../../hooks/usehooks-ts/usehooks-ts.ts";
 import {useEffect} from "react";
+import {modals} from "@mantine/modals";
+import {Text} from "@mantine/core";
 
 const NewAnonOrderForm = () => {
-    const {isModalOpen, modalContent, openModal, closeModal} = useModal();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [formValues, setFormValues] = useSessionStorage('form', defaultAnonOrderFormValues);
@@ -37,6 +34,18 @@ const NewAnonOrderForm = () => {
         mode: "onBlur", // Validation strategy before submitting behaviour.
         reValidateMode: "onBlur",  // Validation strategy after submitting behaviour.
         defaultValues: defaultAnonOrderFormValues
+    });
+
+    const openOnCancelModal = () => modals.openConfirmModal({
+        title: "Confirme su decisión",
+        children: (
+            <Text size="sm">
+                ¿Desea proceder con la cancelación del pedido?
+            </Text>
+        ),
+        labels: {confirm: 'Confirmar', cancel: 'Cancelar'},
+        onCancel: () => console.log('Cancel'),
+        onConfirm: () => console.log('Confirmed'),
     });
 
     useEffect(() => {
@@ -56,13 +65,13 @@ const NewAnonOrderForm = () => {
             navigate("resumen");
         },
         onError: (error: ApiErrorDTO) => {
-            openModal(<OnError errorMsg={error.errorMsg} closeModal={closeModal}/>);
+            //openModal(<OnError errorMsg={error.errorMsg} closeModal={closeModal}/>);
         },
     });
 
     const onCancelOrder = () => {
         form.reset(defaultAnonOrderFormValues);
-        openModal(<OnCancelOrder redirectTo={"/menu/pizzas"} closeModal={closeModal}/>);
+        openOnCancelModal();
     };
 
     const onSubmitHandler = (form: AnonOrderForm) => {
@@ -121,28 +130,25 @@ const NewAnonOrderForm = () => {
         </FormProvider>;
 
     return <>
-        <Modal show={isModalOpen} hide={closeModal} content={modalContent}/>
         {createOrder.isPending && <Placeholder>Cargando...</Placeholder>}
         {!createOrder.isPending &&
             <div>
                 <Prompt
                     $fontSize={"1.9rem"}
-                    $color={"#a9004f"}>
+                    $margin={"1rem 0 0.5rem 0"}
+                    $color={"#e4e6ed"}>
                     Aquí no te puedes equivocar...
                 </Prompt>
 
                 <Prompt
                     $fontSize={"1.9rem"}
-                    $margin={"0 0 0.5rem 0"}
-                    $color={"#a9004f"}>
+                    $margin={"0 0 2rem 0"}
+                    $color={"#e4e6ed"}>
                     Continua con tu pedido.
                 </Prompt>
 
                 <div className={styles.form}>
                     {formJSX}
-                    <div className={styles.cart}>
-                        <Cart/>
-                    </div>
                 </div>
             </div>}
     </>;

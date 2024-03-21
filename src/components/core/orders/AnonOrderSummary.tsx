@@ -49,10 +49,10 @@ const AnonOrderSummary = () => {
             <Prompt $margin={"2rem 0 0 0"}>Realiza un pedido y el resumen aparecerá aquí.</Prompt>}
         {orderSummary && <div className={styles.container}>
 
-            <Prompt $color={"#a9004f"} $margin={"0 0 0.5rem 0"}>¡Enhorabuena por elegir máxima <span
+            <Prompt $color={"#e4e6ed"}>¡Enhorabuena por elegir máxima <span
                 className={styles.accent}>calidad</span> y <span
                 className={styles.accent}>sabor!</span></Prompt>
-            <Prompt $color={"#a9004f"}>Estamos preparando tu pedido...</Prompt>
+            <Prompt $color={"#e4e6ed"} $margin={"0 0 1rem 0"}>Estamos preparando tu pedido...</Prompt>
 
             <div className={styles.content}>
                 <div className={styles.details}>
@@ -113,7 +113,7 @@ const AnonOrderSummary = () => {
                 </div>
 
                 <div className={styles.cart}>
-                    <Cart/>
+                    <Cart inDrawer={false}/>
                 </div>
             </div>
 

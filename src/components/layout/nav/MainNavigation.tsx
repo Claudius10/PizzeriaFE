@@ -10,7 +10,7 @@ import NavigationItem from "./NavigationItem";
 const MainNavigation = () => {
     return <div className={styles.container}>
         <NavigationItem
-            title={"Pizza"}
+            title={"Pizzas"}
             icon={pizzaIcon}
             linkTo={"/menu/pizzas"}
             height={"80px"}
@@ -37,7 +37,6 @@ const MainNavigation = () => {
             height={"80px"}
             width={"80px"}
         />
-
         <NavigationItem
             title={"Bebidas"}
             icon={beverageIcon}

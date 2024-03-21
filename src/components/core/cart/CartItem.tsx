@@ -5,6 +5,7 @@ import {addQuantity, removeQuantity} from "./CartLocalStorageFunctions";
 import {useAppDispatch} from "../../../store/hooks";
 import {orderState} from "../../../store/order-slice";
 import {useParams} from "react-router-dom";
+import {Badge} from "@mantine/core";
 
 type Props = {
     item: OrderItemDTO
@@ -31,24 +32,14 @@ const CartItem = (props: Props) => {
         }
     };
 
-    let format;
-    switch (props.item.format) {
-        case "Mediana":
-            format = "M";
-            break;
-        case "Familiar":
-            format = "F";
-            break;
-        default:
-            format = props.item.format;
-    }
+    const dot = '\u{003E}';
 
     return <div className={styles.layout}>
         <div className={styles.productContainer}>
             <div className={styles.info}>
-                <p className={styles.header}>{props.item.name} <Button
-                    $padding={"0rem 0.2rem"}>{format}</Button>
+                <p className={styles.header}><span className={styles.indicator}>{dot}</span>{props.item.name}
                 </p>
+                <Badge variant="transparent" color="#a9004f" size={"lg"}>{props.item.format}</Badge>
                 <p>Precio: {totalPrice}€</p>
             </div>
 

@@ -49,7 +49,7 @@ export const FormError = styled.p<{ $margin?: string }>`
     color: rgb(199, 30, 30);
     font-size: small;
     font-style: italic;
-    width: 14vw;
+    width: 15rem;
     min-width: 14rem;
     word-break: break-word;
     margin: ${props => props.$margin || ""};

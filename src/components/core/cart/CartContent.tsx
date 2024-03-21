@@ -9,12 +9,23 @@ import {
 } from "./CartLocalStorageFunctions";
 import styles from "./css/Cart.module.css";
 
-const CartContent = () => {
+type Props = {
+    cartInDrawer: boolean;
+}
+
+const CartContent = (props: Props) => {
     const cartItems = getItems();
     const totalCost = getTotalCost();
     const totalCostWithOffers = getTotalCostWithOffers();
     const pizzaQuantity = getPizzaQuantity();
     const timesThreeForTwoApplied = getTimesAppliedThreeForTwoOffer();
+
+    let contentStyle;
+    if (props.cartInDrawer) {
+        contentStyle = styles.contentDrawer;
+    } else {
+        contentStyle = styles.content;
+    }
 
     const totals =
         <div className={styles.total}>
@@ -34,11 +45,13 @@ const CartContent = () => {
         </div>;
 
     return <>
-        <div className={styles.content}>
+        <div className={contentStyle}>
             {cartItems.map((cartItem) => <div key={cartItem.id}><CartItem item={cartItem}/></div>)}
         </div>
-        {totalCost !== 0 && totals}
-        {pizzaQuantity > 1 && pizzaOffersApplied}
+        <div className={styles.info}>
+            {totalCost !== 0 && totals}
+            {pizzaQuantity > 1 && pizzaOffersApplied}
+        </div>
     </>;
 
 };
