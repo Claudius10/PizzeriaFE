@@ -34,8 +34,7 @@ const Footer = () => {
                 </Group>
             </div>
             <div className={styles.details}>
-                <p className={styles.iconProviderMobile}>Icons by <NavLink to={"https://icons8.com/"}>Icons8</NavLink>
-                </p>
+                <p className={styles.iconProviderMobile}>Icons by <NavLink to={"https://icons8.com/"}>Icons8</NavLink></p>
                 <RectangleIcon icon={githubIcon} linkTo={"https://github.com/Claudius10"} height={"1.2rem"}/>
             </div>
         </div>
