@@ -133,7 +133,7 @@ const NewAnonOrderForm = () => {
         </FormProvider>;
 
     return <>
-        {createOrder.isPending && <Center><Loader color="#a9004f" size="xl" type="dots"/></Center>}
+        {createOrder.isPending && <Center h={500}><Loader color="#a9004f" size="xl" type="dots"/></Center>}
         {!createOrder.isPending &&
             <div>
                 <Prompt

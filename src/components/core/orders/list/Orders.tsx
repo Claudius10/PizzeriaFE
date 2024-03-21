@@ -4,7 +4,7 @@ import OrderSummaryList from "./OrderSummaryList";
 import {getCookie} from "../../../../functions/web";
 import {findUserOrders} from "../../../../api/locked/user/orders";
 import {Placeholder} from "../../../layout/styled/elements";
-import {Loader} from "@mantine/core";
+import {Center, Loader} from "@mantine/core";
 
 const Orders = () => {
     const [searchParams] = useSearchParams();
@@ -17,7 +17,7 @@ const Orders = () => {
     });
 
     return <>
-        {isLoading && <Loader color="#a9004f" size="xl" type="dots"/>}
+        {isLoading && <Center h={500}><Loader color="#a9004f" size="xl" type="dots"/></Center>}
         {isError && <Placeholder>Se ha producido un error</Placeholder>}
         {isSuccess && <OrderSummaryList orders={ordersSlice.content} totalPages={ordersSlice.totalPages}/>}
     </>;

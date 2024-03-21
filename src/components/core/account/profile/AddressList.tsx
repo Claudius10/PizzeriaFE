@@ -8,7 +8,7 @@ import {Button} from "../../../layout/styled/elements";
 import AddressItem from "./AddressItem";
 import NewAddressForm from "./forms/NewAddressForm";
 import {modals} from "@mantine/modals";
-import {Loader} from "@mantine/core";
+import {Center, Loader} from "@mantine/core";
 
 const AddressList = () => {
     const [showForm, setShowForm] = useState<boolean>(false);
@@ -46,7 +46,7 @@ const AddressList = () => {
 
     return <div className={styles.container}>
         <p className={styles.text}>Domicilio(s)</p>
-        {isLoading && <Loader color="#a9004f" size="xl" type="dots"/>}
+        {isLoading && <Center h={100}><Loader color="#a9004f" size="xl" type="dots"/></Center>}
         {isSuccess && addressList.length === 0 && <p className={styles.text}>La lista de domicilios está vacía</p>}
         {isSuccess && addressList.map((item) => <AddressItem key={item.id} address={item} onDelete={delAddress}/>)}
         {isError && <p className={styles.text}>Ocurrió un error.</p>}

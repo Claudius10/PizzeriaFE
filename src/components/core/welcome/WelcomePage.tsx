@@ -4,7 +4,7 @@ import {useQuery} from "@tanstack/react-query";
 import OffersList from "../../core/offers/OffersList";
 import {OfferDTO} from "../../../interfaces/dto/resources.ts";
 import {useState} from "react";
-import {Loader} from "@mantine/core";
+import {Center, Loader} from "@mantine/core";
 import {Placeholder} from "../../layout/styled/elements.ts";
 
 const WelcomePage = () => {
@@ -25,7 +25,7 @@ const WelcomePage = () => {
             las ofertas</h2>
 
         {isSuccess && <OffersList offers={offers}/>}
-        {isLoading && <Loader color="#a9004f" size="xl" type="dots"/>}
+        {isLoading && <Center h={100}><Loader color="#a9004f" size="xl" type="dots"/></Center>}
         {isError && <Placeholder>Se ha producido un error al cargar las ofertas. Inténtelo más
             tarde.</Placeholder>}
     </div>;
