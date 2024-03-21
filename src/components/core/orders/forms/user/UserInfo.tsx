@@ -1,4 +1,4 @@
-import styles from "./css/ClientForm.module.css";
+import styles from "./css/UserInfo.module.css";
 import gearIcon from "../../../../../resources/icons/gear.png";
 import {useNavigate} from "react-router-dom";
 import {CircleIcon} from "../../../../layout/buttons/InteractiveIcons";

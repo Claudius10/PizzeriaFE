@@ -4,7 +4,6 @@ import {useLoaderData, useNavigate, useParams} from "react-router-dom";
 import UserInfo from "./user/UserInfo";
 import DeliveryForm from "./user/DeliveryForm";
 import AdditionalDataForm from "./common/AdditionalDataForm";
-import useModal from "../../../../hooks/useModal";
 import {getCookie} from "../../../../functions/web";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
@@ -18,16 +17,15 @@ import {
     getTotalCostWithOffers, setCart
 } from "../../cart/CartLocalStorageFunctions";
 import {findUserOrder, updateUserOrder} from "../../../../api/locked/user/orders";
-import {OnError, OnOrderUpdateSuccess} from "../../../layout/modal/OrderFormModals";
 import {ApiErrorDTO} from "../../../../interfaces/dto/api-error";
 import {removeItemIds} from "../../../../functions/form";
 import {Button, Prompt} from "../../../layout/styled/elements";
-import Modal from "../../../../hooks/Modal";
 import Cart from "../../cart/Cart";
 import {UpdatingUserOrderForm} from "../../../../interfaces/dto/forms/order";
 import {clearSessionStorageForm} from "./FormSessionStorageUtils";
 import {useEffect} from "react";
 import {useSessionStorage} from "../../../../hooks/usehooks-ts/usehooks-ts.ts";
+import {modals} from "@mantine/modals";
 
 const defaultUserOrderUpdateFormValues: UpdatingUserOrderForm = {
     orderId: null,
@@ -53,7 +51,6 @@ const defaultUserOrderUpdateFormValues: UpdatingUserOrderForm = {
 };
 
 const UpdateUserOrderForm = () => {
-    const {isModalOpen, modalContent, openModal, closeModal} = useModal();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const {orderId} = useParams();
@@ -113,11 +110,25 @@ const UpdateUserOrderForm = () => {
             dispatch(orderState.setRefetchPending(true));
             await queryClient.invalidateQueries({queryKey: ["user", "orders"]});
             await queryClient.invalidateQueries({queryKey: ["user", "order"]});
-            openModal(<OnOrderUpdateSuccess id={orderId} redirectTo={`/perfil/pedido/historial/${orderId}`}
-                                            closeModal={closeModal}/>);
+            modals.openContextModal({
+                modal: "agree",
+                title: "Actualización",
+                innerProps: {
+                    modalBody: `Pedido ${orderId} actualizado con éxito.`,
+                    onConfirm: () => {
+                        navigate(`/perfil/pedido/historial/${orderId}`);
+                    }
+                }
+            });
         },
-        onError: (response: ApiErrorDTO) => {
-            openModal(<OnError errorMsg={response.errorMsg} closeModal={closeModal}/>);
+        onError: (error: ApiErrorDTO) => {
+            modals.openContextModal({
+                modal: "agree",
+                title: "Error",
+                innerProps: {
+                    modalBody: error.errorMsg
+                }
+            });
         },
     });
 
@@ -184,30 +195,27 @@ const UpdateUserOrderForm = () => {
             </form>
         </FormProvider>;
 
-    return <>
-        <Modal show={isModalOpen} hide={closeModal} content={modalContent}/>
-        <div className={styles.container}>
-            <Prompt
-                $fontSize={"2rem"}
-                $margin={"0.5rem 0 0 0"}
-                $color={"#a9004f"}>
-                El capricho es humano...
-            </Prompt>
-            <Prompt
-                $fontSize={"2rem"}
-                $margin={"0 0 0 0"}
-                $color={"#a9004f"}>
-                Actualiza tu pedido.
-            </Prompt>
+    return <div className={styles.container}>
+        <Prompt
+            $fontSize={"2rem"}
+            $margin={"1.5rem 0 0 0"}
+            $color={"#e4e6ed"}>
+            El capricho es humano...
+        </Prompt>
+        <Prompt
+            $fontSize={"2rem"}
+            $margin={"0 0 1rem 0"}
+            $color={"#e4e6ed"}>
+            Actualiza tu pedido.
+        </Prompt>
 
-            <div className={styles.form}>
-                {formJSX}
-                <div className={styles.cart}>
-                    <Cart inDrawer={false}/>
-                </div>
+        <div className={styles.form}>
+            {formJSX}
+            <div className={styles.cart}>
+                <Cart inDrawer={false}/>
             </div>
         </div>
-    </>;
+    </div>;
 };
 
 export default UpdateUserOrderForm;

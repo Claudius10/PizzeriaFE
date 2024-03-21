@@ -1,24 +1,25 @@
 import styles from "./Login.module.css";
 import {useForm} from "react-hook-form";
-import useModal from "../../../hooks/useModal";
 import {useState} from "react";
 import {NavLink, useNavigate} from "react-router-dom";
 import {useMutation} from "@tanstack/react-query";
 import {loginFn} from "../../../api/open/auth";
 import {ApiErrorDTO} from "../../../interfaces/dto/api-error";
-import {ApiError} from "../../layout/modal/GeneralModals";
 import {emailRgx} from "../../../utils/regex";
 import {Button, FormError, Input} from "../../layout/styled/elements";
 import {CircleIcon} from "../../layout/buttons/InteractiveIcons";
 import PwVisibilityIcon from "../../../resources/icons/pwvisibility.png";
-import Modal from "../../../hooks/Modal";
 import {LoginForm} from "../../../interfaces/dto/forms/account";
 import {clearSessionStorageForm} from "../orders/forms/FormSessionStorageUtils";
+import {modals} from "@mantine/modals";
 
 const Login = () => {
-    const {isModalOpen, modalContent, openModal, closeModal} = useModal();
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
+
+    const togglePwVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const {
         register,
@@ -40,14 +41,16 @@ const Login = () => {
             navigate("/menu/pizzas");
         },
         onError: (error: ApiErrorDTO) => {
-            openModal(<ApiError errorMsg={error.errorMsg} closeModal={closeModal}/>);
+            modals.openContextModal({
+                modal: "agree",
+                title: "Error",
+                innerProps: {
+                    modalBody: error.errorMsg
+                }
+            });
         },
         retry: 1
     });
-
-    const togglePwVisibility = () => {
-        setShowPassword(!showPassword);
-    };
 
     const onSubmitHandler = (form: LoginForm) => {
         login.mutate(form);
@@ -117,17 +120,14 @@ const Login = () => {
         </form>
     );
 
-    return <>
-        <Modal content={modalContent} show={isModalOpen} hide={closeModal}/>
-        <div className={styles.layout}>
-            <p className={styles.header}>Iniciar sesión</p>
-            {formJSX}
-            <div className={styles.register}>
-                <p>¿Aún no tienes cuenta?</p>
-                <NavLink className={styles.link} to={"/registracion-usuario"}>Regístrate aquí</NavLink>
-            </div>
+    return <div className={styles.layout}>
+        <p className={styles.header}>Iniciar sesión</p>
+        {formJSX}
+        <div className={styles.register}>
+            <p>¿Aún no tienes cuenta?</p>
+            <NavLink className={styles.link} to={"/registracion-usuario"}>Regístrate aquí</NavLink>
         </div>
-    </>;
+    </div>;
 };
 
 export default Login;

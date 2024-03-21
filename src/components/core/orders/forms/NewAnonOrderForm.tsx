@@ -23,7 +23,6 @@ import {CreatedAnonOrderDTO} from "../../../../interfaces/dto/order";
 import {useSessionStorage} from "../../../../hooks/usehooks-ts/usehooks-ts.ts";
 import {useEffect} from "react";
 import {modals} from "@mantine/modals";
-import {Text} from "@mantine/core";
 
 const NewAnonOrderForm = () => {
     const dispatch = useAppDispatch();
@@ -34,18 +33,6 @@ const NewAnonOrderForm = () => {
         mode: "onBlur", // Validation strategy before submitting behaviour.
         reValidateMode: "onBlur",  // Validation strategy after submitting behaviour.
         defaultValues: defaultAnonOrderFormValues
-    });
-
-    const openOnCancelModal = () => modals.openConfirmModal({
-        title: "Confirme su decisión",
-        children: (
-            <Text size="sm">
-                ¿Desea proceder con la cancelación del pedido?
-            </Text>
-        ),
-        labels: {confirm: 'Confirmar', cancel: 'Cancelar'},
-        onCancel: () => console.log('Cancel'),
-        onConfirm: () => console.log('Confirmed'),
     });
 
     useEffect(() => {
@@ -65,13 +52,28 @@ const NewAnonOrderForm = () => {
             navigate("resumen");
         },
         onError: (error: ApiErrorDTO) => {
-            //openModal(<OnError errorMsg={error.errorMsg} closeModal={closeModal}/>);
+            modals.openContextModal({
+                modal: "agree",
+                title: "Error",
+                innerProps: {
+                    modalBody: error.errorMsg
+                }
+            });
         },
     });
 
     const onCancelOrder = () => {
-        form.reset(defaultAnonOrderFormValues);
-        openOnCancelModal();
+        modals.openContextModal({
+            modal: "confirm",
+            title: "Pedido nuevo",
+            innerProps: {
+                modalBody: "¿Desea proceder con la cancelación del pedido?",
+                onConfirm: () => {
+                    form.reset(defaultAnonOrderFormValues);
+                    navigate("/menu/pizzas");
+                }
+            }
+        });
     };
 
     const onSubmitHandler = (form: AnonOrderForm) => {
@@ -135,7 +137,7 @@ const NewAnonOrderForm = () => {
             <div>
                 <Prompt
                     $fontSize={"1.9rem"}
-                    $margin={"1rem 0 0.5rem 0"}
+                    $margin={"1rem 0 1rem 0"}
                     $color={"#e4e6ed"}>
                     Aquí no te puedes equivocar...
                 </Prompt>

@@ -26,6 +26,7 @@ import NewAnonOrderForm from "../components/core/orders/forms/NewAnonOrderForm";
 import NewUserOrderForm from "../components/core/orders/forms/NewUserOrderForm";
 import {isUserLoggedIn} from "../functions/web";
 import AnonOrderSummary from "../components/core/orders/AnonOrderSummary";
+import {modals} from "@mantine/modals";
 
 const Routes = (queryClient: QueryClient) => {
     const NotFoundPage = React.lazy(
@@ -62,6 +63,17 @@ const Routes = (queryClient: QueryClient) => {
                     errorElement={<ErrorPage/>}
                     loader={() => {
                         if (!isUserLoggedIn()) {
+                            const logoutBc = new BroadcastChannel("session");
+                            logoutBc.postMessage("session-expired");
+                            logoutBc.close();
+                            console.log("from routes");
+                            modals.openContextModal({
+                                modal: "agree",
+                                title: "Advertencia",
+                                innerProps: {
+                                    modalBody: "No hay una sesión activa o la anterior caducó. Por favor, reinicie la sesión."
+                                }
+                            });
                             return redirect("/iniciar-sesion");
                         }
                         return null;

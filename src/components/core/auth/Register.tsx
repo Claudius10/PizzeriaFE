@@ -1,22 +1,20 @@
 import styles from "./Register.module.css";
 import {useState} from "react";
-import useModal from "../../../hooks/useModal";
 import {useForm} from "react-hook-form";
 import {useMutation} from "@tanstack/react-query";
 import {registerFn} from "../../../api/open/anon";
-import {ApiError, OnSuccessfulRegistration} from "../../layout/modal/GeneralModals";
 import {ApiErrorDTO} from "../../../interfaces/dto/api-error";
 import {emailRgx, esCharsRegex, passwordRegex} from "../../../utils/regex";
 import {Button, FormError, Input} from "../../layout/styled/elements";
 import {CircleIcon} from "../../layout/buttons/InteractiveIcons";
 import PwVisibilityIcon from "../../../resources/icons/pwvisibility.png";
-import {NavLink} from "react-router-dom";
-import Modal from "../../../hooks/Modal";
+import {NavLink, useNavigate} from "react-router-dom";
 import {RegisterForm} from "../../../interfaces/dto/forms/account";
+import {modals} from "@mantine/modals";
 
 const Register = () => {
-    const {isModalOpen, modalContent, openModal, closeModal} = useModal();
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const {
         register,
@@ -37,10 +35,25 @@ const Register = () => {
     const registration = useMutation({
         mutationFn: registerFn,
         onSuccess: () => {
-            openModal(<OnSuccessfulRegistration redirectTo={"/menu/pizzas"} closeModal={closeModal}/>);
+            modals.openContextModal({
+                modal: "agree",
+                title: "Registración",
+                innerProps: {
+                    modalBody: "Registración completa. Puede iniciar la sesión.",
+                    onConfirm: () => {
+                        navigate("/iniciar-sesion");
+                    }
+                }
+            });
         },
         onError: (error: ApiErrorDTO) => {
-            openModal(<ApiError errorMsg={error.errorMsg} closeModal={closeModal}/>);
+            modals.openContextModal({
+                modal: "agree",
+                title: "Error",
+                innerProps: {
+                    modalBody: error.errorMsg
+                }
+            });
         }
     });
 
@@ -225,17 +238,14 @@ const Register = () => {
         </form>
     );
 
-    return <>
-        <Modal content={modalContent} show={isModalOpen} hide={closeModal}/>
-        <div className={styles.layout}>
-            <p className={styles.header}>Crear cuenta</p>
-            {formJSX}
-            <div className={styles.login}>
-                <p>¿Ya tienes una cuenta?</p>
-                <NavLink to={"/iniciar-sesion"} className={styles.link}>Inicia sesión</NavLink>
-            </div>
+    return <div className={styles.layout}>
+        <p className={styles.header}>Crear cuenta</p>
+        {formJSX}
+        <div className={styles.login}>
+            <p>¿Ya tienes una cuenta?</p>
+            <NavLink to={"/iniciar-sesion"} className={styles.link}>Inicia sesión</NavLink>
         </div>
-    </>;
+    </div>;
 };
 
 export default Register;

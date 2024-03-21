@@ -50,14 +50,14 @@
 
 @media (max-width: 1400px) {
     .title {
-        font-size: 20vw;
+        font-size: 8vw;
     }
 
     .title-mid {
-        font-size: 10vw;
+        font-size: 8vw;
     }
 
     .offers {
-        font-size: 6vw;
+        font-size: 3vw;
     }
 }

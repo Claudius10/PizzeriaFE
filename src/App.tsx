@@ -7,6 +7,7 @@ import {ModalsProvider} from '@mantine/modals';
 import '@mantine/core/styles/global.css';
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.layer.css';
+import {AgreementModal, ConfirmModal} from "./AppModals.tsx";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -25,7 +26,7 @@ function App() {
     return <div className={styles.mainWrapper}>
         <QueryClientProvider client={queryClient}>
             <MantineProvider defaultColorScheme="dark">
-                <ModalsProvider>
+                <ModalsProvider modals={{agree: AgreementModal, confirm: ConfirmModal}}>
                     <RouterProvider router={router}/>
                 </ModalsProvider>
             </MantineProvider>

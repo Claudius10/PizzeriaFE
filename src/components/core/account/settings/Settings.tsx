@@ -5,6 +5,7 @@ import {logoutFn} from "../../../../api/open/auth";
 import {useState} from "react";
 import NewPasswordForm from "./forms/NewPasswordForm";
 import DeleteAccountForm from "./forms/DeleteAccountForm";
+import {useNavigate} from "react-router-dom";
 
 type FormState = {
     showPasswordForm: boolean;
@@ -12,6 +13,7 @@ type FormState = {
 }
 
 const Settings = () => {
+    const navigate = useNavigate();
     const [formState, setFormState] = useState<FormState>({
         showPasswordForm: false,
         showAccountDeleteForm: false
@@ -31,6 +33,7 @@ const Settings = () => {
             const logoutBc = new BroadcastChannel("session");
             logoutBc.postMessage("logout");
             logoutBc.close();
+            navigate("/");
         },
         retry: 1
     });

@@ -22,6 +22,7 @@ const BeverageProducts = () => {
     return <div className={styles.layout}>
         <div className={styles.format}>
             <SegmentedControl
+                classNames={{root: styles.segment}}
                 radius="xl"
                 color={"#a9004f"}
                 onChange={(value) => {

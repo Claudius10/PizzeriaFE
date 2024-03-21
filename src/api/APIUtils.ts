@@ -14,17 +14,23 @@ export function getHeaders(options: HeaderOptions) {
     return headers;
 }
 
-export const isKeyInvalid = () => {
-    if (getCookie("pseudo_fight") === "") {
-        return true;
-    }
+export const isKeyValid = () => {
+    return getCookie("pseudo_fight") !== "";
 };
 
-export const isSpareKeyInvalid = () => {
-    // check and alert if spare key expired
-    if (getCookie("pseudo_me") === undefined) {
+export const isSpareKeyValid = () => {
+    return (getCookie("pseudo_me") !== "");
+};
+
+export const keysCheck = async () => {
+    if (!isSpareKeyValid()) {
         const logoutBc = new BroadcastChannel("session");
         logoutBc.postMessage("session-expired");
+        logoutBc.close();
+    }
+
+    if (!isKeyValid() && isSpareKeyValid()) {
+        await refreshKey();
     }
 };
 
@@ -43,13 +49,6 @@ export const refreshKey = async () => {
             headers: getHeaders({jsonBody: false}),
             credentials: "include",
         });
-    }
-};
-
-export const keysCheck = async () => {
-    isSpareKeyInvalid();
-    if (isKeyInvalid()) {
-        await refreshKey();
     }
 };
 

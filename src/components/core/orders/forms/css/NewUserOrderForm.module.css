@@ -69,16 +69,14 @@
     }
 
     .cart {
-        width: 40vw;
+        display: none;
     }
 }
 
 /* portrait tablets */
 @media only screen and (min-device-height: 1024px) and (max-device-width: 1024px) {
     .cart {
-        position: fixed;
-        left: 72%;
-        width: 27vw;
+        display: none;
     }
 
     .form {
@@ -91,9 +89,7 @@
 /* landscape tablets */
 @media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
     .cart {
-        position: fixed;
-        left: 68%;
-        width: 28vw;
+        width: 30vw;
     }
 
     .form {

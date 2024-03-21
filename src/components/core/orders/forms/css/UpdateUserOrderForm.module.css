@@ -62,7 +62,7 @@
 /* landscape phones */
 @media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
     .cart {
-        width: 20rem;
+        display: none;
     }
 
     .buttons {
@@ -76,14 +76,14 @@
 }
 
 /* portrait tablets */
-@media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1024px)  {
     .cart {
-        width: 30vw;
+        display: none;
     }
 }
 
 /* landscape tablets */
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1368px) {
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
     .cart {
         width: 30vw;
     }

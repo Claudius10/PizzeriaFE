@@ -93,15 +93,15 @@
     }
 
     .layoutDrawer {
-        height: 71vh;
+        height: 92vh;
     }
 
     .contentDrawer {
-        height: 100%;
+        height: 73%;
     }
 
     .emptyDrawer {
-        height: 85vh;
+        height: 81vh;
     }
 
     .info {
@@ -143,15 +143,15 @@
     }
 
     .layoutDrawer {
-        height: 80vh;
+        height: 83vh;
     }
 
     .contentDrawer {
-        height: 33%;
+        height: 30%;
     }
 
     .emptyDrawer {
-        height: 62vh;
+        height: 57vh;
     }
 
     .info {
@@ -171,15 +171,15 @@
     }
 
     .layoutDrawer {
-        height: 92vh;
+        height: 93vh;
     }
 
     .contentDrawer {
-        height: 76%;
+        height: 72%;
     }
 
     .emptyDrawer {
-        height: 85.5vh;
+        height: 82.5vh;
     }
 
     .info {
@@ -203,11 +203,11 @@
     }
 
     .contentDrawer {
-        height: 71%;
+        height: 57%;
     }
 
     .emptyDrawer {
-        height: 80vh;
+        height: 72vh;
     }
 
     .info {

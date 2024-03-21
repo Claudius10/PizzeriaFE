@@ -3,8 +3,7 @@ import {FormProvider, useForm} from "react-hook-form";
 import UserInfo from "./user/UserInfo";
 import DeliveryForm from "./user/DeliveryForm";
 import AdditionalDataForm from "./common/AdditionalDataForm";
-import {NavLink, useLoaderData} from "react-router-dom";
-import useModal from "../../../../hooks/useModal";
+import {NavLink, useLoaderData, useNavigate} from "react-router-dom";
 import {getCookie} from "../../../../functions/web";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {useAppDispatch} from "../../../../store/hooks";
@@ -18,21 +17,20 @@ import {
     getTotalCost,
     getTotalCostWithOffers
 } from "../../cart/CartLocalStorageFunctions";
-import {OnCancelOrder, OnError, OnUserOrderSuccess} from "../../../layout/modal/OrderFormModals";
 import {ApiErrorDTO} from "../../../../interfaces/dto/api-error";
 import {removeItemIds} from "../../../../functions/form";
 import {Button, Placeholder, Prompt, RedirectWrapper} from "../../../layout/styled/elements";
-import Modal from "../../../../hooks/Modal";
 import {UserOrderForm} from "../../../../interfaces/dto/forms/order";
 import {clearSessionStorageForm, defaultUserFormValues} from "./FormSessionStorageUtils";
 import Cart from "../../cart/Cart";
 import {useSessionStorage} from "../../../../hooks/usehooks-ts/usehooks-ts.ts";
 import {useEffect} from "react";
+import {modals} from "@mantine/modals";
 
 const NewUserOrderForm = () => {
-    const {isModalOpen, modalContent, openModal, closeModal} = useModal();
     const queryClient = useQueryClient();
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const user = useLoaderData() as UserDataDTO;
     const [formValues, setFormValues] = useSessionStorage('form', defaultUserFormValues);
 
@@ -63,18 +61,42 @@ const NewUserOrderForm = () => {
             clearSessionStorageForm();
             dispatch(orderState.clear());
             clearCart();
-            openModal(<OnUserOrderSuccess redirectTo={"/menu/pizzas"} id={orderId} closeModal={closeModal}/>);
+            modals.openContextModal({
+                modal: "agree",
+                title: "Pedido nuevo",
+                innerProps: {
+                    modalBody: `Pedido ${orderId} confirmado`,
+                    onConfirm: () => {
+                        navigate("/menu/pizzas");
+                    }
+                }
+            });
         },
-        onError: (response: ApiErrorDTO) => {
-            openModal(<OnError errorMsg={response.errorMsg} closeModal={closeModal}/>);
+        onError: (error: ApiErrorDTO) => {
+            modals.openContextModal({
+                modal: "agree",
+                title: "Error",
+                innerProps: {
+                    modalBody: error.errorMsg
+                }
+            });
         },
     });
 
     const onCancelOrder = () => {
-        dispatch(orderState.clear());
-        clearCart();
-        form.reset(defaultUserFormValues);
-        openModal(<OnCancelOrder redirectTo={"/menu/pizzas"} closeModal={closeModal}/>);
+        modals.openContextModal({
+            modal: "confirm",
+            title: "Pedido nuevo",
+            innerProps: {
+                modalBody: "¿Desea proceder con la cancelación del pedido?",
+                onConfirm: () => {
+                    dispatch(orderState.clear());
+                    clearCart();
+                    form.reset(defaultUserFormValues);
+                    navigate("/menu/pizzas");
+                }
+            }
+        });
     };
 
     const onSubmitHandler = (form: UserOrderForm) => {
@@ -134,21 +156,20 @@ const NewUserOrderForm = () => {
         </FormProvider>;
 
     return <>
-        <Modal show={isModalOpen} hide={closeModal} content={modalContent}/>
         {newOrder.isPending && <Placeholder>Cargando...</Placeholder>}
         {!newOrder.isPending &&
             <div>
                 <Prompt
                     $fontSize={"1.9rem"}
-                    $color={"#a9004f"}
-                    $margin={"0.5rem 0 0 0"}>
+                    $color={"#e4e6ed"}
+                    $margin={"1rem 0 1rem 0"}>
                     Aquí no te puedes equivocar...
                 </Prompt>
 
                 <Prompt
                     $fontSize={"1.9rem"}
-                    $color={"#a9004f"}
-                    $margin={"0 0 0.5rem 0"}>
+                    $color={"#e4e6ed"}
+                    $margin={"0 0 2rem 0"}>
                     Continua con tu pedido.
                 </Prompt>
 

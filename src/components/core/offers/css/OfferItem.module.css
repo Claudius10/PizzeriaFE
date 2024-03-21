@@ -2,7 +2,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
     border-radius: 6px;
     background-color: #292929;
-    width: 23rem;
+    width: 20vw;
     padding-bottom: 0.5rem;
 }
 
@@ -25,6 +25,7 @@
     gap: 0.5rem;
     color: #a9004f;
     font-weight: 800;
+    text-align: center;
 }
 
 .offer-title {
@@ -42,7 +43,6 @@
         height: fit-content;
     }
 }
-
 
 /* portrait phones */
 @media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
@@ -64,6 +64,14 @@
         text-align: center;
     }
 }
+
+/* landscape tablets */
+@media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
+    .offer-container {
+        width: 25vw;
+    }
+}
+
 
 /* portrait samsung fold */
 @media only screen and (min-device-width: 280px) and (max-device-width: 280px) {

@@ -6,24 +6,16 @@ import {useNavigate, useParams} from "react-router-dom";
 import {deleteOrderById, findUserOrder} from "../../../api/locked/user/orders";
 import {orderState} from "../../../store/order-slice";
 import {clearCart, getQuantity, setCart} from "../cart/CartLocalStorageFunctions";
-import {
-    OnCartUpdateNotValid,
-    OnDeleteSuccess,
-    OnError,
-    OnOrderDeleteNotValid, OnOrderUpdateNotValid
-} from "../../layout/modal/OrderFormModals";
 import {ApiErrorDTO} from "../../../interfaces/dto/api-error";
-import useModal from "../../../hooks/useModal";
 import {isOrderUpdateValid} from "../../../functions/form";
 import {Button, Placeholder} from "../../layout/styled/elements";
-import Modal from "../../../hooks/Modal";
 import UserOrderDetails from "./UserOrderDetails";
 import Cart from "../cart/Cart";
 import ExtraInfo from "../../layout/ExtraInfo/ExtraInfo";
 import {UpdateInfoContent, UpdateTerms} from "../../layout/ExtraInfo/ExtraInfoContents";
+import {modals} from "@mantine/modals";
 
 const UserOrderSummary = () => {
-    const {isModalOpen, openModal, closeModal, modalContent} = useModal();
     const [orderDeletePending, setOrderDeletePending] = useState(false);
     const queryClient = useQueryClient();
     const navigate = useNavigate();
@@ -75,21 +67,41 @@ const UserOrderSummary = () => {
 
     const deleteOrder = useMutation({
         mutationFn: deleteOrderById,
-        onSuccess: async (id: number) => {
+        onSuccess: async (orderId: number) => {
             await queryClient.invalidateQueries({queryKey: ["user", "orders"]});
             dispatch(orderState.clear());
             clearCart();
-            openModal(<OnDeleteSuccess redirectTo={"/perfil/pedido/historial?pageSize=5&pageNumber=1"} id={id}
-                                       closeModal={closeModal}/>);
+            modals.openContextModal({
+                modal: "agree",
+                title: "Anulación",
+                innerProps: {
+                    modalBody: `Pedido ${orderId} anulado con éxito.`,
+                    onConfirm: () => {
+                        navigate("/perfil/pedido/historial?pageSize=5&pageNumber=1");
+                    }
+                }
+            });
         },
         onError: (error: ApiErrorDTO) => {
-            openModal(<OnError errorMsg={error.errorMsg} closeModal={closeModal}/>);
+            modals.openContextModal({
+                modal: "agree",
+                title: "Error",
+                innerProps: {
+                    modalBody: error.errorMsg
+                }
+            });
         }
     });
 
     const deleteRequest = () => {
         if (userOrder !== undefined && !isOrderUpdateValid(userOrder.createdOn, 15)) {
-            openModal(<OnOrderDeleteNotValid closeModal={closeModal}/>);
+            modals.openContextModal({
+                modal: "agree",
+                title: "Advertencia",
+                innerProps: {
+                    modalBody: "El pedido ya no puede anularse debido a la superación del tiempo límite (20 min.)."
+                }
+            });
         } else {
             setOrderDeletePending(true);
         }
@@ -109,11 +121,26 @@ const UserOrderSummary = () => {
         if (userOrder !== undefined) {
             if (!isOrderUpdateValid(userOrder.createdOn, 10) && isOrderUpdateValid(userOrder.createdOn, 15)) {
                 dispatch(orderState.setUpdatePending(true));
-                openModal(<OnCartUpdateNotValid redirectTo={"actualizacion"} closeModal={closeModal}/>);
+                modals.openContextModal({
+                    modal: "confirm",
+                    title: "Advertencia",
+                    innerProps: {
+                        modalBody: "La cesta ya no puede modificarse debido a la superación del tiempo límite (10 min.). Los demás cambios se realizarán correctamente.",
+                        onConfirm: () => {
+                            navigate("/menu/pizzas");
+                        }
+                    }
+                });
             }
 
             if (!isOrderUpdateValid(userOrder.createdOn, 20)) {
-                openModal(<OnOrderUpdateNotValid closeModal={closeModal}/>);
+                modals.openContextModal({
+                    modal: "agree",
+                    title: "Advertencia",
+                    innerProps: {
+                        modalBody: "El pedido ya no puede modificarse debido a la superación del tiempo límite (15 min.)."
+                    }
+                });
             } else {
                 dispatch(orderState.setUpdatePending(true));
                 navigate(`actualizacion`);
@@ -160,7 +187,6 @@ const UserOrderSummary = () => {
     </div>;
 
     return <>
-        <Modal content={modalContent} show={isModalOpen} hide={closeModal}/>
         {isLoading && <Placeholder>Cargando...</Placeholder>}
         {isError && <Placeholder>Se ha producido un error</Placeholder>}
         {isSuccess &&

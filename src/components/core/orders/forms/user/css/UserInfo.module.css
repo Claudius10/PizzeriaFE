@@ -46,7 +46,7 @@
 /* not desktop */
 @media (max-width: 1200px) {
     .container {
-        width: 38vw;
+        width: 35vw;
         min-width: 12rem;
     }
 }
@@ -75,7 +75,7 @@
 /* landscape tablets */
 @media only screen and (min-device-width: 1024px) and (max-device-height: 1024px) {
     .container {
-        width: 33vw;
+        width: 40vw;
     }
 }
 
