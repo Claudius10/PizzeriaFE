@@ -1,70 +1,51 @@
 import styles from "./css/MobileNavigation.module.css";
-import {Carousel, Embla} from "@mantine/carousel";
+import 'swiper/css';
 import NavigationItem from "./NavigationItem.tsx";
 import pizzaIcon from "../../../resources/icons/products-nav/icons8-pizza-100.png";
 import appetizerIcon from "../../../resources/icons/products-nav/icons8-appetizer-100.png";
 import pastaIcon from "../../../resources/icons/products-nav/icons8-spaghetti-100.png";
 import beverageIcon from "../../../resources/icons/products-nav/icons8-beverage-100.png";
 import dessertIcon from "../../../resources/icons/products-nav/icons8-dessert-100.png";
-import {useCallback, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {Swiper, SwiperSlide} from "swiper/react";
+import {useRef} from "react";
+import type {Swiper as SwiperClass} from "swiper/types";
+import {IconImg} from "../styled/elements.ts";
+import arrowRight from "../../../resources/icons/arrow-right.png";
+import arrowLeft from "../../../resources/icons/arrow-left.png";
 
 const MobileNavigation = () => {
     const navigate = useNavigate();
-    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents,@typescript-eslint/no-unsafe-assignment
-    const [embla, setEmbla] = useState<Embla | null>(null);
-
-    const handleScroll = useCallback(() => {
-        if (!embla) return;
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
-        const slides = embla.slideNodes();
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
-        const currentSlide = embla.selectedScrollSnap();
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
-        const currentSliceInnerText = slides[currentSlide].innerText;
-        switch (currentSliceInnerText) {
-            case "Pizzas":
-
+    const swiperRef = useRef<SwiperClass | null>(null);
+    const navigateOnSwipe = (i: number) => {
+        switch (i) {
+            case 0:
                 navigate("/menu/pizzas");
-
                 break;
-
-            case "Entrantes": {
+            case 1:
                 navigate("/menu/entrantes");
                 break;
-            }
-
-            case "Pastas": {
+            case 2:
                 navigate("/menu/pastas");
                 break;
-            }
-
-            case "Postres": {
+            case 3:
                 navigate("/menu/postres");
                 break;
-            }
-
-            case "Bebidas": {
+            case 4:
                 navigate("/menu/bebidas");
                 break;
-            }
         }
-    }, [embla]);
-
-    useEffect(() => {
-        if (embla) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
-            embla.on("settle", handleScroll);
-        }
-    }, [embla]);
+    };
 
     return <div className={styles.container}>
-        <Carousel height={"fit-content"}
-                  slideGap="xs"
-                  loop
-                  getEmblaApi={setEmbla}
-                  classNames={{control: styles.control}}>
-            <Carousel.Slide>
+        <IconImg className={swiperRef.current?.isBeginning ? styles.changedNotAllowed : styles.changedAllowed}
+                 onClick={() => swiperRef.current?.slidePrev()} src={arrowLeft} $height={"26px"} $width={"26px"}/>
+        <Swiper
+            onSwiper={swiper => (swiperRef.current = swiper)}
+            onSlideChangeTransitionEnd={(swiper) => {
+                navigateOnSwipe(swiper.activeIndex);
+            }}>
+            <SwiperSlide>
                 <NavigationItem
                     title={"Pizzas"}
                     icon={pizzaIcon}
@@ -72,8 +53,8 @@ const MobileNavigation = () => {
                     height={"80px"}
                     width={"80px"}
                 />
-            </Carousel.Slide>
-            <Carousel.Slide>
+            </SwiperSlide>
+            <SwiperSlide>
                 <NavigationItem
                     title={"Entrantes"}
                     icon={appetizerIcon}
@@ -81,8 +62,8 @@ const MobileNavigation = () => {
                     height={"80px"}
                     width={"80px"}
                 />
-            </Carousel.Slide>
-            <Carousel.Slide>
+            </SwiperSlide>
+            <SwiperSlide>
                 <NavigationItem
                     title={"Pastas"}
                     icon={pastaIcon}
@@ -90,8 +71,8 @@ const MobileNavigation = () => {
                     height={"80px"}
                     width={"80px"}
                 />
-            </Carousel.Slide>
-            <Carousel.Slide>
+            </SwiperSlide>
+            <SwiperSlide>
                 <NavigationItem
                     title={"Postres"}
                     icon={dessertIcon}
@@ -99,8 +80,8 @@ const MobileNavigation = () => {
                     height={"80px"}
                     width={"80px"}
                 />
-            </Carousel.Slide>
-            <Carousel.Slide>
+            </SwiperSlide>
+            <SwiperSlide>
                 <NavigationItem
                     title={"Bebidas"}
                     icon={beverageIcon}
@@ -108,8 +89,10 @@ const MobileNavigation = () => {
                     height={"80px"}
                     width={"80px"}
                 />
-            </Carousel.Slide>
-        </Carousel>
+            </SwiperSlide>
+        </Swiper>
+        <IconImg className={swiperRef.current?.isEnd ? styles.changedNotAllowed : styles.changedAllowed}
+                 onClick={() => swiperRef.current?.slideNext()} src={arrowRight} $height={"26px"} $width={"26px"}/>
     </div>;
 };
 

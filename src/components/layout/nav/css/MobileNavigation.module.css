@@ -1,3 +1,11 @@
+.changeAllowed {
+    opacity: 1;
+}
+
+.changedNotAllowed {
+    opacity: 0.2;
+}
+
 /* desktop */
 @media (min-width: 1200px) {
     .container {
@@ -16,7 +24,9 @@
 /* portrait phones */
 @media only screen and (min-device-width: 280px) and (max-device-width: 540px) {
     .container {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 13em;
         margin-bottom: 1.5rem;
     }
@@ -31,7 +41,9 @@
 /* landscape phones */
 @media only screen and (min-device-width: 653px) and (max-device-width: 932px) {
     .container {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 15em;
         margin-bottom: 1.5rem;
     }
