@@ -123,13 +123,10 @@ const UserOrderSummary = () => {
             if (!isOrderUpdateValid(userOrder.createdOn, 10) && isOrderUpdateValid(userOrder.createdOn, 15)) {
                 dispatch(orderState.setUpdatePending(true));
                 modals.openContextModal({
-                    modal: "confirm",
+                    modal: "agree",
                     title: "Advertencia",
                     innerProps: {
-                        modalBody: "La cesta ya no puede modificarse debido a la superación del tiempo límite (10 min.). Los demás cambios se realizarán correctamente.",
-                        onConfirm: () => {
-                            navigate("/menu/pizzas");
-                        }
+                        modalBody: "Si procede con la actualización, los cambios de cesta no se incluirán debido a la superación del tiempo límite (10 min.)."
                     }
                 });
             }
