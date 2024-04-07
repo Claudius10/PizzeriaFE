@@ -65,10 +65,11 @@ export const isOrderUpdateValid = (orderCreatedOn: string, timeLimit: number) =>
     const now = new Date(Date.now());
     const createdOn = new Date(orderCreatedOn);
 
-    // add one hour to createdOn because DB is in UTC+0
-    createdOn.setTime(createdOn.getTime() + (60 * 60 * 1000));
+    // add one hour to createdOn because DB is in UTC+0 (3600000 ms)
+    // add two hours when there's summertime in EU (7200000 ms)
+    createdOn.setTime(createdOn.getTime() + 7200000);
 
-    const orderUpdateTimeLimit = new Date(createdOn.getTime() + (timeLimit * 60000));
+    const orderUpdateTimeLimit = new Date(createdOn.getTime() + (timeLimit * 60000)); // timeLimit in minutes, so timeLimit * (1min in ms) to convert it to ms
 
     return now < orderUpdateTimeLimit;
 };
