@@ -50,7 +50,6 @@ export const FormError = styled.p<{ $margin?: string, $color?: string, $width?: 
     font-size: small;
     font-style: italic;
     width: ${props => props.$width || "15rem"};
-    min-width: 14rem;
     word-break: break-word;
     margin: ${props => props.$margin || ""};
 `;

@@ -8,7 +8,7 @@ const AnonClientForm = () => {
     const form = useFormContext();
     const errors = getAnonCustomerErrors(form.formState.errors);
 
-    let width = "28rem";
+    let width = "fit-content";
     if (window.screen.width < 550) {
         width = "16rem";
     }

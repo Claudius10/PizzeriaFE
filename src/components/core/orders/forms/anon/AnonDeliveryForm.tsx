@@ -15,7 +15,7 @@ const AnonDeliveryForm = () => {
     const errors = getAddressFormErrors(form.formState.errors);
     const deliverySelectRef = useRef<HTMLSelectElement>(null);
 
-    let width = "28rem";
+    let width = "fit-content";
     if (window.screen.width < 550) {
         width = "16rem";
     }
