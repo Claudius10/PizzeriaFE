@@ -12,7 +12,7 @@ export const queryResource = async (options: QueryOptions) => {
     const response = await fetch(`${import.meta.env.VITE_APP_RESOURCES_API}/${resource}`);
 
     if (!response.ok) {
-        throw await response.json();
+        throw await response.text();
     } else {
         return response.json();
     }
@@ -23,7 +23,7 @@ const productQuery = (key: string[]) => ({
     queryFn: async () => {
         const response = await fetch(`${import.meta.env.VITE_APP_RESOURCES_API}/product?type=${key[0]}`);
         if (!response.ok) {
-            throw await response.json();
+            throw await response.text();
         } else {
             return await response.json() as ProductDTO[];
         }

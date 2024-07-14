@@ -11,14 +11,14 @@ const Orders = () => {
     const pageSize = searchParams.get("pageSize");
     const pageNumber = searchParams.get("pageNumber");
 
-    const {isError, isLoading, isSuccess, data: ordersSlice} = useQuery({
+    const {isError, isLoading, isSuccess, data: ordersSlice, error} = useQuery({
         queryKey: ["user", "orders", pageSize, pageNumber, getCookie("id")],
         queryFn: findUserOrders
     });
 
     return <>
         {isLoading && <Center h={500}><Loader color="#a9004f" size="xl" type="dots"/></Center>}
-        {isError && <Placeholder>Se ha producido un error</Placeholder>}
+        {isError && <Placeholder>{error.message}</Placeholder>}
         {isSuccess && <OrderSummaryList orders={ordersSlice.content} totalPages={ordersSlice.totalPages}/>}
     </>;
 };

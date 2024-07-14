@@ -4,7 +4,6 @@ import {useState} from "react";
 import {NavLink, useNavigate} from "react-router-dom";
 import {useMutation} from "@tanstack/react-query";
 import {loginFn} from "../../../api/open/auth";
-import {ApiErrorDTO} from "../../../interfaces/dto/api-error";
 import {emailRgx} from "../../../utils/regex";
 import {Button, FormError, Input} from "../../layout/styled/elements";
 import {CircleIcon} from "../../layout/buttons/InteractiveIcons";
@@ -40,12 +39,12 @@ const Login = () => {
             clearSessionStorageForm();
             navigate("/menu/pizzas");
         },
-        onError: (error: ApiErrorDTO) => {
+        onError: (error: string) => {
             modals.openContextModal({
                 modal: "agree",
                 title: "Error",
                 innerProps: {
-                    modalBody: error.errorMsg
+                    modalBody: error
                 }
             });
         },

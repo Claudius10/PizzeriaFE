@@ -6,7 +6,6 @@ import {useNavigate, useParams} from "react-router-dom";
 import {deleteOrderById, findUserOrder} from "../../../api/locked/user/orders";
 import {orderState} from "../../../store/order-slice";
 import {clearCart, getQuantity, setCart} from "../cart/CartLocalStorageFunctions";
-import {ApiErrorDTO} from "../../../interfaces/dto/api-error";
 import {isOrderUpdateValid} from "../../../functions/form";
 import {Button, Placeholder} from "../../layout/styled/elements";
 import UserOrderDetails from "./UserOrderDetails";
@@ -31,7 +30,8 @@ const UserOrderSummary = () => {
         isLoading,
         isSuccess,
         isError,
-        refetch
+        refetch,
+        error
     } = useQuery({
         queryKey: ["user", "order", orderId],
         queryFn: findUserOrder,
@@ -61,8 +61,8 @@ const UserOrderSummary = () => {
                 dispatch(orderState.setCartQuantity(order.data.cart.totalQuantity));
                 dispatch(orderState.setRefetchPending(false));
             }
-        }).catch((error: ApiErrorDTO) => {
-            throw new Error(error.errorMsg);
+        }).catch((error: string) => {
+            throw new Error(error);
         });
     }
 
@@ -83,12 +83,12 @@ const UserOrderSummary = () => {
                 }
             });
         },
-        onError: (error: ApiErrorDTO) => {
+        onError: (error: string) => {
             modals.openContextModal({
                 modal: "agree",
                 title: "Error",
                 innerProps: {
-                    modalBody: error.errorMsg
+                    modalBody: error
                 }
             });
         }
@@ -186,7 +186,7 @@ const UserOrderSummary = () => {
 
     return <>
         {isLoading && <Center h={400}><Loader color="#a9004f" size="xl" type="dots"/></Center>}
-        {isError && <Placeholder>Se ha producido un error</Placeholder>}
+        {isError && <Placeholder>{error.message}</Placeholder>}
         {isSuccess &&
             <div className={styles.layout}>
                 <span className={styles.orderId}>Pedido {userOrder.id}</span>

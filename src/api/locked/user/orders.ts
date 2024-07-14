@@ -13,7 +13,7 @@ export const createUserOrder = async (order: UserOrderForm) => {
         });
 
         if (!response.ok) {
-            throw await response.json();
+            throw await response.text();
         } else {
             // returns order id
             return await response.json() as number;
@@ -35,8 +35,12 @@ export const findUserOrder = async (options: QueryOptions) => {
         const response = await fetch(`${import.meta.env.VITE_APP_USER_ORDERS_API}/${orderId}`,
             {credentials: "include"});
 
+        if (response.status === 202) {
+            throw new Error(await response.text());
+        }
+
         if (!response.ok) {
-            throw await response.json();
+            throw await response.text();
         } else {
             return await response.json() as Promise<OrderDTO>;
         }
@@ -61,8 +65,12 @@ export const findUserOrders = async (options: QueryOptions) => {
         const response = await fetch(`${import.meta.env.VITE_APP_USER_ORDERS_API}?pageNumber=${pageNumber}&pageSize=${pageSize}&userId=${userId}`,
             {credentials: "include"});
 
+        if (response.status === 202) {
+            throw new Error(await response.text());
+        }
+
         if (!response.ok) {
-            throw await response.json();
+            throw await response.text();
         } else {
             return await response.json() as Promise<OrderSummarySlice>;
         }
@@ -82,7 +90,7 @@ export const updateUserOrder = async (order: UpdatingUserOrderForm) => {
         });
 
         if (!response.ok) {
-            throw await response.json();
+            throw await response.text();
         } else {
             // returns order id
             return await response.json() as number;
@@ -103,7 +111,7 @@ export const deleteOrderById = async (orderId: string) => {
         });
 
         if (!response.ok) {
-            throw await response.json();
+            throw await response.text();
         } else {
             // returns order id
             return await response.json() as number;

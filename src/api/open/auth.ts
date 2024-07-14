@@ -9,7 +9,7 @@ export const loginFn = async (data: LoginForm) => {
     });
 
     if (!response.ok) {
-        throw await response.json();
+        throw await response.text();
     }
 };
 
@@ -21,6 +21,6 @@ export const logoutFn = async () => {
     });
 
     if (!response.ok) {
-        throw await response.json();
+        throw await response.text();
     }
 };

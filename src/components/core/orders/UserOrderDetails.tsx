@@ -24,6 +24,8 @@ const UserOrderDetails = (props: Props) => {
         case "Card":
             paymentType = "Tarjeta";
             break;
+        default:
+            paymentType = "NULO";
     }
 
     let delivery;

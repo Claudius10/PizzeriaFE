@@ -3,7 +3,6 @@ import {useState} from "react";
 import {useForm} from "react-hook-form";
 import {useMutation} from "@tanstack/react-query";
 import {registerFn} from "../../../api/open/anon";
-import {ApiErrorDTO} from "../../../interfaces/dto/api-error";
 import {emailRgx, esCharsRegex, passwordRegex} from "../../../utils/regex";
 import {Button, FormError, Input} from "../../layout/styled/elements";
 import {CircleIcon} from "../../layout/buttons/InteractiveIcons";
@@ -46,12 +45,12 @@ const Register = () => {
                 }
             });
         },
-        onError: (error: ApiErrorDTO) => {
+        onError: (error: string) => {
             modals.openContextModal({
                 modal: "agree",
                 title: "Error",
                 innerProps: {
-                    modalBody: error.errorMsg
+                    modalBody: error
                 }
             });
         }
@@ -72,7 +71,7 @@ const Register = () => {
                 <Input
                     id={"name"}
                     type={"text"}
-                    placeholder={"Nombre y apellido(s)"}
+                    placeholder={"Nombre completo"}
                     autoComplete={"new-password"}
                     $textAlign={"center"}
                     $height={"2rem"}

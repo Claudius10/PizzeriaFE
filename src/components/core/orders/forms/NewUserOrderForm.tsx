@@ -17,7 +17,6 @@ import {
     getTotalCost,
     getTotalCostWithOffers
 } from "../../cart/CartLocalStorageFunctions";
-import {ApiErrorDTO} from "../../../../interfaces/dto/api-error";
 import {removeItemIds} from "../../../../functions/form";
 import {Button, Prompt, RedirectWrapper} from "../../../layout/styled/elements";
 import {UserOrderForm} from "../../../../interfaces/dto/forms/order";
@@ -73,12 +72,12 @@ const NewUserOrderForm = () => {
                 }
             });
         },
-        onError: (error: ApiErrorDTO) => {
+        onError: (error: string) => {
             modals.openContextModal({
                 modal: "agree",
                 title: "Error",
                 innerProps: {
-                    modalBody: error.errorMsg
+                    modalBody: error
                 }
             });
         },

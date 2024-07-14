@@ -2,7 +2,6 @@ import styles from "./AccountUpdateForm.module.css";
 import {useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import {deleteAccount} from "../../../../../api/locked/user/settings";
-import {ApiErrorDTO} from "../../../../../interfaces/dto/api-error";
 import {getCookie} from "../../../../../functions/web";
 import {Button, FormError, Input} from "../../../../layout/styled/elements";
 import {CircleIcon} from "../../../../layout/buttons/InteractiveIcons";
@@ -37,12 +36,12 @@ const DeleteAccountForm = () => {
                 }
             });
         },
-        onError: (error: ApiErrorDTO) => {
+        onError: (error: string) => {
             modals.openContextModal({
                 modal: "agree",
                 title: "Error",
                 innerProps: {
-                    modalBody: error.errorMsg
+                    modalBody: error
                 }
             });
         }

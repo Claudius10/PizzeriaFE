@@ -2,7 +2,6 @@ import styles from "./css/NewAddressForm.module.css";
 import React from "react";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {createUserAddress} from "../../../../../api/locked/user/data";
-import {ApiErrorDTO} from "../../../../../interfaces/dto/api-error";
 import {useForm} from "react-hook-form";
 import {getCookie} from "../../../../../functions/web";
 import {Button, FormError, Input, Required} from "../../../../layout/styled/elements";
@@ -45,12 +44,12 @@ const NewAddressForm = (props: Props) => {
             await queryClient.invalidateQueries({queryKey: ["user", "addressList"]});
             props.handler(false);
         },
-        onError: (error: ApiErrorDTO) => {
+        onError: (error: string) => {
             modals.openContextModal({
                 modal: "agree",
                 title: "Error",
                 innerProps: {
-                    modalBody: error.errorMsg
+                    modalBody: error
                 }
             });
         }

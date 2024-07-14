@@ -11,7 +11,7 @@ export const registerFn = async (data: RegisterForm) => {
         credentials: "include"
     });
     if (!response.ok) {
-        throw await response.json();
+        throw await response.text();
     }
 };
 
@@ -23,7 +23,7 @@ export const createAnonOrder = async (order: AnonOrderForm) => {
     });
 
     if (!response.ok) {
-        throw await response.json();
+        throw await response.text();
     } else {
         return await response.json() as CreatedAnonOrderDTO;
     }

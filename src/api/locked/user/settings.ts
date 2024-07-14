@@ -18,7 +18,7 @@ const userDataQuery = (key: string[]) => ({
             {credentials: "include"});
 
         if (!response.ok) {
-            throw await response.json();
+            throw await response.text();
         } else {
             return await response.json() as UserDataDTO;
         }
@@ -51,7 +51,7 @@ export const updateName = async (data: { userId: string, form: NameChangeForm })
         });
 
         if (!response.ok) {
-            throw await response.json();
+            throw await response.text();
         }
     };
 
@@ -70,7 +70,7 @@ export const updateEmail = async (data: { userId: string, form: EmailChangeForm 
         });
 
         if (!response.ok) {
-            throw await response.json();
+            throw await response.text();
         }
     };
 
@@ -89,7 +89,7 @@ export const updatePassword = async (data: { userId: string, form: PasswordChang
         });
 
         if (!response.ok) {
-            throw await response.json();
+            throw await response.text();
         }
     };
 
@@ -108,7 +108,7 @@ export const updateContactNumber = async (data: { userId: string, form: ContactN
         });
 
         if (!response.ok) {
-            throw await response.json();
+            throw await response.text();
         }
     };
 
@@ -127,7 +127,7 @@ export const deleteAccount = async (data: { userId: string, form: AccountDeleteF
         });
 
         if (!response.ok) {
-            throw await response.json();
+            throw await response.text();
         }
     };
 

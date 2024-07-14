@@ -3,7 +3,6 @@ import {useState} from "react";
 import {getCookie} from "../../../../functions/web";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {deleteUserAddress, findUserAddressListById} from "../../../../api/locked/user/data";
-import {ApiErrorDTO} from "../../../../interfaces/dto/api-error";
 import {Button} from "../../../layout/styled/elements";
 import AddressItem from "./AddressItem";
 import NewAddressForm from "./forms/NewAddressForm";
@@ -18,7 +17,7 @@ const AddressList = () => {
         setShowForm(!showForm);
     };
 
-    const {data: addressList, isLoading, isSuccess, isError} = useQuery({
+    const {data: addressList, isLoading, isSuccess, isError, error} = useQuery({
         queryKey: ["user", "addressList", getCookie("id")],
         queryFn: findUserAddressListById
     });
@@ -29,12 +28,12 @@ const AddressList = () => {
             await queryClient.invalidateQueries({queryKey: ["user", "addressList"]});
             toggleForm();
         },
-        onError: (error: ApiErrorDTO) => {
+        onError: (error: string) => {
             modals.openContextModal({
                 modal: "agree",
                 title: "Error",
                 innerProps: {
-                    modalBody: error.errorMsg
+                    modalBody: error
                 }
             });
         }
@@ -49,7 +48,7 @@ const AddressList = () => {
         {isLoading && <Center h={100}><Loader color="#a9004f" size="xl" type="dots"/></Center>}
         {isSuccess && addressList.length === 0 && <p className={styles.text}>La lista de domicilios está vacía</p>}
         {isSuccess && addressList.map((item) => <AddressItem key={item.id} address={item} onDelete={delAddress}/>)}
-        {isError && <p className={styles.text}>Ocurrió un error.</p>}
+        {isError && <p className={styles.text}>{error.message}</p>}
         <Button type={"button"} onClick={toggleForm}>Añadir</Button>
         {showForm && <NewAddressForm handler={toggleForm}/>}
     </div>;

@@ -2,7 +2,6 @@ import styles from "./css/UserUpdateForm.module.css";
 import {getCookie} from "../../../../../functions/web";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {updateContactNumber} from "../../../../../api/locked/user/settings";
-import {ApiErrorDTO} from "../../../../../interfaces/dto/api-error";
 import {useForm} from "react-hook-form";
 import {Button, FormError, Input} from "../../../../layout/styled/elements";
 import {useState} from "react";
@@ -48,24 +47,14 @@ const ContactNumberForm = (props: Props) => {
             props.hide();
             props.revalidate();
         },
-        onError: (error: ApiErrorDTO) => {
-            if (error.errorMsg === "1062") {
-                modals.openContextModal({
-                    modal: "agree",
-                    title: "Error",
-                    innerProps: {
-                        modalBody: "Número de contacto asociado a una cuenta diferente. Por favor, utilice esa cuenta o contacte con nosotros."
-                    }
-                });
-            } else {
-                modals.openContextModal({
-                    modal: "agree",
-                    title: "Error",
-                    innerProps: {
-                        modalBody: error.errorMsg
-                    }
-                });
-            }
+        onError: (error: string) => {
+            modals.openContextModal({
+                modal: "agree",
+                title: "Error",
+                innerProps: {
+                    modalBody: error
+                }
+            });
         }
     });
 

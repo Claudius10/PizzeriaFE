@@ -15,8 +15,12 @@ export const findUserAddressListById = async (options: QueryOptions) => {
             credentials: "include"
         });
 
+        if (response.status === 202) {
+            throw new Error(await response.text());
+        }
+
         if (!response.ok) {
-            throw await response.json();
+            throw await response.text();
         } else {
             return await response.json() as Promise<AddressDTO[]>;
         }
@@ -36,7 +40,7 @@ export const createUserAddress = async (data: { userId: string, form: AddressFor
         });
 
         if (!response.ok) {
-            throw await response.json();
+            throw await response.text();
         }
     };
 
@@ -54,7 +58,7 @@ export const deleteUserAddress = async (data: { userId: string, addressId: numbe
         });
 
         if (!response.ok) {
-            throw await response.json();
+            throw await response.text();
         }
     };
 

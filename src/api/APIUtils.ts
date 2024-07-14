@@ -58,6 +58,6 @@ export const loadCSRFToken = async () => {
     });
 
     if (!response.ok) {
-        throw await response.json();
+        throw await response.text();
     }
 };
