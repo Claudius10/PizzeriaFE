@@ -27,7 +27,7 @@ const ProductItem = (props: Props) => {
             productType: props.item.productType,
             name: props.item.name,
             price: props.item.price,
-            format: props.item.format,
+            format: props.item.format == null || undefined ? "UNIDAD" : props.item.format,
             quantity: itemQuantity,
         });
 
