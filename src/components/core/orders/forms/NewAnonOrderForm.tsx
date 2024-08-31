@@ -88,7 +88,7 @@ const NewAnonOrderForm = () => {
         // set needed data for order
         form.cart.orderItems = removeItemIds(getItems());
         form.cart.totalQuantity = getQuantity();
-        form.cart.totalCost = getTotalCost();
+        form.cart.totalCost = Number(getTotalCost().toFixed(2));
         form.cart.totalCostOffers = getTotalCostWithOffers();
 
         createOrder.mutate(form);
